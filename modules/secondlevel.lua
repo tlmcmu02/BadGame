@@ -9,7 +9,7 @@ function love.load()
 end
 
 function love.update(dt)
-
+fgbgnh
 end
 
 function love.draw()
