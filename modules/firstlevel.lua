@@ -9,57 +9,62 @@ function love.load()  --33, 35
     y = 64
 
     spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
-    grid = anim8.newGrid(66, 70, 600, 504)
-    idledown = anim8.newAnimation(grid('1-1', 7), 0.4)
-    idleup = anim8.newAnimation(grid('3-3', 7), 0.4)
-    idlex = anim8.newAnimation(grid('5-5', 7), 0.4)
+    grid = anim8.newGrid(33, 34, 300, 252)
+    walkdown = anim8.newAnimation(grid('1-8', 1), 0.09)
+    walkup = anim8.newAnimation(grid('1-8', 2), 0.09)
+    walkx = anim8.newAnimation(grid('1-8', 3), 0.09)
 
-    anim = idledown
+    anim = walkdown
 end
 
 function love.update(dt)
     if love.keyboard.isDown('up') then
-        anim = idleup
         FaceU = true
         FaceD = false
         FaceL = false
         FaceR = false
+        walkup:update(dt)
+        anim = walkup
     end
     if love.keyboard.isDown('down') then
-        anim = idledown
         FaceU = false
         FaceD = true
         FaceL = false
         FaceR = false
+        walkdown:update(dt)
+        anim = walkdown
     end
     if love.keyboard.isDown('left') then
-        anim = idlex
         FaceU = false
         FaceD = false
         FaceL = true
         FaceR = false
+        walkx:update(dt)
+        anim = walkx
     end
     if love.keyboard.isDown('right') then
-        anim = idlex
+        FaceU = false
         FaceD = false
         FaceL = false
         FaceR = true
+        walkx:update(dt)
+        anim = walkx
     end
 end
 
 function love.draw()
-    if anim == idlex then
+    if anim == walkx then
         if FaceR == true then
-            idlex:draw(spritesheet, x, y)
+            walkx:draw(spritesheet, x, y)
         end
         if FaceL == true then
-            idlex:draw(spritesheet, x, y, rotation, -1, 1, 16, 0)
+            walkx:draw(spritesheet, x, y, rotation, -1, 1, 32, 0)
         end
     end
-    if anim == idleup then
-        idleup:draw(spritesheet, x, y)
+    if anim == walkup then
+        walkup:draw(spritesheet, x, y)
     end
-    if anim == idledown then
-        idledown:draw(spritesheet, x, y)
+    if anim == walkdown then
+        walkdown:draw(spritesheet, x, y)
     end
 end
