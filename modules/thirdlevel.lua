@@ -8,9 +8,9 @@ function love.load()
 
 --player = Entity:new() -- Create the Entity object named player
 
-openDoor = love.graphics.newImage('asset-1/dungeon/doors/vgate_closed_middle.png')
-closedDoor = love.graphics.newImage('asset-1/dungeon/doors/vgate_open_middle.png')
-switch = love.graphics.newImage('asset-1/dungeon/traps/pressure_plates.png')
+openDoor = love.graphics.newImage('assets-1/Door/vgate_closed_middle.png')
+closedDoor = love.graphics.newImage('assets-1/Door/vgate_open_middle.png')
+switch = love.graphics.newImage('assets-1/Switch/statue_elephant_jade.png')
 currentDoor = closedDoor
 
 
@@ -32,7 +32,7 @@ x = x - 1
 end
 -- Create the collision map, with walls around the edge of the map
 print(x..", "..y..", state: "..state)
-wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
+wall = love.graphics.newImage('assets-1/Wall/hell_1.png')
 collision = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
@@ -53,7 +53,7 @@ collision = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
 -- Create the background map
-floor = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_0.png')
+floor = love.graphics.newImage('assets-1/Floor/cage_0.png')
 background = {
   {floor, floor, floor, floor, floor, floor},
   {floor, floor, floor, floor, floor, floor},
@@ -116,9 +116,9 @@ player = {
      s = 4
  }
  
- hp bar = }
- love.graphics.newImage('assets-1/player/hp_bar/empty.png')
- love.graphics.newImage('assets-1/player/hp_bar/critical.png')
+ hp bar = {
+ love.graphics.newImage('assets-1/player/hp_bar/0.png')
+ love.graphics.newImage('assets-1/player/hp_bar/1.png')
  love.graphics.newImage('assets-1/player/hp_bar/2.png')
  love.graphics.newImage('assets-1/player/hp_bar/3.png')
  love.graphics.newImage('assets-1/player/hp_bar/4.png')
@@ -127,48 +127,37 @@ player = {
  love.graphics.newImage('assets-1/player/hp_bar/7.png')
  love.graphics.newImage('assets-1/player/hp_bar/8.png')
  love.graphics.newImage('assets-1/player/hp_bar/full.png')
- love.graphics.newImage('assets-1/player/hp_bar/game over.png')
-
-
-playerImg = love.graphics.newImage('')
-x = 400
-y = 300
-w = 200   -- The player's width is 50
-h = 200   -- The player's height is 50
-hp = 100 -- Set the player's HP to 100 at the start of the game
-PNG = love.graphics.newImage('')
-z = 100 -- The enemy's width is 50
-g = 250 -- The enemy's height is 50
---img = love.graphics.newImage('assets')
+ love.graphics.newImage('assets-1/player/hp_bar/game over.png')\
+ }
 end
 function love.update(dt)
     if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
         currentDoor = openDoor
       end
       if love.keyboard.isDown('right' or 'd') then
-        if collision:cc(x + 5, y, 64, 64) == false then
+        if collision:cc(playerx + 5, playery, 64, 64) == false then
           if currentDoor == closedDoor then
-            if cc(x, y, 64, 64,    764, 92, 263, 263) == false then
-              x = x + 5
+            if cc(playerx, playery, 64, 64,    764, 92, 263, 263) == false then
+              playerx = playerx + 5
             end
           else
-            x = x + 5
+            playerx = playerx + 5
           end
         end
       end
       if love.keyboard.isDown('down' or 's') then
         if collision:cc(x, y + 4, 64, 64) == false then
-          y = y + 5
+          playery = playery + 5
         end
       end
       if love.keyboard.isDown('left' or 'a') then
         if collision:cc(x - 4, y, 64, 64) == false then
-          x = x - 5
+          playerx = playerx - 5
         end
       end
       if love.keyboard.isDown('up' or 'w') then 
         if collision:cc(x, y - 4, 64, 64) == false then
-          y = y - 5
+          playery = playery - 5
         end
       end
       if love.keyboard.isDown ('escape') then 
@@ -182,16 +171,7 @@ function love.update(dt)
     -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
     
       -- if true, decrease HP:
-      if love.keyboard.isDown('right' or 'd') then  
-       
-        if love.keyboard.isDown('down' or 's') then  
-        h = h + 200
-        end
-        if love.keyboard.isDown('left' or 'a') then  
-        w = w - 200
-        end
-        if love.keyboard.isDown('up' or 'w') then 
-          h = h - 200
+      
         end 
       
         love.graphics.draw(img, x1,y2)
@@ -212,7 +192,7 @@ function love.draw()
     love.graphics.draw(currentDoor, 764, 92)
     love.graphics.draw(switch, 200, 200)
     -- Draw the enemy
-    love.graphics.draw(PNG, z, g)
+    
   
     -- Draw the player
     love.graphics.draw(playerImg, x, y)
