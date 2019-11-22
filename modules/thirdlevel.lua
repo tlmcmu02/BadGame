@@ -127,6 +127,12 @@ player = {
  love.graphics.newImage('assets-1/player/hp_bar/game over.png')\
  }
 end
+ 
+ cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+
+cam:setPosition(400, 400)
+end
+
 function love.update(dt)
     if cc(playerx, playery, 64, 64,   200, 200, 64, 64) == true then
         currentDoor = openDoor
@@ -185,6 +191,9 @@ function love.draw()
     love.graphics.draw(switch, 200, 200)
     -- Draw the enemy
     
+    
+    
+    cam:draw(function(x, y, w, h)
   
     -- Draw the player
     love.graphics.draw(playerImg, playerx, playery)
