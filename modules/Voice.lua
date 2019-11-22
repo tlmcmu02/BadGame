@@ -14,23 +14,24 @@ switch = love.graphics.newImage('assets-1/Switch/statue_elephant_jade.png')
 currentDoor = closedDoor
 
 
-playerx = 100
-playery = 146
+x = 100
+y = 146
 
 state = 'rest'
 
-if playerx > 100 then
-if playery > 200 then
+if x > 100 then
+if y > 200 then
   state = 'move'
-  playery = playery - 1
+  y = y - 1
 else
   state = 'rest'
 end
+else
 state = 'move'
-playerx = playerx - 1
+x = x - 1
 end
 -- Create the collision map, with walls around the edge of the map
-print(playerx..", "..playery..", state: "..state)
+print(x..", "..y..", state: "..state)
 wall = love.graphics.newImage('assets-1/Wall/hell_1.png')
 collision = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -108,6 +109,8 @@ player = {
     img = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
      x = 64
      y = 64
+     w = 44
+     h = 19
      hp = 10
      gp = 0
      s = 4
@@ -128,7 +131,7 @@ player = {
  }
 end
 function love.update(dt)
-    if cc(playerx, playery, 64, 64,   200, 200, 64, 64) == true then
+    if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
         currentDoor = openDoor
       end
       if love.keyboard.isDown('right' or 'd') then
@@ -143,24 +146,24 @@ function love.update(dt)
         end
       end
       if love.keyboard.isDown('down' or 's') then
-        if collision:cc(playerx, playery + 4, 64, 64) == false then
+        if collision:cc(x, y + 4, 64, 64) == false then
           playery = playery + 5
         end
       end
       if love.keyboard.isDown('left' or 'a') then
-        if collision:cc(playerx - 4, playery, 64, 64) == false then
+        if collision:cc(x - 4, y, 64, 64) == false then
           playerx = playerx - 5
         end
       end
       if love.keyboard.isDown('up' or 'w') then 
-        if collision:cc(playerx, playery - 4, 64, 64) == false then
+        if collision:cc(x, y - 4, 64, 64) == false then
           playery = playery - 5
         end
       end
       if love.keyboard.isDown ('escape') then 
         love.exitModule();
       end
-      if playerx > 800 then
+      if x > 800 then
         love.exitModule()
       end
     -- nothing to update
@@ -171,9 +174,14 @@ function love.update(dt)
       
         end 
       
-      end
+        love.graphics.draw(img, x1,y2)
+        
+        if love.keyboard.isDown ('B') then
+          if cc(x1, y1, -1, w1, h1,    100, 200, 64, 64) ==  false then
+            y = y - 1
+          end
+        end
     end
-  end
 end
 
 function love.draw()
@@ -187,7 +195,7 @@ function love.draw()
     
   
     -- Draw the player
-    love.graphics.draw(playerImg, playerx, playery)
+    love.graphics.draw(playerImg, x, y)
    
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
@@ -196,7 +204,7 @@ function love.draw()
    love.graphics.print(hp, 10, 40)
   
    love.graphics.print("So you must be Bob the shape-shifting alien? You have to solve all the puzzles in order to get out of here.",  100, 100)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
+  if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
   end
