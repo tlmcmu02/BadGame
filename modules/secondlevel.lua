@@ -6,15 +6,26 @@ local anim8 = require 'core/anim8'
 
 function love.load()
 player = {
-        img = love.graphics.newImage('assets-1/player/hp_bar/9.png'),
+        img = love.graphics.newImage('assets-1/player/hp_bar/heart.png'),
         x = 64,
         y  = 64,
-        w = 24,
-        h = 24,
+        w = 10,
+        h = 10,
         hp = 10,
         gp = 0,
         s = 4
 }
+
+ball = {
+  img = love.graphics.newImage('assets-1/untitled.png'),
+  x = 64,
+  y = 64,
+  r = 0,
+  s = 4,
+}
+
+
+
 
 hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/0.png'),
@@ -104,7 +115,7 @@ function love.draw()
         mapc:draw()
         
         --walk:draw(spritesheet, 400, 300)
-        love.graphics.draw(player.img, player.x - 40, player.y - 40)
+        love.graphics.draw(player.img, player.x , player.y )
         
         
         love.graphics.draw(hpBar[player.hp + 1], player.x -10, player.y - 20)
