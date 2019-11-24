@@ -17,9 +17,18 @@ function love.load()
     idlex = anim8.newAnimation(grid('1-1', 3), 0.09)
     idleup = anim8.newAnimation(grid('1-1', 2), 0.09)
     idledown = anim8.newAnimation(grid('1-1', 1), 0.09)
+    sword = anim8.newAnimation(grid('1-8', 4), 0.05125)
     anim = walkdown
     x = 128
     y = 128
+
+    hpnum = 10
+    timerIFrames = 0
+    Iframes = 0
+    lifelost = 0
+    hitboxtimer = 0
+    animtimer = 0
+    cooldown = 0
 
     wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
 
@@ -82,6 +91,14 @@ function love.load()
 end
 
 function love.update(dt)
+    if love.keyboard.isDown('x') then
+        if cooldown == 0 then
+          sword:update(dt)
+          if hitbox == 0 then
+          hitbox = 1
+        end
+      end
+    end 
     if love.keyboard.isDown('up') then
         FaceU = true
         FaceD = false
@@ -126,26 +143,73 @@ function love.update(dt)
             x = x + 6
         end
     end
-    if love.keyboard.isDown('up') == false then
-        if love.keyboard.isDown('down') == false then
-            if love.keyboard.isDown('left') == false then
-                if love.keyboard.isDown('right') == false then
-                    if FaceU == true then
-                        anim = idleup
-                    end
-                    if FaceD == true then
-                        anim = idledown
-                    end
-                    if FaceL == true then
-                        anim = idlex
-                    end
-                    if FaceR == true then
-                        anim = idlex
+    if animtimer == 1 or animtimer == 0 then
+        if love.keyboard.isDown('up') == false then
+            if love.keyboard.isDown('down') == false then
+                if love.keyboard.isDown('left') == false then
+                    if love.keyboard.isDown('right') == false then
+                        if FaceU == true then
+                            anim = idleup
+                        end
+                        if FaceD == true then
+                            anim = idledown
+                        end
+                        if FaceL == true then
+                            anim = idlex
+                        end
+                        if FaceR == true then
+                            anim = idlex
+                        end
                     end
                 end
             end
         end
     end
+    if Iframes == 1 then
+        timerIFrames = 60
+      end
+      if timerIFrames > 0 then
+       timerIFrames = timerIFrames - 1
+       Iframes = 2
+      end
+      if timerIFrames < 1 then
+        timerIFrames = 0
+        Iframes = 0
+      end
+      if hpnum == 0 then
+        lifelost = 1
+      end
+    
+      if hitbox == 1 then
+        hitboxtimer = 30
+        animtimer = 30
+      end
+      if hitboxtimer > 0 then
+        hitboxtimer = hitboxtimer - 1
+        hitbox = 2
+        anim = sword
+      end
+      if animtimer > 0 then
+        animtimer = animtimer - 1
+      end
+      if hitboxtimer == 0 then
+        hitbox = 0
+      end
+      if hitboxtimer == 1 then
+        cooldown = 16
+      end
+      if cooldown > 0 then
+        cooldown = cooldown - 1
+      end
+      if lifelost == 1 then
+        lives = lives - 1
+        x = 64
+        y = 320
+        hpnum = 10
+        timerIFrames = 0
+        Iframes = 0
+        lifelost = 0
+      end
     cam:setPosition(x, y)
 end
 
@@ -166,6 +230,7 @@ function love.draw()
     if anim == walkdown then
         walkdown:draw(spritesheet, x, y)
     end
+
     if anim == idleup then
         idleup:draw(spritesheet, x, y)
     end
@@ -179,6 +244,10 @@ function love.draw()
         if FaceL == true then
             idlex:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
         end
+    end
+
+    if anim == sword then
+        sword:draw(spritesheet, x, y)
     end
 end)
 end
