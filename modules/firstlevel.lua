@@ -9,6 +9,8 @@ function love.load()
     cam = gamera.new(48, 52, 8000, 6000)
     
     swordswipe = false
+    dashattack = false
+    momentum = 0
     
     
     spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
@@ -31,6 +33,9 @@ function love.load()
     hitboxtimer = 0
     animtimer = 0
     cooldown = 0
+    hitboxtimer2 = 0
+    animtimer2 = 0
+    cooldown2 = 0
 
     wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
 
@@ -96,6 +101,11 @@ function love.update(dt)
     if love.keyboard.isDown('x') then
         swordswipe = true
     end 
+    if love.keyboard.isDown('z') then
+        if momentum > 45 then
+            dashattack = true
+        end
+    end 
     if love.keyboard.isDown('up') then
         FaceU = true
         FaceD = false
@@ -104,7 +114,13 @@ function love.update(dt)
         walkup:update(dt)
         anim = walkup
         if walls:cc(x + 16 , y + 10, 32, 32) == false  then
-            y = y - 6
+            if dashattack == true then
+                y = y - 8
+            end
+            if dashattack == false then
+                y = y - 6
+            end
+            momentum = momentum + 5
         end
     end
     if love.keyboard.isDown('down') then
@@ -115,7 +131,13 @@ function love.update(dt)
         walkdown:update(dt)
         anim = walkdown
         if walls:cc(x + 16 , y + 22, 32, 32) == false then
-            y = y + 6
+            if dashattack == true then
+                y = y + 8
+            end
+            if dashattack == false then
+                y = y + 6
+            end
+            momentum = momentum + 5
         end
     end
     if love.keyboard.isDown('left') then
@@ -126,7 +148,13 @@ function love.update(dt)
         walkx:update(dt)
         anim = walkx
         if walls:cc(x + 10, y + 16, 32, 32) == false  then
-            x = x - 6
+            if dashattack == true then
+                x = x - 8
+            end
+            if dashattack == false then
+                x = x - 6
+            end
+            momentum = momentum + 5
         end
     end
     if love.keyboard.isDown('right') then
@@ -137,7 +165,13 @@ function love.update(dt)
         walkx:update(dt)
         anim = walkx
         if walls:cc(x + 22, y + 16, 32, 32) == false  then
-            x = x + 6
+            if dashattack == true then
+                x = x + 8
+            end
+            if dashattack == false then
+                x = x + 6
+            end
+            momentum = momentum + 5
         end
     end
     if swordswipe == true then
@@ -153,25 +187,40 @@ function love.update(dt)
             if love.keyboard.isDown('down') == false then
                 if love.keyboard.isDown('left') == false then
                     if love.keyboard.isDown('right') == false then
+                        momentum = 0
                         if FaceU == true then
                             anim = idleup
                             sword:update(6)
                         end
                         if FaceD == true then
                             anim = idledown
-                            sword:update(1)
+                            sword:update(2)
                         end
                         if FaceL == true then
                             anim = idlex
-                            sword:update(5)
+                            sword:update(4)
                         end
                         if FaceR == true then
                             anim = idlex
-                            sword:update(3)
+                            sword:update(2)
                         end
                     end
                 end
             end
+        end
+    end
+    if animtimer == 1 or animtimer == 0 then
+        if FaceU == true then
+            sword:gotoFrame(6)
+        end
+        if FaceD == true then
+            sword:gotoFrame(2)
+        end
+        if FaceL == true then
+            sword:gotoFrame(8)
+        end
+        if FaceR == true then
+            sword:gotoFrame(4)
         end
     end
     if Iframes == 1 then
@@ -203,12 +252,36 @@ function love.update(dt)
       end
       if hitboxtimer == 0 then
         hitbox = 0
+        swordswipe = 0
       end
       if hitboxtimer == 1 then
         cooldown = 16
       end
       if cooldown > 0 then
         cooldown = cooldown - 1
+      end
+      
+      if hitbox2 == 1 then
+        hitboxtimer2 = 30
+        animtimer2 = 30
+      end
+      if hitboxtimer2 > 0 then
+        hitboxtimer2 = hitboxtimer2 - 1
+        hitbox2 = 2
+        anim = dash
+      end
+      if animtimer2 > 0 then
+        animtimer2 = animtimer2 - 1
+      end
+      if hitboxtimer2 == 0 then
+        hitbox2 = 0
+        dashattack = 0
+      end
+      if hitboxtimer2 == 1 then
+        cooldown2 = 16
+      end
+      if cooldown2 > 0 then
+        cooldown2 = cooldown2 - 1
       end
       if lifelost == 1 then
         lives = lives - 1
