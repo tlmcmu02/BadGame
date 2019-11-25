@@ -8,6 +8,8 @@ function love.load()
 
     cam = gamera.new(48, 52, 8000, 6000)
     
+    swordswipe = false
+    
     
     spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
     grid = anim8.newGrid(66, 68, 600, 504)
@@ -92,12 +94,7 @@ end
 
 function love.update(dt)
     if love.keyboard.isDown('x') then
-        if cooldown == 0 then
-          sword:update(dt)
-          if hitbox == 0 then
-          hitbox = 1
-        end
-      end
+        swordswipe = true
     end 
     if love.keyboard.isDown('up') then
         FaceU = true
@@ -143,6 +140,14 @@ function love.update(dt)
             x = x + 6
         end
     end
+    if swordswipe == true then
+        if cooldown == 0 then
+            sword:update(dt)
+            if hitbox == 0 then
+            hitbox = 1
+          end
+        end
+    end
     if animtimer == 1 or animtimer == 0 then
         if love.keyboard.isDown('up') == false then
             if love.keyboard.isDown('down') == false then
@@ -150,15 +155,19 @@ function love.update(dt)
                     if love.keyboard.isDown('right') == false then
                         if FaceU == true then
                             anim = idleup
+                            sword:update(6)
                         end
                         if FaceD == true then
                             anim = idledown
+                            sword:update(1)
                         end
                         if FaceL == true then
                             anim = idlex
+                            sword:update(5)
                         end
                         if FaceR == true then
                             anim = idlex
+                            sword:update(3)
                         end
                     end
                 end
