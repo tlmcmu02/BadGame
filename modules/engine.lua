@@ -6,15 +6,15 @@ local anim8 = require 'core/anim8'
 
 function love.load()
 
-    cam = gamera.new(48, 52, 8000, 6000)
+    cam = gamera.new(0, 0, 8000, 6000)
     
     swordswipe = false
-    dashattack = false
+    dashattack = 0
     momentum = 0
     
     
     spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
-    grid = anim8.newGrid(66, 68, 600, 504)
+    grid = anim8.newGrid(66, 68, 600, 1000)
     walkdown = anim8.newAnimation(grid('1-7', 1), 0.09)
     walkup = anim8.newAnimation(grid('1-7', 2), 0.09)
     walkx = anim8.newAnimation(grid('1-7', 3), 0.09)
@@ -22,6 +22,9 @@ function love.load()
     idleup = anim8.newAnimation(grid('1-1', 2), 0.09)
     idledown = anim8.newAnimation(grid('1-1', 1), 0.09)
     sword = anim8.newAnimation(grid('1-8', 4), 0.05125)
+    dashup = anim8.newAnimation(grid('1-8', 8), 0.05125, endofdash)
+    dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash)
+    dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash)
     anim = walkdown
     x = 128
     y = 128
@@ -40,7 +43,7 @@ function love.load()
     wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
 
     walls = {
-        {wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,},
+        {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
         {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
         {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
         {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
@@ -92,7 +95,7 @@ function love.load()
         {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
         {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
         {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-        {wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,wall, wall, wall,},
+        {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
     }
     walls = Map:new(walls)
 end
@@ -103,7 +106,7 @@ function love.update(dt)
     end 
     if love.keyboard.isDown('z') then
         if momentum > 45 then
-            dashattack = true
+            dashattack = 1
         end
     end 
     if love.keyboard.isDown('up') then
@@ -113,14 +116,16 @@ function love.update(dt)
         FaceR = false
         walkup:update(dt)
         anim = walkup
-        if walls:cc(x + 16 , y + 10, 32, 32) == false  then
-            if dashattack == true then
-                y = y - 8
+        if dashattack == 1 then
+            if walls:cc(x + 16 , y + 4, 32, 32) == false  then
+                y = y - 12
             end
-            if dashattack == false then
+        end
+        if dashattack == 0 then
+            if walls:cc(x + 16 , y + 10, 32, 32) == false  then
                 y = y - 6
+                momentum = momentum + 1
             end
-            momentum = momentum + 5
         end
     end
     if love.keyboard.isDown('down') then
@@ -129,16 +134,18 @@ function love.update(dt)
         FaceL = false
         FaceR = false
         walkdown:update(dt)
-        anim = walkdown
-        if walls:cc(x + 16 , y + 22, 32, 32) == false then
-            if dashattack == true then
-                y = y + 8
+        anim = walkdown  
+        if dashattack == 1 then
+            if walls:cc(x + 16 , y + 28, 32, 32) == false then
+                y = y + 12
             end
-            if dashattack == false then
-                y = y + 6
-            end
-            momentum = momentum + 5
         end
+        if dashattack == 0 then
+            if walls:cc(x + 16 , y + 22, 32, 32) == false then
+                y = y + 6
+                momentum = momentum + 1
+            end
+        end       
     end
     if love.keyboard.isDown('left') then
         FaceU = false
@@ -147,14 +154,16 @@ function love.update(dt)
         FaceR = false
         walkx:update(dt)
         anim = walkx
-        if walls:cc(x + 10, y + 16, 32, 32) == false  then
-            if dashattack == true then
-                x = x - 8
+        if dashattack == 1 then
+            if walls:cc(x + 4, y + 16, 32, 32) == false then
+                x = x - 12
             end
-            if dashattack == false then
+        end
+        if dashattack == 0 then
+            if walls:cc(x + 10, y + 16, 32, 32) == false then
                 x = x - 6
+                momentum = momentum + 1
             end
-            momentum = momentum + 5
         end
     end
     if love.keyboard.isDown('right') then
@@ -164,14 +173,16 @@ function love.update(dt)
         FaceR = true
         walkx:update(dt)
         anim = walkx
-        if walls:cc(x + 22, y + 16, 32, 32) == false  then
-            if dashattack == true then
-                x = x + 8
+        if dashattack == 1 then
+            if walls:cc(x + 28, y + 16, 32, 32) == false  then
+                x = x + 12
             end
-            if dashattack == false then
+        end
+        if dashattack == 0 then
+            if walls:cc(x + 22, y + 16, 32, 32) == false then
                 x = x + 6
+                momentum = momentum + 1
             end
-            momentum = momentum + 5
         end
     end
     if swordswipe == true then
@@ -190,19 +201,15 @@ function love.update(dt)
                         momentum = 0
                         if FaceU == true then
                             anim = idleup
-                            sword:update(6)
                         end
                         if FaceD == true then
                             anim = idledown
-                            sword:update(2)
                         end
                         if FaceL == true then
                             anim = idlex
-                            sword:update(4)
                         end
                         if FaceR == true then
                             anim = idlex
-                            sword:update(2)
                         end
                     end
                 end
@@ -332,4 +339,8 @@ function love.draw()
         sword:draw(spritesheet, x, y)
     end
 end)
+end
+
+function endofdash()
+    dashattack = 0
 end
