@@ -102,38 +102,38 @@ background = {
 map = Map:new(template)
 player = {
  
-    playerimg = love.graphics.newImage('Untitled.png')
-    newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
-    walk = anim8.newAnimation(grid('1-6', 2), 0.2)
-    playerx = 200
-    playery = 200
-    img = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
-     x = 64
-     y = 64
-     hp = 10
-     gp = 0
-     s = 4
- }
+    spritesheet = love.graphics.newImage('Untitled.png'),
+    grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight()),
+    walk = anim8.newAnimation(grid('1-6', 2), 0.2),
+    playerx = 200,
+    playery = 200,
+    img = love.graphics.newImage('assets-1/player/hp_bar/empty.png'),
+     x = 64,
+     y = 64,
+     hp = 10,
+     gp = 0,
+     s = 4,
  
- hp bar = {
- love.graphics.newImage('assets-1/player/hp_bar/0.png')
- love.graphics.newImage('assets-1/player/hp_bar/1.png')
- love.graphics.newImage('assets-1/player/hp_bar/2.png')
- love.graphics.newImage('assets-1/player/hp_bar/3.png')
- love.graphics.newImage('assets-1/player/hp_bar/4.png')
- love.graphics.newImage('assets-1/player/hp_bar/5.png')
- love.graphics.newImage('assets-1/player/hp_bar/6.png')
- love.graphics.newImage('assets-1/player/hp_bar/7.png')
- love.graphics.newImage('assets-1/player/hp_bar/8.png')
- love.graphics.newImage('assets-1/player/hp_bar/full.png')
- love.graphics.newImage('assets-1/player/hp_bar/game over.png')\
+}
+ hpbar = {
+ love.graphics.newImage('assets-1/player/hp_bar/0.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/1.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/2.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/3.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/4.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/5.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/6.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/7.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/8.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/full.png'),
+ love.graphics.newImage('assets-1/player/hp_bar/game over.png'),
  }
 end
  
  cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
 
 cam:setPosition(400, 400)
-end
+
 
 function love.update(dt)
     if cc(playerx, playery, 64, 64,   200, 200, 64, 64) == true then
@@ -171,19 +171,16 @@ function love.update(dt)
       if playerx > 800 then
         love.exitModule()
       end
-    -- nothing to update
+      walk:update(dt)
     end
-    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+      -- nothing to update
+    
+     -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
     
       -- if true, decrease HP:
-      
-        end 
-      
-      end
     end
   end
 end
-
 function love.draw()
     map:draw()
     collision:draw()
@@ -193,9 +190,9 @@ function love.draw()
     love.graphics.draw(switch, 200, 200)
     -- Draw the enemy
     
+    walk:draw(spritesheet, 400, 300)
     
-    
-    cam:draw(function(x, y, w, h)
+    cam:draw(function(x, y, w, h))
   
     -- Draw the player
     love.graphics.draw(playerImg, playerx, playery)
@@ -209,7 +206,7 @@ function love.draw()
    love.graphics.print("So you must be Bob the shape-shifting alien? You have to solve all the puzzles in order to get out of here.",  100, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
-  end
+  
   end
    --player:draw() -- Draw the entity object named player 
    
