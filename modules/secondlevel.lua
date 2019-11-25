@@ -41,8 +41,8 @@ hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/10.png'),
   }
 
-  w1 ='assets-1/transparent_wall.png'
-  f = 'assets-1/frozen_0.png'
+  w1 ='assets-1/wall/transparent_wall.png'
+  f = 'assets-1/wall/frozen_0.png'
 
   background = {
     {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
@@ -114,6 +114,7 @@ function love.draw()
         map:draw()
         mapc:draw()
         
+        love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
         love.graphics.draw(player.img, player.x , player.y )
         
