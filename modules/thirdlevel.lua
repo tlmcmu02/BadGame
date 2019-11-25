@@ -103,6 +103,8 @@ map = Map:new(template)
 player = {
  
     playerimg = love.graphics.newImage('Untitled.png')
+    newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+    walk = anim8.newAnimation(grid('1-6', 2), 0.2)
     playerx = 200
     playery = 200
     img = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
