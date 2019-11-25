@@ -41,8 +41,8 @@ hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/10.png'),
   }
 
-  w1 ='assets-1/transparent_wall.png'
-  f = 'assets-1/frozen_0.png'
+  w1 ='assets-1/wall/transparent_wall.png'
+  f = 'assets-1/wall/frozen_0.png'
 
   background = {
     {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
