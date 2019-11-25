@@ -114,6 +114,7 @@ function love.draw()
         map:draw()
         mapc:draw()
         
+        love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
         love.graphics.draw(player.img, player.x , player.y )
         
