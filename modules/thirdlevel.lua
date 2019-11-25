@@ -103,7 +103,7 @@ map = Map:new(template)
 player = {
  
     spritesheet = love.graphics.newImage('Untitled.png'),
-    grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight()),
+    grid = anim8.newGrid(16, 16, spritesheet:getWidth(), 100),
     walk = anim8.newAnimation(grid('1-6', 2), 0.2),
     playerx = 200,
     playery = 200,
@@ -136,51 +136,44 @@ cam:setPosition(400, 400)
 
 
 function love.update(dt)
-    if cc(playerx, playery, 64, 64,   200, 200, 64, 64) == true then
-        currentDoor = openDoor
-      end
-      if love.keyboard.isDown('right' or 'd') then
-        if collision:cc(playerx + 5, playery, 64, 64) == false then
-          if currentDoor == closedDoor then
-            if cc(playerx, playery, 64, 64,    764, 92, 263, 263) == false then
-              playerx = playerx + 5
-            end
-          else
+  if cc(playerx, playery, 64, 64,   200, 200, 64, 64) == true then
+    currentDoor = openDoor
+  end
+    if love.keyboard.isDown('right' or 'd') then
+      if collision:cc(playerx + 5, playery, 64, 64) == false then
+        if currentDoor == closedDoor then
+          if cc(playerx, playery, 64, 64,    764, 92, 263, 263) == false then
             playerx = playerx + 5
           end
+        else
+          playerx = playerx + 5
         end
       end
-      if love.keyboard.isDown('down' or 's') then
-        if collision:cc(playerx, playery + 4, 64, 64) == false then
-          playery = playery + 5
-        end
-      end
-      if love.keyboard.isDown('left' or 'a') then
-        if collision:cc(playerx - 4, playery, 64, 64) == false then
-          playerx = playerx - 5
-        end
-      end
-      if love.keyboard.isDown('up' or 'w') then 
-        if collision:cc(playerx, playery - 4, 64, 64) == false then
-          playery = playery - 5
-        end
-      end
-      if love.keyboard.isDown ('escape') then 
-        love.exitModule();
-      end
-      if playerx > 800 then
-        love.exitModule()
-      end
-      walk:update(dt)
     end
-      -- nothing to update
-    
-     -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-    
-      -- if true, decrease HP:
+    if love.keyboard.isDown('down' or 's') then
+      if collision:cc(playerx, playery + 4, 64, 64) == false then
+        playery = playery + 5
+      end
     end
-  end
+    if love.keyboard.isDown('left' or 'a') then
+      if collision:cc(playerx - 4, playery, 64, 64) == false then
+        playerx = playerx - 5
+      end
+    end
+    if love.keyboard.isDown('up' or 'w') then 
+      if collision:cc(playerx, playery - 4, 64, 64) == false then
+        playery = playery - 5
+      end
+    end
+    if love.keyboard.isDown ('escape') then 
+      love.exitModule();
+    end
+    if playerx > 800 then
+      love.exitModule()
+    end
+    walk:update(dt)
 end
+
 function love.draw()
     map:draw()
     collision:draw()
@@ -192,7 +185,7 @@ function love.draw()
     
     walk:draw(spritesheet, 400, 300)
     
-    cam:draw(function(x, y, w, h))
+    cam:draw(function(x, y)
   
     -- Draw the player
     love.graphics.draw(playerImg, playerx, playery)
@@ -209,5 +202,5 @@ function love.draw()
   
   end
    --player:draw() -- Draw the entity object named player 
-   
+end)
 end
