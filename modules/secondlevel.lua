@@ -12,19 +12,23 @@ player = {
         w = 10,
         h = 10,
         hp = 10,
-        gp = 0,
         s = 4
 }
 
 ball = {
-  img = love.graphics.newImage('assets-1/untitled.png'),
+  img = love.graphics.newImage('assets-1/kfc.png'),
   x = 64,
   y = 64,
   r = 0,
   s = 4,
 }
 
-
+block1 = {
+  img = love.graphics.newImage('assets-1/blocks/block1.png'),
+  x=0,
+  y=0,
+  e=0
+}
 
 
 hpBar = {
@@ -105,6 +109,8 @@ function love.update(dt)
         end
       end
       
+
+
       cam:setPosition(player.x, player.y)
 
 end
@@ -114,6 +120,8 @@ function love.draw()
         map:draw()
         mapc:draw()
         
+        
+
         love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
         love.graphics.draw(player.img, player.x , player.y )
