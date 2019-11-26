@@ -390,9 +390,9 @@ function love.draw()
         
         
         
-        love.graphics.draw(hpBar[player.hp + 1], player.x -10, player.y - 20)
+        
       end)
-
+love.graphics.draw(hpBar[player.hp + 1], 16, 64, 6, 3)
 
 end
 
