@@ -3,6 +3,7 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
+local engine = require 'core/engine'
 
 function love.load()
 
@@ -122,7 +123,7 @@ end
 
 function love.draw()
     map:draw()
-    collision:draw()
+    mapc:draw()
     love.graphics.print('', 0, 0)
     
     love.graphics.draw(currentDoor, 764, 92)
