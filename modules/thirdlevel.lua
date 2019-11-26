@@ -102,7 +102,7 @@ background = {
 map = Map:new(template)
 player = {
  
-    spritesheet = love.graphics.newImage('Untitled.png'),
+    spritesheet = love.graphics.newImage('placehold.png'),
     grid = anim8.newGrid(16, 16, spritesheet:getWidth(), 100),
     walk = anim8.newAnimation(grid('1-6', 2), 0.2),
     playerx = 200,
