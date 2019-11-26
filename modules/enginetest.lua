@@ -16,6 +16,10 @@ function love.load()
     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
   }
   mapc = Map:new(mapc)
@@ -26,11 +30,16 @@ function love.update(dt)
 
   engineupdate(dt)
 
+  if love.keyboard.isDown ('escape') then 
+    love.exitModule();
+  end
+
 end
 
 function love.draw()
 
   mapc:draw()
+  
   DrawPlayer()
 
 end

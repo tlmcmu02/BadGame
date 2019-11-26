@@ -72,7 +72,8 @@ background = {
   mapc = Map:new (collision)
   --background = Map:new (background)
   
-  
+  sound = love.audio.newSource('Doom SNES Soundtrack   E1M1   At Doom.mp3', 'static')
+
   template = {-- a 10 x 10 map with the floor texture in the middle
 
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -116,6 +117,7 @@ function love.update(dt)
     if love.keyboard.isDown ('escape') then 
       love.exitModule();
     end
+    sound:play()
     if x > 800 then
       love.exitModule()
     end
