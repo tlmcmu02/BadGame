@@ -72,7 +72,8 @@ background = {
   mapc = Map:new (collision)
   --background = Map:new (background)
   
-  
+  Doom = love.audio.newSource('Doom SNES Soundtrack   E1M1   At Doom.mp3', 'static')
+
   template = {-- a 10 x 10 map with the floor texture in the middle
 
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -114,32 +115,33 @@ function love.update(dt)
   end
   engineupdate(dt)
     if love.keyboard.isDown ('escape') then 
+      love.audio.stop(Doom)
       love.exitModule();
     end
+    Doom:play()
     if x > 800 then
-      love.exitModule()
+      love.audio.stop(Doom)
+      love.exitModule() 
     end
 end
 
 function love.draw()
     map:draw()
     mapc:draw()
+    --Draw The Map
     love.graphics.print('', 0, 0)
     
     love.graphics.draw(currentDoor, 764, 92)
     love.graphics.draw(switch, 200, 200)
-    -- Draw the enemy
+    -- Draw the switch
     
     DrawPlayer()
+    --Draw the player
     
     cam:draw(function(x, y)
-  
-    -- Draw the player
-   
+         
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
-  
-   -- Print the player's HP in the top left corner
   
    love.graphics.print("",  100, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then

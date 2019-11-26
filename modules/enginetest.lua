@@ -16,21 +16,34 @@ function love.load()
     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
+    {wall, 'nil','nil','nil','nil','nil','nil','nil','nil', wall,},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
   }
   mapc = Map:new(mapc)
 
+  Music = love.audio.newSource('Great Temple (Zelda II   The Adventure of Link)   Super Smash Bros Wii U.mp3', 'static')
+  Music:setVolume(0.5)
 end
 
 function love.update(dt)
 
   engineupdate(dt)
 
+  Music:play()
+
+  if love.keyboard.isDown ('space') then 
+    love.exitModule();
+  end
+
 end
 
 function love.draw()
 
   mapc:draw()
+  
   DrawPlayer()
 
 end
