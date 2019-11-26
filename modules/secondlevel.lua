@@ -18,12 +18,10 @@ ball = {
   s = 4,
 }
 
-block1 = {
-  img = love.graphics.newImage('assets-1/blocks/block1.png'),
-  x=0,
-  y=0,
-  e=0
-}
+blocks = {}
+for i = 1, 6 do
+  blocks[i] = newBlock((i-1)*64, 0)
+end
 
 
 hpBar = {
@@ -116,10 +114,22 @@ function love.draw()
         
         
       end)
---love.graphics.draw(love.graphics'assets1/hpBar/10.png', 16, 64, 6, 3)
-
+love.graphics.draw(hpBar[11], 16, 64, 6, 3)
+      for i = 1, 6 do
+        love.graphics.draw(blocks[i].img, blocks[i].x, blocks[i].y)
+      end
 end
 
 function endofdash()
   dashattack = 0
+end
+
+function newBlock(x, y)
+  block = {
+    img = love.graphics.newImage('assets-1/blocks/block1.png'),
+    x=x,
+    y=y,
+    e=0
+  }
+  return block
 end
