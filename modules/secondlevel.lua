@@ -116,7 +116,7 @@ function love.draw()
         
         
       end)
-love.graphics.draw(love.graphics'assets1/hpBar/10.png', 16, 64, 6, 3)
+--love.graphics.draw(love.graphics'assets1/hpBar/10.png', 16, 64, 6, 3)
 
 end
 
