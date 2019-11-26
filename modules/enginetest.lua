@@ -30,11 +30,16 @@ function love.update(dt)
 
   engineupdate(dt)
 
+  if love.keyboard.isDown ('escape') then 
+    love.exitModule();
+  end
+
 end
 
 function love.draw()
 
   mapc:draw()
+  
   DrawPlayer()
 
 end
