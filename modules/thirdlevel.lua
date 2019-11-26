@@ -8,29 +8,58 @@ function love.load()
 
 --player = Entity:new() -- Create the Entity object named player
 
-openDoor = love.graphics.newImage('assets-1/Door/vgate_closed_middle.png')
-closedDoor = love.graphics.newImage('assets-1/Door/vgate_open_middle.png')
-switch = love.graphics.newImage('assets-1/Switch/statue_elephant_jade.png')
+openDoor = love.graphics.newImage('assets-1/Door/vgate_open_middle.png')
+closedDoor = love.graphics.newImage('assets-1/Door/vgate_closed_middle.png')
+switch = love.graphics.newImage('assets-1/Switch/pressure_plate.png')
 currentDoor = closedDoor
 
+swordswipe = false
+    dashattack = 0
+    momentum = 0
+    
+    
+    spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
+    grid = anim8.newGrid(66, 68, 600, 1000)
+    walkdown = anim8.newAnimation(grid('1-7', 1), 0.09)
+    walkup = anim8.newAnimation(grid('1-7', 2), 0.09)
+    walkx = anim8.newAnimation(grid('1-7', 3), 0.09)
+    idlex = anim8.newAnimation(grid('1-1', 3), 0.09)
+    idleup = anim8.newAnimation(grid('1-1', 2), 0.09)
+    idledown = anim8.newAnimation(grid('1-1', 1), 0.09)
+    sword = anim8.newAnimation(grid('1-8', 4), 0.05125)
+    dashup = anim8.newAnimation(grid('1-8', 8), 0.05125, endofdash)
+    dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash)
+    dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash)
+    anim = walkdown
 
-playerx = 100
-playery = 146
+    hpnum = 10
+    timerIFrames = 0
+    Iframes = 0
+    lifelost = 0
+    hitboxtimer = 0
+    animtimer = 0
+    cooldown = 0
+    hitboxtimer2 = 0
+    animtimer2 = 0
+    cooldown2 = 0
+
+x = 100
+y = 146
 
 state = 'rest'
 
-if playerx > 100 then
-if playery > 200 then
+if x > 100 then
+if y > 200 then
   state = 'move'
-  playery = playery - 1
+  y = y - 1
 else
   state = 'rest'
 end
 state = 'move'
-playerx = playerx - 1
+x = x - 1
 end
 -- Create the collision map, with walls around the edge of the map
-print(playerx..", "..playery..", state: "..state)
+print(x..", "..y..", state: "..state)
 wall = love.graphics.newImage('assets-1/Wall/hell_1.png')
 collision = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -100,34 +129,8 @@ background = {
 
 
 map = Map:new(template)
-player = {
- 
-    spritesheet = love.graphics.newImage('Untitled.png'),
-    grid = anim8.newGrid(16, 16, spritesheet:getWidth(), 100),
-    walk = anim8.newAnimation(grid('1-6', 2), 0.2),
-    playerx = 200,
-    playery = 200,
-    img = love.graphics.newImage('assets-1/player/hp_bar/empty.png'),
-     x = 64,
-     y = 64,
-     hp = 10,
-     gp = 0,
-     s = 4,
- 
-}
- hpbar = {
- love.graphics.newImage('assets-1/player/hp_bar/0.png'),
- love.graphics.newImage('assets-1/player/hp_bar/1.png'),
- love.graphics.newImage('assets-1/player/hp_bar/2.png'),
- love.graphics.newImage('assets-1/player/hp_bar/3.png'),
- love.graphics.newImage('assets-1/player/hp_bar/4.png'),
- love.graphics.newImage('assets-1/player/hp_bar/5.png'),
- love.graphics.newImage('assets-1/player/hp_bar/6.png'),
- love.graphics.newImage('assets-1/player/hp_bar/7.png'),
- love.graphics.newImage('assets-1/player/hp_bar/8.png'),
- love.graphics.newImage('assets-1/player/hp_bar/full.png'),
- love.graphics.newImage('assets-1/player/hp_bar/game over.png'),
- }
+
+
 end
  
  cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
@@ -136,71 +139,301 @@ cam:setPosition(400, 400)
 
 
 function love.update(dt)
-  if cc(playerx, playery, 64, 64,   200, 200, 64, 64) == true then
+  if cc(x, y, 64, 64, 200, 200, 64, 64) == true then
     currentDoor = openDoor
   end
-    if love.keyboard.isDown('right' or 'd') then
-      if collision:cc(playerx + 5, playery, 64, 64) == false then
-        if currentDoor == closedDoor then
-          if cc(playerx, playery, 64, 64,    764, 92, 263, 263) == false then
-            playerx = playerx + 5
-          end
-        else
-          playerx = playerx + 5
+  if love.keyboard.isDown('x') then
+    swordswipe = true
+end 
+if love.keyboard.isDown('z') then
+    if momentum > 45 then
+        dashattack = 1
+        hitbox2 = 1
+    end
+end 
+if love.keyboard.isDown('up') then
+    FaceU = true
+    FaceD = false
+    FaceL = false
+    FaceR = false
+    walkup:update(dt)
+    anim = walkup
+    if dashattack == 1 then
+        anim = dashup 
+        --if walls:cc(x + 16 , y + 4, 32, 32) == false  then
+            y = y - 12
+            momentum = momentum - 2
+        --end
+    end
+    if dashattack == 0 then
+        --if walls:cc(x + 16 , y + 10, 32, 32) == false  then
+            y = y - 6
+            momentum = momentum + 1
+        --end
+    end
+end
+if love.keyboard.isDown('down') then
+    FaceU = false
+    FaceD = true
+    FaceL = false
+    FaceR = false
+    walkdown:update(dt)
+    anim = walkdown  
+    if dashattack == 1 then
+        anim = dashdown 
+        --if walls:cc(x + 16 , y + 28, 32, 32) == false then
+            y = y + 12
+            momentum = momentum - 2
+        --end
+    end
+    if dashattack == 0 then
+        --if walls:cc(x + 16 , y + 22, 32, 32) == false then
+            y = y + 6
+            momentum = momentum + 1
+        --end
+    end       
+end
+if love.keyboard.isDown('left') then
+    FaceU = false
+    FaceD = false
+    FaceL = true
+    FaceR = false
+    walkx:update(dt)
+    anim = walkx
+    if dashattack == 1 then
+        anim = dashx
+        --if walls:cc(x + 4, y + 16, 32, 32) == false then
+            x = x - 12
+            momentum = momentum - 2
+        --end
+    end
+    if dashattack == 0 then
+        --if walls:cc(x + 10, y + 16, 32, 32) == false then
+            x = x - 6
+            momentum = momentum + 1
+        --end
+    end
+end
+if love.keyboard.isDown('right') then
+    FaceU = false
+    FaceD = false
+    FaceL = false
+    FaceR = true
+    walkx:update(dt)
+    anim = walkx
+    if dashattack == 1 then
+        anim = dashx
+        --if walls:cc(x + 28, y + 16, 32, 32) == false  then
+            x = x + 12
+            momentum = momentum - 2
+        --end
+    end
+    if dashattack == 0 then
+        --if walls:cc(x + 22, y + 16, 32, 32) == false then
+            x = x + 6
+            momentum = momentum + 1
+        --end
+    end
+end
+if swordswipe == true then
+    if cooldown == 0 then
+        sword:update(dt)
+        if hitbox == 0 then
+        hitbox = 1
+      end
+    end
+end
+if animtimer == 1 or animtimer == 0 then
+    if love.keyboard.isDown('up') == false then
+        if love.keyboard.isDown('down') == false then
+            if love.keyboard.isDown('left') == false then
+                if love.keyboard.isDown('right') == false then
+                    momentum = 0
+                    if FaceU == true then
+                        anim = idleup
+                    end
+                    if FaceD == true then
+                        anim = idledown
+                    end
+                    if FaceL == true then
+                        anim = idlex
+                    end
+                    if FaceR == true then
+                        anim = idlex
+                    end
+                end
+            end
         end
-      end
     end
-    if love.keyboard.isDown('down' or 's') then
-      if collision:cc(playerx, playery + 4, 64, 64) == false then
-        playery = playery + 5
-      end
+end
+if animtimer == 1 or animtimer == 0 then
+    if FaceU == true then
+        sword:gotoFrame(6)
     end
-    if love.keyboard.isDown('left' or 'a') then
-      if collision:cc(playerx - 4, playery, 64, 64) == false then
-        playerx = playerx - 5
-      end
+    if FaceD == true then
+        sword:gotoFrame(2)
     end
-    if love.keyboard.isDown('up' or 'w') then 
-      if collision:cc(playerx, playery - 4, 64, 64) == false then
-        playery = playery - 5
-      end
+    if FaceL == true then
+        sword:gotoFrame(8)
     end
+    if FaceR == true then
+        sword:gotoFrame(4)
+    end
+end
+if Iframes == 1 then
+    timerIFrames = 60
+  end
+  if timerIFrames > 0 then
+   timerIFrames = timerIFrames - 1
+   Iframes = 2
+  end
+  if timerIFrames < 1 then
+    timerIFrames = 0
+    Iframes = 0
+  end
+  if hpnum == 0 then
+    lifelost = 1
+  end
+
+  if hitbox == 1 then
+    hitboxtimer = 30
+    animtimer = 30
+  end
+  if hitboxtimer > 0 then
+    hitboxtimer = hitboxtimer - 1
+    hitbox = 2
+    anim = sword
+  end
+  if animtimer > 0 then
+    animtimer = animtimer - 1
+  end
+  if hitboxtimer == 0 then
+    hitbox = 0
+    swordswipe = 0
+  end
+  if hitboxtimer == 1 then
+    cooldown = 16
+  end
+  if cooldown > 0 then
+    cooldown = cooldown - 1
+  end
+  
+  if hitbox2 == 1 then
+    hitboxtimer2 = 30
+    animtimer2 = 30
+  end
+  if hitboxtimer2 > 0 then
+    hitboxtimer2 = hitboxtimer2 - 1
+    hitbox2 = 2
+    dashattack = 1
+  end
+  if animtimer2 > 0 then
+    animtimer2 = animtimer2 - 1
+  end
+  if hitboxtimer2 == 0 then
+    hitbox2 = 0
+    dashattack = 0
+  end
+  if hitboxtimer2 == 1 then
+    cooldown2 = 16
+  end
+  if cooldown2 > 0 then
+    cooldown2 = cooldown2 - 1
+  end
+  if lifelost == 1 then
+    lives = lives - 1
+    x = 64
+    y = 320
+    hpnum = 10
+    timerIFrames = 0
+    Iframes = 0
+    lifelost = 0
+  end
     if love.keyboard.isDown ('escape') then 
       love.exitModule();
     end
-    if playerx > 800 then
+    if x > 800 then
       love.exitModule()
     end
-    walk:update(dt)
 end
 
 function love.draw()
     map:draw()
     collision:draw()
-    love.graphics.print('Octopod-cast!', 0, 0)
+    love.graphics.print('', 0, 0)
     
     love.graphics.draw(currentDoor, 764, 92)
     love.graphics.draw(switch, 200, 200)
     -- Draw the enemy
     
-    walk:draw(spritesheet, 400, 300)
+    if anim == walkx then
+      if FaceR == true then
+          walkx:draw(spritesheet, x, y)
+      end
+      if FaceL == true then
+          walkx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+      end
+  end
+  if anim == walkup then
+      walkup:draw(spritesheet, x, y)
+  end
+  if anim == walkdown then
+      walkdown:draw(spritesheet, x, y)
+  end
+
+  if anim == idleup then
+      idleup:draw(spritesheet, x, y)
+  end
+  if anim == idledown then
+      idledown:draw(spritesheet, x, y)
+  end
+  if anim == idlex then
+      if FaceR == true then
+          idlex:draw(spritesheet, x, y)
+      end
+      if FaceL == true then
+          idlex:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+      end
+  end
+
+  if anim == sword then
+      sword:draw(spritesheet, x, y)
+  end
+
+  if anim == dashup then
+      dashup:draw(spritesheet, x, y)
+  end
+  if anim == dashdown then
+      dashdown:draw(spritesheet, x, y)
+  end
+  if anim == dashx then
+      if FaceR == true then
+          dashx:draw(spritesheet, x, y)
+      end
+      if FaceL == true then
+          dashx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+      end
+  end
     
     cam:draw(function(x, y)
   
     -- Draw the player
-    love.graphics.draw(playerImg, playerx, playery)
    
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
   
    -- Print the player's HP in the top left corner
-   love.graphics.print(hp, 10, 40)
   
-   love.graphics.print("So you must be Bob the shape-shifting alien? You have to solve all the puzzles in order to get out of here.",  100, 100)
+   love.graphics.print("",  100, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   
   end
    --player:draw() -- Draw the entity object named player 
 end)
+end
+
+
+function endofdash()
+  dashattack = 0
 end
