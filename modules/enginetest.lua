@@ -24,13 +24,17 @@ function love.load()
   }
   mapc = Map:new(mapc)
 
+  Music = love.audio.newSource('Great Temple (Zelda II   The Adventure of Link)   Super Smash Bros Wii U.mp3', 'static')
+  Music:setVolume(0.5)
 end
 
 function love.update(dt)
 
   engineupdate(dt)
 
-  if love.keyboard.isDown ('escape') then 
+  Music:play()
+
+  if love.keyboard.isDown ('space') then 
     love.exitModule();
   end
 
