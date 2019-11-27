@@ -3,32 +3,25 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
+local engine = require 'core/engine'
 
 function love.load()
-player = {
-        img = love.graphics.newImage('assets-1/player/hp_bar/heart.png'),
-        x = 64,
-        y  = 64,
-        w = 10,
-        h = 10,
-        hp = 10,
-        s = 4
-}
+  
+PlayerLoad()
+
 
 ball = {
-  img = love.graphics.newImage('assets-1/kfc.png'),
+  img = love.graphics.newImage('assets-1/ups.png'),
   x = 64,
   y = 64,
   r = 0,
   s = 4,
 }
 
-block1 = {
-  img = love.graphics.newImage('assets-1/blocks/block1.png'),
-  x=0,
-  y=0,
-  e=0
-}
+blocks = {}
+for i = 1, 6 do
+  blocks[i] = newBlock((i-1)*64, 0)
+end
 
 
 hpBar = {
@@ -88,30 +81,21 @@ end
 
 function love.update(dt)
 
-    if love.keyboard.isDown('up' or 'w') then
-        if mapc:cc(player.x , player.y - player.s, player.w, player.h) == false then
-          player.y = player.y - player.s
-        end
-      end
-      if love.keyboard.isDown('down' or 's') then
-        if mapc:cc(player.x, player.y + player.s, player.w, player.h) == false then
-          player.y = player.y + player.s
-        end
-      end
-      if love.keyboard.isDown('right' or 'd') then
-        if mapc:cc(player.x + player.s, player.y, player.w, player.h) == false then
-          player.x = player.x + player.s
-        end
-      end
-      if love.keyboard.isDown('left' or 'a') then
-        if mapc:cc(player.x - player.s, player.y, player.w, player.h) == false then
-          player.x = player.x - player.s
-        end
-      end
+  
+  engineupdate(dt)
+  if lifelost == 1 then
+    lives = lives - 1
+    player.x = 64
+    player.y = 320
+    hpnum = 10
+    timerIFrames = 0
+    Iframes = 0
+    lifelost = 0
+  end
       
 
 
-      cam:setPosition(player.x, player.y)
+      cam:setPosition(x, y)
 
 end
 
@@ -119,16 +103,33 @@ function love.draw()
     cam:draw(function(l, t, w, h)
         map:draw()
         mapc:draw()
-        
+       
+        DrawPlayer()
         
 
         love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
-        love.graphics.draw(player.img, player.x , player.y )
         
         
-        love.graphics.draw(hpBar[player.hp + 1], player.x -10, player.y - 20)
+        
+        
       end)
+love.graphics.draw(hpBar[11], 16, 64, 6, 3)
+      for i = 1, 6 do
+        love.graphics.draw(blocks[i].img, blocks[i].x, blocks[i].y)
+      end
+end
 
+function endofdash()
+  dashattack = 0
+end
 
+function newBlock(x, y)
+  block = {
+    img = love.graphics.newImage('assets-1/blocks/block1.png'),
+    x=x,
+    y=y,
+    e=0
+  }
+  return block
 end
