@@ -117,6 +117,8 @@ function love.update(dt)
         walkup:update(dt)
         anim = walkup
         if dashattack == 1 then
+            anim = dashup
+            dashup:update(dt)
             if walls:cc(x + 16 , y + 4, 32, 32) == false  then
                 y = y - 12
             end
@@ -136,6 +138,8 @@ function love.update(dt)
         walkdown:update(dt)
         anim = walkdown  
         if dashattack == 1 then
+            anim = dashdown
+            dashdown:update(dt)
             if walls:cc(x + 16 , y + 28, 32, 32) == false then
                 y = y + 12
             end
@@ -155,6 +159,8 @@ function love.update(dt)
         walkx:update(dt)
         anim = walkx
         if dashattack == 1 then
+            anim = dashx
+            dashx:update(dt)
             if walls:cc(x + 4, y + 16, 32, 32) == false then
                 x = x - 12
             end
@@ -174,6 +180,8 @@ function love.update(dt)
         walkx:update(dt)
         anim = walkx
         if dashattack == 1 then
+            anim = dashx
+            dashx:update(dt)
             if walls:cc(x + 28, y + 16, 32, 32) == false  then
                 x = x + 12
             end
@@ -304,7 +312,9 @@ end
 
 function love.draw()
     cam:draw(function(camx, camy)
+
     walls:draw()
+
     if anim == walkx then
         if FaceR == true then
             walkx:draw(spritesheet, x, y)
@@ -335,12 +345,29 @@ function love.draw()
         end
     end
 
+    if anim == dashx then
+        if FaceR == true then
+            dashx:draw(spritesheet, x, y)
+        end
+        if FaceL == true then
+            dashx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+        end
+    end
+    if anim == dashup then
+        dashup:draw(spritesheet, x, y)
+    end
+    if anim == dashdown then
+        dashdown:draw(spritesheet, x, y)
+    end
+
     if anim == sword then
         sword:draw(spritesheet, x, y)
     end
+
 end)
 end
 
 function endofdash()
     dashattack = 0
+    momentum = 30
 end
