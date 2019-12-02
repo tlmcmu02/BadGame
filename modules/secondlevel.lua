@@ -19,8 +19,8 @@ ball = {
 }
 
 blocks = {}
-for i = 1, 6 do
-  blocks[i] = newBlock((i-1)*64, 0)
+for i = 0, 11 do
+  blocks[i] = newBlock((i*64), 128)
 end
 
 
@@ -110,14 +110,14 @@ function love.draw()
         love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
         
-        
+        for i = 1, 11 do
+        love.graphics.draw(blocks[i].img, blocks[i].x, blocks[i].y)
+      end
         
         
       end)
 love.graphics.draw(hpBar[11], 16, 64, 6, 3)
-      for i = 1, 6 do
-        love.graphics.draw(blocks[i].img, blocks[i].x, blocks[i].y)
-      end
+      
 end
 
 function endofdash()
@@ -125,11 +125,13 @@ function endofdash()
 end
 
 function newBlock(x, y)
+
   block = {
-    img = love.graphics.newImage('assets-1/blocks/block1.png'),
+    img = love.graphics.newImage('assets-1/blocks/block5.png'),
     x=x,
     y=y,
     e=0
   }
   return block
+
 end
