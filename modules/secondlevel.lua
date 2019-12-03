@@ -18,10 +18,7 @@ ball = {
   s = 4,
 }
 
-blocks = {}
-for i = 0, 11 do
-  blocks[i] = newBlock((i*64), 128)
-end
+
 
 
 hpBar = {
@@ -82,6 +79,7 @@ end
 function love.update(dt)
 
   
+
   engineupdate(dt)
   if lifelost == 1 then
     lives = lives - 1
@@ -109,9 +107,10 @@ function love.draw()
 
         love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
-        
+        for t = 1, 5 do
         for i = 1, 11 do
-        love.graphics.draw(blocks[i].img, blocks[i].x, blocks[i].y)
+        love.graphics.draw(love.graphics.newImage('assets-1/blocks/block5.png'), (i*64), (64*t)+64)
+        end
       end
         
         
@@ -124,14 +123,14 @@ function endofdash()
   dashattack = 0
 end
 
-function newBlock(x, y)
+-- function newBlock(x, y)
 
-  block = {
-    img = love.graphics.newImage('assets-1/blocks/block5.png'),
-    x=x,
-    y=y,
-    e=0
-  }
-  return block
+--   block = {
+--     img = love.graphics.newImage('assets-1/blocks/block5.png'),
+--     x=x,
+--     y=y,
+--     e=0
+--   }
+--   return block
 
-end
+-- end
