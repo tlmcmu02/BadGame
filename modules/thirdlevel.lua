@@ -11,6 +11,7 @@ function love.load()
 
 openDoor = love.graphics.newImage('assets-1/Door/vgate_open_middle.png')
 closedDoor = love.graphics.newImage('assets-1/Door/vgate_closed_middle.png')
+cyclops = love.graphics.newImage('assets-1/cyclops.png')
 switch = love.graphics.newImage('assets-1/Switch/pressure_plate.png')
 currentDoor = closedDoor
 
@@ -32,18 +33,18 @@ end
 print(x..", "..y..", state: "..state)
 wall = love.graphics.newImage('assets-1/Wall/hell_1.png')
 collision = {
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
   {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
@@ -53,15 +54,15 @@ collision = {
 -- Create the background map
 floor = love.graphics.newImage('assets-1/Floor/cage_0.png')
 background = {
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
-  {floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor},
   {floor, floor},
   {floor, floor, floor, floor, floor, floor},
   {floor, floor, floor, floor, floor, floor},
@@ -77,17 +78,17 @@ background = {
   template = {-- a 10 x 10 map with the floor texture in the middle
 
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
   {wall, wall, wall, floor, floor, wall, wall, wall, wall, wall},
   {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
   {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
@@ -142,6 +143,7 @@ function love.draw()
          
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
+    love.graphics.draw(cyclops, 500, 450, 0, 0.5)
   
    love.graphics.print("",  100, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
