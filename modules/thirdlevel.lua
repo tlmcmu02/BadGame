@@ -11,6 +11,7 @@ function love.load()
 
 openDoor = love.graphics.newImage('assets-1/Door/vgate_open_middle.png')
 closedDoor = love.graphics.newImage('assets-1/Door/vgate_closed_middle.png')
+cyclops = love.graphics.newImage('assets-1/cyclops.png')
 switch = love.graphics.newImage('assets-1/Switch/pressure_plate.png')
 currentDoor = closedDoor
 
@@ -142,6 +143,7 @@ function love.draw()
          
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
+    love.graphics.draw(cyclops, 500, 450, 0, 0.5)
   
    love.graphics.print("",  100, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
