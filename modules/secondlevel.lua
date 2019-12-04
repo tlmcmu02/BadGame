@@ -18,7 +18,13 @@ ball = {
   s = 4,
 }
 
-
+blockcolor = {
+  love.graphics.newImage('assets-1/blocks/block5.png'), 
+  love.graphics.newImage('assets-1/blocks/block4.png'), 
+  love.graphics.newImage('assets-1/blocks/block3.png'), 
+  love.graphics.newImage('assets-1/blocks/block2.png'), 
+  love.graphics.newImage('assets-1/blocks/block1.png')
+}
 
 
 hpBar = {
@@ -109,7 +115,7 @@ function love.draw()
         --walk:draw(spritesheet, 400, 300)
         for t = 1, 5 do
         for i = 1, 11 do
-        love.graphics.draw(love.graphics.newImage('assets-1/blocks/block5.png'), (i*64), (64*t)+64)
+          love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
         end
       end
         
