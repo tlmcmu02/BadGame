@@ -26,12 +26,12 @@ function BulletLoad()
     spin15 = anim8.newAnimation(grid('1-4', 3), 0.07)
     spin16 = anim8.newAnimation(grid('1-4', 3), 0.07)
     bx = 400
-    by = 400
-    bx2 = 400
+    by = 420
+    bx2 = 380
     by2 = 400
     bx3 = 400
-    by3 = 400
-    bx4 = 400
+    by3 = 380
+    bx4 = 420
     by4 = 400
     bx5 = 400
     by5 = 400
@@ -61,10 +61,11 @@ function BulletLoad()
 end
 
 function DetermineDistance(dt)
-    left = x - bx
-    right = bx - x
-    down = y - by
-    up = by - y
+    left = x - ex
+    right = ex - x
+    down = y - ey
+    up = ey - y
+
 end
 
 function Nbullet(dt)
@@ -112,50 +113,50 @@ function SWbullet(dt)
 end
 
 function NNEbullet(dt)
-    by9 = by9 - 4
-    bx9 = bx9 + 2
+    by9 = by9 - 4.5
+    bx9 = bx9 + 1.5
     spin:update(dt)
 end
 
 function NNWbullet(dt)
-    by10 = by10 - 4
-    bx10 = bx10 - 2
+    by10 = by10 - 4.5
+    bx10 = bx10 - 1.5
     spin:update(dt)
 end
 
 function SSEbullet(dt)
-    by11 = by11 + 4
-    bx11 = bx11 + 2
+    by11 = by11 + 4.5
+    bx11 = bx11 + 1.5
     spin:update(dt)
 end
 
 function SSWbullet(dt)
-    by12 = by12 + 4
-    bx12 = bx12 - 2
+    by12 = by12 + 4.5
+    bx12 = bx12 - 1.5
     spin:update(dt)
 end
 
 function NEEbullet(dt)
-    by13 = by13 - 2
-    bx13 = bx13 + 4
+    by13 = by13 - 1.5
+    bx13 = bx13 + 4.5
     spin:update(dt)
 end
 
 function NWWbullet(dt)
-    by14 = by14 - 2
-    bx14 = bx14 - 4
+    by14 = by14 - 1.5
+    bx14 = bx14 - 4.5
     spin:update(dt)
 end
 
 function SEEbullet(dt)
-    by15 = by15 + 2
-    bx15 = bx15 + 4
+    by15 = by15 + 1.5
+    bx15 = bx15 + 4.5
     spin:update(dt)
 end
 
 function SWWbullet(dt)
-    by16 = by16 + 2
-    bx16 = bx16 - 4
+    by16 = by16 + 1.5
+    bx16 = bx16 - 4.5
     spin:update(dt)
 end
 
