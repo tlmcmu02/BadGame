@@ -98,12 +98,14 @@ end
 
 function engineupdate(dt)
     if love.keyboard.isDown('x') then
-         swordswipe = true
+        --if swordswipe == false then
+            swordswipe = true
+        --end
     end 
     if love.keyboard.isDown('z') then
         if momentum > 45 then
             dashattack = 1
-             hitbox2 = 1
+            hitbox2 = 1
         end
     end 
     if love.keyboard.isDown('up') then
@@ -236,8 +238,8 @@ function engineupdate(dt)
         end
     end
     if hitbox == 1 then
-      hitboxtimer = 30
-      animtimer = 30
+      hitboxtimer = 24
+      animtimer = 24
     end
     if hitboxtimer > 0 then
       hitboxtimer = hitboxtimer - 1
