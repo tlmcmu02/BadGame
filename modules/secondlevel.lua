@@ -4,28 +4,23 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local engine = require 'core/engine'
+local Block = require 'core/block'
+local class = require 'core/middleclass'
 
 function love.load()
   
 PlayerLoad()
+BlockLoad()
 
+blk = Block:new(64, 64)
 
-ball = {
-  img = love.graphics.newImage('assets-1/ups.png'),
-  x = 64,
-  y = 64,
-  r = 0,
-  s = 4,
-}
-
-blockcolor = {
-  love.graphics.newImage('assets-1/blocks/block5.png'), 
-  love.graphics.newImage('assets-1/blocks/block4.png'), 
-  love.graphics.newImage('assets-1/blocks/block3.png'), 
-  love.graphics.newImage('assets-1/blocks/block2.png'), 
-  love.graphics.newImage('assets-1/blocks/block1.png')
-}
-
+grid =  {}
+for y = 1, 5 do
+  grid[y] = {}
+  for x = 1, 10 do
+    grid[y][x] = Block:new(x, y)
+  end
+end
 
 hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/0.png'),
@@ -45,37 +40,36 @@ hpBar = {
   f = 'assets-1/wall/frozen_0.png'
 
   background = {
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    {f, f, f, f, f, f, f, f, f, f, f, f,  },
+    
   }
   layer1 = {
-    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, },
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, },
   }
 
-  cam = gamera.new(0, 0, 832, 832) 
+  cam = gamera.new(0, 0, 768, 768) 
   
   map = Map:new(background)
   mapc = Map:new(layer1)
@@ -114,8 +108,10 @@ function love.draw()
         love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
         for t = 1, 5 do
-        for i = 1, 11 do
+        for i = 1, 10 do
           love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
+          grid[t][i]:draw()
+          blk:draw()
         end
       end
         
@@ -129,14 +125,17 @@ function endofdash()
   dashattack = 0
 end
 
--- function newBlock(x, y)
+function newBlock(x, y)
 
---   block = {
---     img = love.graphics.newImage('assets-1/blocks/block5.png'),
---     x=x,
---     y=y,
---     e=0
---   }
---   return block
+  block = {
+    img = love.graphics.newImage('assets-1/blocks/block5.png'),
+    x=x,
+    y=y,
+    e=0
+  }
+  return block
 
--- end
+end
+
+
+
