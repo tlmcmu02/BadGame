@@ -145,11 +145,12 @@ function love.draw()
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.draw(cyclops, 500, 450, 0, 0.5)
   
-   love.graphics.print("",  100, 100)
+   love.graphics.print("According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat",  100, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   
   end
+  
    --player:draw() -- Draw the entity object named player 
 end)
 end
