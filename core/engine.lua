@@ -98,9 +98,7 @@ end
 
 function engineupdate(dt)
     if love.keyboard.isDown('x') then
-        --if swordswipe == false then
-            swordswipe = true
-        --end
+        swordswipe = true
     end 
     if love.keyboard.isDown('z') then
         if momentum > 45 then
@@ -302,6 +300,201 @@ function Iframes()
       end
 
 end
+
+function enginebreakoutupdate(dt)
+    if love.keyboard.isDown('x') then
+        swordswipe = true
+    end 
+    if love.keyboard.isDown('z') then
+        if momentum > 45 then
+            dashattack = 1
+            hitbox2 = 1
+        end
+    end 
+    if love.keyboard.isDown('up') then
+        FaceU = true
+        FaceD = false
+        FaceL = false
+        FaceR = false
+        walkup:update(dt)
+        anim = walkup
+        if dashattack == 1 then
+            anim = dashup 
+            if mapc:cc(x + 16 , y + 4, 32, 32) == false then
+                for y = 1,5 do
+                    for x = 1,10 do
+                        if blockdestroyed[y][x] then  == false then
+
+                        end
+                    end
+                end
+                y = y - 12
+                momentum = momentum - 2
+                
+            end
+        end
+        if dashattack == 0 then
+            if mapc:cc(x + 16 , y + 10, 32, 32) == false then
+                y = y - 6
+                momentum = momentum + 1
+            end
+        end
+    end
+    if love.keyboard.isDown('down') then
+        FaceU = false
+        FaceD = true
+        FaceL = false
+        FaceR = false
+        walkdown:update(dt)
+        anim = walkdown  
+        if dashattack == 1 then
+            anim = dashdown 
+            if mapc:cc(x + 16 , y + 28, 32, 32) == false then
+                y = y + 12
+                momentum = momentum - 2
+            end
+        end
+        if dashattack == 0 then
+            if mapc:cc(x + 16 , y + 22, 32, 32) == false then
+                y = y + 6
+                momentum = momentum + 1
+            end
+        end       
+    end
+    if love.keyboard.isDown('left') then
+        FaceU = false
+        FaceD = false
+        FaceL = true
+        FaceR = false
+        walkx:update(dt)
+        anim = walkx
+        if dashattack == 1 then
+            anim = dashx
+            if mapc:cc(x + 4, y + 16, 32, 32) == false then
+                x = x - 12
+                momentum = momentum - 2
+            end
+        end
+        if dashattack == 0 then
+            if mapc:cc(x + 10, y + 16, 32, 32) == false then
+                x = x - 6
+                momentum = momentum + 1
+            end
+        end
+    end
+    if love.keyboard.isDown('right') then
+        FaceU = false
+        FaceD = false
+        FaceL = false
+        FaceR = true
+        walkx:update(dt)
+        anim = walkx
+        if dashattack == 1 then
+            anim = dashx
+            if mapc:cc(x + 28, y + 16, 32, 32) == false  then
+                x = x + 12
+                momentum = momentum - 2
+            end
+        end
+        if dashattack == 0 then
+            if mapc:cc(x + 22, y + 16, 32, 32) == false then
+                x = x + 6
+                momentum = momentum + 1
+            end
+        end
+    end
+    if swordswipe == true then
+        if cooldown == 0 then
+            sword:update(dt)
+            if hitbox == 0 then
+            hitbox = 1
+          end
+        end
+    end
+    if animtimer == 1 or animtimer == 0 then
+        if love.keyboard.isDown('up') == false then
+            if love.keyboard.isDown('down') == false then
+                if love.keyboard.isDown('left') == false then
+                    if love.keyboard.isDown('right') == false then
+                        momentum = 0
+                        if FaceU == true then
+                            anim = idleup
+                        end
+                        if FaceD == true then
+                            anim = idledown
+                        end
+                        if FaceL == true then
+                            anim = idlex
+                        end
+                        if FaceR == true then
+                            anim = idlex
+                        end
+                    end
+                end
+            end
+        end
+    end
+    if animtimer == 1 or animtimer == 0 then
+        if FaceU == true then
+            sword:gotoFrame(6)
+        end
+        if FaceD == true then
+            sword:gotoFrame(2)
+        end
+        if FaceL == true then
+            sword:gotoFrame(8)
+        end
+        if FaceR == true then
+            sword:gotoFrame(4)
+        end
+    end
+    if hitbox == 1 then
+      hitboxtimer = 24
+      animtimer = 24
+    end
+    if hitboxtimer > 0 then
+      hitboxtimer = hitboxtimer - 1
+      hitbox = 2
+      anim = sword
+    end
+    if animtimer > 0 then
+      animtimer = animtimer - 1
+    end
+    if hitboxtimer == 0 then
+      hitbox = 0
+      swordswipe = 0
+    end
+    if hitboxtimer == 1 then
+      cooldown = 16
+    end
+    if cooldown > 0 then
+      cooldown = cooldown - 1
+    end
+    
+    if hitbox2 == 1 then
+      hitboxtimer2 = 30
+      animtimer2 = 30
+    end
+    if hitboxtimer2 > 0 then
+      hitboxtimer2 = hitboxtimer2 - 1
+      hitbox2 = 2
+      dashattack = 1
+    end
+    if animtimer2 > 0 then
+      animtimer2 = animtimer2 - 1
+    end
+    if hitboxtimer2 == 0 then
+      hitbox2 = 0
+      dashattack = 0
+    end
+    if hitboxtimer2 == 1 then
+      cooldown2 = 16
+    end
+    if cooldown2 > 0 then
+      cooldown2 = cooldown2 - 1
+    end
+end
+
 --      if lifelost == 1 then
 --        lives = lives - 1
 --        x = 64
