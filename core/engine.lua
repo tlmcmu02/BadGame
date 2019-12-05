@@ -323,9 +323,9 @@ function enginebreakoutupdate(dt)
             if mapc:cc(x + 16 , y + 4, 32, 32) == false then
                 for y = 1,5 do
                     for x = 1,10 do
-                        if blockdestroyed[y][x] then  == false then
+                        -- if grid[y][x].collide == false then
 
-                        end
+                        -- end
                     end
                 end
                 y = y - 12

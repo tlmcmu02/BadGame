@@ -49,6 +49,7 @@ function Block:constructor(x, y)
   self.x=x
   self.y=y
   self.e=0
+  self.collide = true
 end
 
 function Block:draw()
