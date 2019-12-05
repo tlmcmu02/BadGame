@@ -145,18 +145,19 @@ function love.draw()
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.draw(cyclops, 500, 450, 0, 0.5)
   
-   love.graphics.print("According to all known laws of aviation, there is no way a bee should be able to fly.",  100, 100)
-  if cc( x, y, 64, 64,   l0, 100, 40, 40) == true then
+   love.graphics.print("I AM A TRUE GAMER GOD",  0, 100)
+  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
-  
   end
-  love.graphics.print("Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.",  100, 100)
-  if cc( x, y, 64, 64,   0, 200, 40, 40) == true then
+   love.graphics.print("YOU WILL BE DESTORYED BY MY HAND, MY STANDS, AND MY FISTS",  0, 120)
+  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
-  
   end
-  
-   --player:draw() -- Draw the entity object named player 
+  love.graphics.print("I BET YOU CAN'T SURVIED THIS YOU UGLY RAT ",  0, 140)
+  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
+   -- What should go here?
+  end 
+  --player:draw() -- Draw the entity object named player 
 end)
 end
 
