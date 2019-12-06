@@ -100,10 +100,15 @@ background = {
 
 
 
-map = Map:new(template)
+ map = Map:new(template)
 
-cam = gamera.new(0, 0, 1152, 640) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+ cam = gamera.new(0, 0, 1152, 640) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
 
+
+ -- Here are the enemy variables; they need to be different!
+ ex = 100
+ ey = 100
+ eimg = love.graphics.newImage('assets-1/cyclops.png')
 
 end
  
