@@ -46,16 +46,16 @@ Block = class('Block')
 
 function Block:constructor(x, y) 
   self.img = love.graphics.newImage('assets-1/blocks/block5.png')
-  self.px=x * 64
-  self.py=y + 64
+  self.x=x * 64
+  self.y=y + 64
   self.e=0
-  self.blockdestroyed=false
+  self.destroyed=false
 end
 
 function Block:draw()
-  if self.blockdestroyed == false then
+  --if self.blockdestroyed == false then
     love.graphics.draw(self.img, self.px, self.py)
-  end
+  --end
 end
 
 return Block
