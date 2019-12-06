@@ -158,11 +158,11 @@ function love.draw()
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
-   love.graphics.print("YOU WILL BE DESTORYED BY MY HAND, MY STANDS, AND MY FISTS",  0, 120)
+   love.graphics.print("",  0, 120)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
-  love.graphics.print("I BET YOU CAN'T SURVIED THIS YOU UGLY RAT",  0, 140)
+  love.graphics.print("",  0, 140)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end 
