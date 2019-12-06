@@ -12,7 +12,7 @@ function love.load()
 PlayerLoad()
 BlockLoad()
 
-blk = Block:new(64, 64)
+
 
 grid =  {}
 for y = 1, 5 do
@@ -80,7 +80,7 @@ function love.update(dt)
 
   
 
-  engineupdate(dt)
+  enginebreakoutupdate(dt)
   if lifelost == 1 then
     lives = lives - 1
     player.x = 64
@@ -109,9 +109,9 @@ function love.draw()
         --walk:draw(spritesheet, 400, 300)
         for t = 1, 5 do
         for i = 1, 10 do
-          -- love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
+          --love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
           grid[t][i]:draw()
-          blk:draw()
+          Block:draw(t * 64, i * 64)
         end
       end
         
@@ -125,17 +125,7 @@ function endofdash()
   dashattack = 0
 end
 
-function newBlock(x, y)
 
-  block = {
-    img = love.graphics.newImage('assets-1/blocks/block5.png'),
-    x=x,
-    y=y,
-    e=0
-  }
-  return block
-
-end
 
 
 

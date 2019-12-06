@@ -10,6 +10,7 @@ function love.load()
 
   PlayerLoad()
   BulletLoad()
+  bullettimer = 0
 
   wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
 
@@ -39,24 +40,20 @@ end
 function love.update(dt)
 
   engineupdate(dt)
-  Nbullet(dt)
-  Ebullet(dt)
-  Sbullet(dt)
-  Wbullet(dt)
-  NEbullet(dt)
-  NWbullet(dt)
-  SEbullet(dt)
-  SWbullet(dt)
-  NNEbullet(dt)
-  NNWbullet(dt)
-  NEEbullet(dt)
-  NWWbullet(dt)
-  SSEbullet(dt)
-  SSWbullet(dt)
-  SEEbullet(dt)
-  SWWbullet(dt)
 
   Music:play()
+
+  if bullettimer == 0 then
+    bullettimer = 12
+  end
+
+  if bullettimer == 1 then
+    Wbullet(dt)
+  end
+
+  if bullettimer > 0 then
+    bullettimer = bullettimer - 1
+  end
 
   if love.keyboard.isDown ('space') then 
     love.exitModule();
@@ -70,6 +67,8 @@ function love.draw()
   cam:draw(function(l, t, w, h)
 
   mapc:draw()
+
+  love.graphics.print(bullettimer, x, y)
   
   DrawPlayer()
   DrawBullet()

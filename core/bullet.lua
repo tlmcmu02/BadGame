@@ -162,6 +162,85 @@ end
 
 function DrawBullet()
     spin:draw(spritesheetbullet, bx, by)
+end    
+
+function DrawBullet()
+    spin2:draw(spritesheetbullet, bx2, by2)
+
+end
+
+
+function DrawBullet()
+    spin3:draw(spritesheetbullet, bx3, by3)
+
+end
+
+function DrawBullet()
+    spin4:draw(spritesheetbullet, bx4, by4)
+
+end
+
+function DrawBullet()
+    spin5:draw(spritesheetbullet, bx5, by5)
+
+end
+
+function DrawBullet()
+    spin6:draw(spritesheetbullet, bx6, by6)
+
+end
+
+function DrawBullet()
+    spin7:draw(spritesheetbullet, bx7, by7)
+
+end
+
+function DrawBullet()
+    spin8:draw(spritesheetbullet, bx8, by8)
+
+end
+
+function DrawBullet()
+    spin9:draw(spritesheetbullet, bx9, by9)
+
+end
+
+function DrawBullet()
+    spin10:draw(spritesheetbullet, bx10, by10)
+
+end
+
+function DrawBullet()
+    spin11:draw(spritesheetbullet, bx11, by11)
+
+end
+
+function DrawBullet()
+    spin12:draw(spritesheetbullet, bx12, by12)
+
+end
+
+function DrawBullet()
+    spin13:draw(spritesheetbullet, bx13, by13)
+
+end
+
+function DrawBullet()
+    spin14:draw(spritesheetbullet, bx14, by14)
+
+end
+
+function DrawBullet()
+    spin15:draw(spritesheetbullet, bx15, by15)
+
+end
+
+function DrawBullet()
+    spin16:draw(spritesheetbullet, bx16, by16)
+end
+
+function DrawAllBullet()
+    spin:draw(spritesheetbullet, bx, by)
     spin2:draw(spritesheetbullet, bx2, by2)
     spin3:draw(spritesheetbullet, bx3, by3)
     spin4:draw(spritesheetbullet, bx4, by4)
