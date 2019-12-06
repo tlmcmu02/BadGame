@@ -109,7 +109,7 @@ function love.draw()
         --walk:draw(spritesheet, 400, 300)
         for t = 1, 5 do
         for i = 1, 10 do
-          love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
+          -- love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
           grid[t][i]:draw()
           blk:draw()
         end
