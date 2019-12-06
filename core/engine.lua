@@ -3,6 +3,8 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
+local Block = require 'core/block'
+local class = require 'core/middleclass'
 
 function PlayerLoad()
     swordswipe = false
@@ -37,64 +39,41 @@ function PlayerLoad()
     cooldown2 = 0
 end
 
-   -- wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
---
-   -- walls = {
-   --     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', wall,},
-   --     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
-   -- }
-   -- walls = Map:new(walls)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function engineupdate(dt)
     if love.keyboard.isDown('x') then
@@ -301,6 +280,62 @@ function Iframes()
 
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function enginebreakoutupdate(dt)
     if love.keyboard.isDown('x') then
         swordswipe = true
@@ -321,22 +356,30 @@ function enginebreakoutupdate(dt)
         if dashattack == 1 then
             anim = dashup 
             if mapc:cc(x + 16 , y + 4, 32, 32) == false then
-                for y = 1,5 do
-                    for x = 1,10 do
-                        -- if grid[y][x].collide == false then
-
-                        -- end
+                for y3 = 1,5 do
+                    for x3 = 1,10 do
+                        if self.blockdestroyed[y3][x3] == false then
+                            if cc(x + 16, y + 4, 32, 32, 2 * x3, 3 * y3, 64, 64) then
+                                y = y - 12
+                                momentum = momentum - 2
+                            end
+                        end
                     end
-                end
-                y = y - 12
-                momentum = momentum - 2
-                
+                end                
             end
         end
         if dashattack == 0 then
             if mapc:cc(x + 16 , y + 10, 32, 32) == false then
-                y = y - 6
-                momentum = momentum + 1
+                for y3 = 1,5 do
+                    for x3 = 1,10 do
+                        if blockdestroyed[y3][x3] == false then
+                            if cc(x + 16, y + 10, 32, 32, 2 * x3, 3 * y3, 64, 64) then
+                                y = y - 6
+                                momentum = momentum + 1
+                            end
+                        end
+                    end
+                end  
             end
         end
     end
@@ -495,6 +538,24 @@ function enginebreakoutupdate(dt)
     end
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --      if lifelost == 1 then
 --        lives = lives - 1
 --        x = 64
@@ -504,6 +565,19 @@ end
 --        Iframes = 0
 --        lifelost = 0
 --      end
+
+
+
+
+
+
+
+
+
+
+
+
+
 function DrawPlayer()
     if anim == walkx then
         if FaceR == true then

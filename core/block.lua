@@ -2,14 +2,14 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
-local engine = require 'core/engine'
 local class = require 'core/middleclass'
+
 
 function BlockLoad()
 ball = {
     img = love.graphics.newImage('assets-1/ups.png'),
-    x = 64,
-    y = 64,
+    xp = 64,
+    yp = 64,
     r = 0,
     s = 4,
 }
@@ -46,14 +46,16 @@ Block = class('Block')
 
 function Block:constructor(x, y) 
   self.img = love.graphics.newImage('assets-1/blocks/block5.png')
-  self.x=x
-  self.y=y
+  self.px=x * 64
+  self.py=y + 64
   self.e=0
-  self.collide = true
+  self.blockdestroyed=false
 end
 
 function Block:draw()
-  love.graphics.draw(self.img, self.x, self.y)
+  if self.blockdestroyed == false then
+    love.graphics.draw(self.img, self.px, self.py)
+  end
 end
 
 return Block
