@@ -34,17 +34,17 @@ print(x..", "..y..", state: "..state)
 wall = love.graphics.newImage('assets-1/Wall/hell_1.png')
 collision = {
   {wall, wall, wall, wall, wall, wall, wall, wall, 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
@@ -78,17 +78,17 @@ background = {
   template = {-- a 10 x 10 map with the floor texture in the middle
 
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-  {wall, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+  {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
   {wall, wall, wall, floor, floor, wall, wall, wall, wall, wall},
   {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
   {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
@@ -100,14 +100,20 @@ background = {
 
 
 
-map = Map:new(template)
+ map = Map:new(template)
 
+ cam = gamera.new(0, 0, 1152, 640) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+
+
+ -- Here are the enemy variables; they need to be different!
+ ex = 100
+ ey = 100
+ eimg = love.graphics.newImage('assets-1/cyclops.png')
 
 end
  
- cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
 
-cam:setPosition(400, 400)
+
 
 
 function love.update(dt)
@@ -124,6 +130,7 @@ function love.update(dt)
       love.audio.stop(Doom)
       love.exitModule() 
     end
+    cam:setPosition(x, y)
 end
 
 function love.draw()
@@ -140,7 +147,14 @@ function love.draw()
     --Draw the player
     
     cam:draw(function(x, y)
-         
+      map:draw()
+      mapc:draw()
+      love.graphics.print('', 0, 0)
+      love.graphics.draw(currentDoor, 764, 92)
+      love.graphics.draw(switch, 200, 200)
+      DrawPlayer()
+
+
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.draw(cyclops, 500, 450, 0, 0.5)
@@ -149,11 +163,11 @@ function love.draw()
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
-   love.graphics.print("YOU WILL BE DESTORYED BY MY HAND, MY STANDS, AND MY FISTS",  0, 120)
+   love.graphics.print("",  0, 120)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
-  love.graphics.print("I BET YOU CAN'T SURVIED THIS YOU UGLY RAT ",  0, 140)
+  love.graphics.print("",  0, 140)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end 
