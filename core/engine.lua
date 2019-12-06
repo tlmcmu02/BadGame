@@ -372,7 +372,7 @@ function enginebreakoutupdate(dt)
             if mapc:cc(x + 16 , y + 10, 32, 32) == false then
                 for y3 = 1,5 do
                     for x3 = 1,10 do
-                        if blockdestroyed[y3][x3] == false then
+                        if self.blockdestroyed[y3][x3] == false then
                             if cc(x + 16, y + 10, 32, 32, 2 * x3, 3 * y3, 64, 64) then
                                 y = y - 6
                                 momentum = momentum + 1
