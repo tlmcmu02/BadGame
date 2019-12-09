@@ -14,7 +14,7 @@ BlockLoad()
 
 
 
-grid =  {}
+grid = {}
 for y = 1, 5 do
   grid[y] = {}
   for x = 1, 10 do
@@ -81,21 +81,21 @@ function love.update(dt)
   
 
   --enginebreakoutupdate(dt)
-  if lifelost == 1 then
-    lives = lives - 1
-    player.x = 64
-    player.y = 320
-    hpnum = 10
-    timerIFrames = 0
-    Iframes = 0
-    lifelost = 0
-  end
+  --if lifelost == 1 then
+    --lives = lives - 1
+    --player.x = 64
+    --player.y = 320
+    --hpnum = 10
+    --timerIFrames = 0
+    --Iframes = 0
+    --lifelost = 0
+  --end
       
   if love.keyboard.isDown('up') then
     
-    --if cc(player.x, player.y, 32, 32, grid[5][10].x, grid[5][10].y, 64, 64) and grid[5][10].destroyed == false then
+    if cc(x, y, 32, 32, grid[5][10].x * 64, grid[5][10].y * 64, 64, 64) then
       player.y = player.y - 6
-    --end
+    end
     
   end
 
@@ -118,7 +118,7 @@ function love.draw()
         --for t = 1, 5 do
         --for i = 1, 10 do
           --love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
-          grid[3][5]:draw()
+          grid[5][10]:draw()
           --Block:draw(t * 64, i * 64)
         --end
       --end

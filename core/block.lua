@@ -8,8 +8,8 @@ local class = require 'core/middleclass'
 function BlockLoad()
 ball = {
     img = love.graphics.newImage('assets-1/ups.png'),
-    xp = 64,
-    yp = 64,
+    x = 64,
+    y = 64,
     r = 0,
     s = 4,
 }
@@ -44,17 +44,16 @@ function Block5(dt)
 end
 Block = class('Block')
 
-function Block:constructor(x, y) 
-  self.img = love.graphics.newImage('assets-1/blocks/block5.png')
-  self.x=x * 64
-  self.y=y + 64
-  self.e=0
+function Block:constructor(img, x, y) 
+  self.img = love.graphics.newImage(img)
+  self.x= x * 64
+  self.y= y + 64
   self.destroyed=false
 end
 
 function Block:draw()
   --if self.blockdestroyed == false then
-    love.graphics.draw(self.img, self.px, self.py)
+    love.graphics.draw(self.img, self.x, self.y)
   --end
 end
 
