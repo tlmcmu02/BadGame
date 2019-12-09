@@ -18,7 +18,8 @@ currentDoor = closedDoor
 PlayerLoad()
 
 state = 'rest'
-
+x = 128
+y = 128
 if x > 100 then
 if y > 200 then
   state = 'move'
