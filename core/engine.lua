@@ -81,7 +81,7 @@ function PlayerbreakoutLoad()
     for i = 1, 5 do
         block[i] = {}
     for t = 1, 10 do
-        block[i][t] = Block:new(color[i], t, i)
+        block[i][t] = Block:new(color[i], t + 1, i)
     end
     end
 
