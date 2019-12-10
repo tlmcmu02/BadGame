@@ -34,7 +34,7 @@ end
 print(x..", "..y..", state: "..state)
 wall = love.graphics.newImage('assets-1/Wall/hell_1.png')
 collision = {
-  {wall, wall, wall, wall, wall, wall, wall, wall, 'nil', wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
@@ -47,10 +47,10 @@ collision = {
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+  {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
+  {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
   {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
 -- Create the background map
 floor = love.graphics.newImage('assets-1/Floor/cage_0.png')
@@ -118,6 +118,27 @@ end
 
 
 function love.update(dt)
+  -- Enemy movement stuff
+  -- ex = ex + 1
+  -- Enemy movement stuff (new)
+  if ex < x then
+    ex = ex + 1
+  end
+  if x < ex then
+    ex = ex - 1
+  end
+  if ey < y then
+    ey = ey + 1
+  end
+  if y < ey then
+    ey = ey - 1
+  end
+
+
+
+
+
+
   if cc(x, y, 64, 64, 200, 200, 64, 64) == true then
     currentDoor = openDoor
   end
@@ -151,14 +172,14 @@ function love.draw()
       map:draw()
       mapc:draw()
       love.graphics.print('', 0, 0)
-      love.graphics.draw(currentDoor, 764, 92)
+      love.graphics.draw(currentDoor, 764, 190)
       love.graphics.draw(switch, 200, 200)
       DrawPlayer()
 
 
     -- Draw the rectangle in the upper left corner
     love.graphics.rectangle('line', 0, 0, 64, 64)
-    love.graphics.draw(cyclops, 500, 450, 0, 0.5)
+    love.graphics.draw(cyclops, ex, ey, 0, 0.5)
   
    love.graphics.print("I AM A TRUE GAMER GOD",  0, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
