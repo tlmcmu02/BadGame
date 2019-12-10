@@ -40,14 +40,51 @@ function PlayerLoad()
         animtimer2 = 0
         cooldown2 = 0
 
-        block = {}
-        for i = 1, 5 do
-            block[i] = {}
-        for t = 1, 10 do
-            block[i][t] = Block:new(color[i], t, i)
-        end
-        end
     
+end
+
+function PlayerbreakoutLoad()
+
+
+    swordswipe = false
+    dashattack = 0
+    momentum = 0
+    
+    spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
+    grid = anim8.newGrid(66, 68, 600, 1000)
+    walkdown = anim8.newAnimation(grid('1-7', 1), 0.09)
+    walkup = anim8.newAnimation(grid('1-7', 2), 0.09)
+    walkx = anim8.newAnimation(grid('1-7', 3), 0.09)
+    idlex = anim8.newAnimation(grid('1-1', 3), 0.09)
+    idleup = anim8.newAnimation(grid('1-1', 2), 0.09)
+    idledown = anim8.newAnimation(grid('1-1', 1), 0.09)
+    sword = anim8.newAnimation(grid('1-8', 4), 0.05)
+    dashup = anim8.newAnimation(grid('1-8', 8), 0.05125, endofdash)
+    dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash)
+    dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash)
+    anim = walkdown
+    x = 128
+    y = 386
+
+    hpnum = 10
+    timerIFrames = 0
+    Iframes = 0
+    lifelost = 0
+    hitboxtimer = 0
+    animtimer = 0
+    cooldown = 0
+    hitboxtimer2 = 0
+    animtimer2 = 0
+    cooldown2 = 0
+
+    block = {}
+    for i = 1, 5 do
+        block[i] = {}
+    for t = 1, 10 do
+        block[i][t] = Block:new(color[i], t, i)
+    end
+    end
+
 end
 
 
@@ -620,6 +657,58 @@ function DrawPlayer()
         end
     end
 
+
+    if anim == sword then
+        sword:draw(spritesheet, x, y)
+    end
+
+    if anim == dashup then
+        dashup:draw(spritesheet, x, y)
+    end
+    if anim == dashdown then
+        dashdown:draw(spritesheet, x, y)
+    end
+    if anim == dashx then
+        if FaceR == true then
+            dashx:draw(spritesheet, x, y)
+        end
+        if FaceL == true then
+            dashx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+        end
+    end
+end
+
+function DrawbreakoutPlayer()
+    if anim == walkx then
+        if FaceR == true then
+            walkx:draw(spritesheet, x, y)
+        end
+        if FaceL == true then
+            walkx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+        end
+    end
+    if anim == walkup then
+        walkup:draw(spritesheet, x, y)
+    end
+    if anim == walkdown then
+        walkdown:draw(spritesheet, x, y)
+    end
+
+    if anim == idleup then
+        idleup:draw(spritesheet, x, y)
+    end
+    if anim == idledown then
+        idledown:draw(spritesheet, x, y)
+    end
+    if anim == idlex then
+        if FaceR == true then
+            idlex:draw(spritesheet, x, y)
+        end
+        if FaceL == true then
+            idlex:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+        end
+    end
+
     for i = 1, 5 do
         for t = 1, 10 do
         block[i][t]:draw()
@@ -645,7 +734,6 @@ function DrawPlayer()
         end
     end
 end
-
 
 function endofdash()
     dashattack = 0
