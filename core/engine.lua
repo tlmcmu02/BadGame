@@ -7,41 +7,48 @@ local Block = require 'core/block'
 local class = require 'core/middleclass'
 
 function PlayerLoad()
-    local grid = anim8.newGrid(66, 68, 600, 1000)
-    local player = {
-        --swordswipe = false,
-        dashattack = 0,
-        momentum = 0,
+
+
+        swordswipe = false
+        dashattack = 0
+        momentum = 0
         
-        spritesheet = love.graphics.newImage('assets-1/Player/slice1.png'),
-        --walkdown = anim8.newAnimation(grid('1-7', 1), 0.09),
-        --walkup = anim8.newAnimation(grid('1-7', 2), 0.09),
-        --walkx = anim8.newAnimation(grid('1-7', 3), 0.09),
-        --idlex = anim8.newAnimation(grid('1-1', 3), 0.09),
-        --idleup = anim8.newAnimation(grid('1-1', 2), 0.09),
-        --idledown = anim8.newAnimation(grid('1-1', 1), 0.09),
-        --sword = anim8.newAnimation(grid('1-8', 4), 0.05),
-        --dashup = anim8.newAnimation(grid('1-8', 8), 0.05125, endofdash),
-        --dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash),
-        --dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash),
-        --anim = walkdown,
-        x = 128,
-        y = 128,
+        spritesheet = love.graphics.newImage('assets-1/Player/placehold.png')
+        grid = anim8.newGrid(66, 68, 600, 1000)
+        walkdown = anim8.newAnimation(grid('1-7', 1), 0.09)
+        walkup = anim8.newAnimation(grid('1-7', 2), 0.09)
+        walkx = anim8.newAnimation(grid('1-7', 3), 0.09)
+        idlex = anim8.newAnimation(grid('1-1', 3), 0.09)
+        idleup = anim8.newAnimation(grid('1-1', 2), 0.09)
+        idledown = anim8.newAnimation(grid('1-1', 1), 0.09)
+        sword = anim8.newAnimation(grid('1-8', 4), 0.05)
+        dashup = anim8.newAnimation(grid('1-8', 8), 0.05125, endofdash)
+        dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash)
+        dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash)
+        anim = walkdown
+        x = 128
+        y = 386
 
-        hpnum = 10,
-        timerIFrames = 0,
-        Iframes = 0,
-        lifelost = 0,
-        hitboxtimer = 0,
-        animtimer = 0,
-        cooldown = 0,
-        hitboxtimer2 = 0,
-        animtimer2 = 0,
-        cooldown2 = 0,
-    }
-    return player
+        hpnum = 10
+        timerIFrames = 0
+        Iframes = 0
+        lifelost = 0
+        hitboxtimer = 0
+        animtimer = 0
+        cooldown = 0
+        hitboxtimer2 = 0
+        animtimer2 = 0
+        cooldown2 = 0
+
+        block = {}
+        for i = 1, 5 do
+            block[i] = {}
+        for t = 1, 10 do
+            block[i][t] = Block:new(color[i], t, i)
+        end
+        end
+    
 end
-
 
 
 
@@ -356,33 +363,34 @@ function enginebreakoutupdate(dt)
         FaceR = false
         walkup:update(dt)
         anim = walkup
-        if dashattack == 1 then
-            anim = dashup 
-            if mapc:cc(x + 16 , y + 4, 32, 32) == false then
-                for y3 = 1,5 do
-                    for x3 = 1,10 do
-                        if self.blockdestroyed[y3][x3] == false then
-                            if cc(x + 16, y + 4, 32, 32, 2 * x3, 3 * y3, 64, 64) then
-                                y = y - 12
-                                momentum = momentum - 2
-                            end
-                        end
-                    end
-                end                
-            end
-        end
+
+        --if dashattack == 1 then
+        --    anim = dashup
+        --    if mapc:cc(x + 16 , y + 4, 32, 32) == false then   
+        --        for i = 1, 5 do
+        --            for t = 1, 10 do  
+        --                if block[i][t].destroyed == 0 then
+        --                    if cc(x + 16, y + 4, 32, 32, block[i][t].x, block[i][t].y, 64, 64) == false then
+        --                        y = y - 12
+        --                        momentum = momentum - 2
+        --                    end
+        --                end
+        --            end
+        --        end
+        --    end
+        --end
         if dashattack == 0 then
-            if mapc:cc(x + 16 , y + 10, 32, 32) == false then
-                for y3 = 1,5 do
-                    for x3 = 1,10 do
-                        if self.blockdestroyed[y3][x3] == false then
-                            if cc(x + 16, y + 10, 32, 32, 2 * x3, 3 * y3, 64, 64) then
-                                y = y - 6
+            if mapc:cc(x + 16 , y + 10, 32, 32) == false then   
+                for i = 1, 5 do
+                    for t = 1, 10 do 
+                        if block[i][t].destroyed == 0 then
+                            if cc(x + 16, y + 10, 32, 32, block[i][t].x, block[i][t].y, 64, 64) == false then
+                                y = y - 0.12
                                 momentum = momentum + 1
                             end
                         end
                     end
-                end  
+                end
             end
         end
     end
@@ -611,6 +619,12 @@ function DrawPlayer()
             idlex:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
         end
     end
+
+    for i = 1, 5 do
+        for t = 1, 10 do
+        block[i][t]:draw()
+        end
+    end 
 
     if anim == sword then
         sword:draw(spritesheet, x, y)
