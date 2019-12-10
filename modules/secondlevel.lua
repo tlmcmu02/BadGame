@@ -1,6 +1,6 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
-local gamera = require 'core/gamera'
+--local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local engine = require 'core/engine'
@@ -9,16 +9,16 @@ local class = require 'core/middleclass'
 
 function love.load()
   
-PlayerLoad()
+player = PlayerLoad()
 BlockLoad()
 
 
 
-grid =  {}
+grid = {}
 for y = 1, 5 do
   grid[y] = {}
   for x = 1, 10 do
-    grid[y][x] = Block:new(x, y)
+    grid[y][x] = Block:new(x * 64, y * 64)
   end
 end
 
@@ -69,7 +69,7 @@ hpBar = {
     {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, },
   }
 
-  cam = gamera.new(0, 0, 768, 768) 
+  --cam = gamera.new(0, 0, 768, 768) 
   
   map = Map:new(background)
   mapc = Map:new(layer1)
@@ -80,44 +80,52 @@ function love.update(dt)
 
   
 
-  enginebreakoutupdate(dt)
-  if lifelost == 1 then
-    lives = lives - 1
-    player.x = 64
-    player.y = 320
-    hpnum = 10
-    timerIFrames = 0
-    Iframes = 0
-    lifelost = 0
-  end
+  --enginebreakoutupdate(dt)
+  --if lifelost == 1 then
+    --lives = lives - 1
+    --player.x = 64
+    --player.y = 320
+    --hpnum = 10
+    --timerIFrames = 0
+    --Iframes = 0
+    --lifelost = 0
+  --end
       
+  if love.keyboard.isDown('up') then
+    
+    if cc(x, y, 32, 32, grid[5][10].x * 64, grid[5][10].y * 64, 64, 64) then
+      player.y = player.y - 6
+    end
+    
+  end
 
 
-      cam:setPosition(x, y)
+  --cam:setPosition(x, y)
 
 end
 
 function love.draw()
-    cam:draw(function(l, t, w, h)
-        map:draw()
-        mapc:draw()
+    --cam:draw(function(l, t, w, h)
+        --map:draw()
+        --mapc:draw()
        
-        DrawPlayer()
+        --DrawPlayer()
+        love.graphics.draw(player.spritesheet, player.x, player.y)
         
 
-        love.graphics.draw(ball.img, ball.x, ball.y)
+        --love.graphics.draw(ball.img, ball.x, ball.y)
         --walk:draw(spritesheet, 400, 300)
-        for t = 1, 5 do
-        for i = 1, 10 do
+        --for t = 1, 5 do
+        --for i = 1, 10 do
           --love.graphics.draw(blockcolor[t], (i*64), (64*t)+64)
-          grid[t][i]:draw()
-          Block:draw(t * 64, i * 64)
-        end
-      end
+          grid[5][10]:draw()
+          --Block:draw(t * 64, i * 64)
+        --end
+      --end
         
         
-      end)
-love.graphics.draw(hpBar[11], 16, 64, 6, 3)
+      --end)
+--love.graphics.draw(hpBar[11], 16, 64, 6, 3)
       
 end
 
