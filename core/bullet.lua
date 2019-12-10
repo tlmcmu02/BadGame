@@ -257,3 +257,7 @@ function DrawAllBullet()
     spin15:draw(spritesheetbullet, bx15, by15)
     spin16:draw(spritesheetbullet, bx16, by16)
 end
+
+function Bullet:constructor(img, bulletx, bullety) 
+    self.img = love.graphics.newImage(img)
+end

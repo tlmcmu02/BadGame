@@ -9,7 +9,7 @@ local class = require 'core/middleclass'
 
 function love.load()
   
-PlayerLoad()
+PlayerbreakoutLoad()
 
 
 
@@ -93,7 +93,7 @@ function love.draw()
         map:draw()
         mapc:draw()
        
-        DrawPlayer()
+        DrawbreakoutPlayer()
        
         
 

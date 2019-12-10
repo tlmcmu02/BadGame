@@ -81,7 +81,7 @@ function PlayerbreakoutLoad()
     for i = 1, 5 do
         block[i] = {}
     for t = 1, 10 do
-        block[i][t] = Block:new(color[i], t, i)
+        block[i][t] = Block:new(color[i], t, i + 1)
     end
     end
 
@@ -709,12 +709,6 @@ function DrawbreakoutPlayer()
         end
     end
 
-    for i = 1, 5 do
-        for t = 1, 10 do
-        block[i][t]:draw()
-        end
-    end 
-
     if anim == sword then
         sword:draw(spritesheet, x, y)
     end
@@ -733,6 +727,11 @@ function DrawbreakoutPlayer()
             dashx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
         end
     end
+    for i = 1, 5 do
+        for t = 1, 10 do
+        block[i][t]:draw()
+        end
+    end 
 end
 
 function endofdash()
