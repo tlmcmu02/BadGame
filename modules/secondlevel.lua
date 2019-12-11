@@ -6,12 +6,13 @@ local anim8 = require 'core/anim8'
 local engine = require 'core/engine'
 local Block = require 'core/block'
 local class = require 'core/middleclass'
+local Ball = require 'core/ball'
 
 function love.load()
   
 PlayerbreakoutLoad()
 
-
+ball:new(64, 364)
 
 hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/0.png'),
@@ -30,21 +31,7 @@ hpBar = {
   w1 ='assets-1/wall/transparent_wall.png'
   f = 'assets-1/wall/frozen_0.png'
 
-  background = {
-    {f, f, f, f, f, f, f, f, f, f, f, f, },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    {f, f, f, f, f, f, f, f, f, f, f, f,  },
-    
-  }
+  
   layer1 = {
     {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, },
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
@@ -62,7 +49,7 @@ hpBar = {
 
   cam = gamera.new(0, 0, 768, 768) 
   
-  map = Map:new(background)
+  
   mapc = Map:new(layer1)
 
 end
@@ -90,8 +77,9 @@ end
 
 function love.draw()
     cam:draw(function(l, t, w, h)
-        map:draw()
+        
         mapc:draw()
+        ball:draw()
        
         DrawbreakoutPlayer()
        
