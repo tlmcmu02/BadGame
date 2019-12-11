@@ -181,15 +181,15 @@ function love.draw()
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.draw(cyclops, ex, ey, 0, 0.5)
   
-   love.graphics.print("I AM A TRUE GAMER GOD",  0, 100)
+   love.graphics.print("I AM A TRUE GAMER GOD",  350, 100)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
-   love.graphics.print("",  0, 120)
+   love.graphics.print("YOU CAN'T BEAT ME!",  350, 120)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end
-  love.graphics.print("",  0, 140)
+  love.graphics.print("GAMMERRRRS!!!!!!! RIIIIIISSSEEEE UP!!!!!!",  350, 140)
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end 
