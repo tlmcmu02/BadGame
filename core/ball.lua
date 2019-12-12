@@ -1,6 +1,7 @@
 local Util = require 'core/util'
 local class = require 'core/middleclass'
 local anim8 = require 'core/anim8'
+local Block = require 'core/block'
 
 ball = class("ball")
 
@@ -14,11 +15,29 @@ function ball:constructor(bx, by)
   self.y = by 
   self.w = 32
   self.h = 32
+  self.facing = 'UR'
   
 end
 
 function ball:update(dt)
   rotate:update(dt)
+  if self.facing == 'UR' then
+    self.y = self.y - 3 
+    self.x = self.x + 3
+  end
+  if self.facing == 'UL' then
+    self.y = self.y - 3 
+    self.x = self.x - 3
+  end
+  if self.facing == 'DR' then
+    self.y = self.y + 3 
+    self.x = self.x + 3
+  end
+  if self.facing == 'DL' then
+    self.y = self.y + 3 
+    self.x = self.x - 3
+  end
+  
 end
 
 function ball:draw()
