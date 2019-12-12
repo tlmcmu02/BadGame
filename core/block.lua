@@ -3,17 +3,7 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local class = require 'core/middleclass'
---function BlockLoad()
---ball = {
---    img = love.graphics.newImage('assets-1/ups.png'),
---    x = 64,
---    y = 64,
---    r = 0,
---    s = 4,
---}
---end
-local Util = require 'core/util'
-local class = require 'core/middleclass'
+local Bullet = require 'core/bullet'
 
 Block = class("Block")
 
