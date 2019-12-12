@@ -10,7 +10,7 @@ ball = class("ball")
 function ball:constructor(bx, by) 
   self.img = love.graphics.newImage('assets-1/kfc.png')
   grid = anim8.newGrid(32, 32, 256, 256)
-  rotate = anim8.newAnimation(grid('1-8', 1), 0.125)
+  rotate = anim8.newAnimation(grid('1-8', 1), 0.05125)
   self.x = bx 
   self.y = by 
   self.w = 32
