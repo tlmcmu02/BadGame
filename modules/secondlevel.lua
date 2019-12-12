@@ -12,7 +12,7 @@ function love.load()
   
 PlayerbreakoutLoad()
 
-ball1 = ball:new(64, 364)
+ball1 = ball:new(64, 500)
 
 hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/0.png'),
