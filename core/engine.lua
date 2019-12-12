@@ -401,32 +401,221 @@ function enginebreakoutupdate(dt)
         walkup:update(dt)
         anim = walkup
 
-        --if dashattack == 1 then
-        --    anim = dashup
-        --    if mapc:cc(x + 16 , y + 4, 32, 32) == false then   
-        --        for i = 1, 5 do
-        --            for t = 1, 10 do  
-        --                if block[i][t].destroyed == 0 then
-        --                    if cc(x + 16, y + 4, 32, 32, block[i][t].x, block[i][t].y, 64, 64) == false then
-        --                        y = y - 12
-        --                        momentum = momentum - 2
-        --                    end
-        --                end
-        --            end
-        --        end
-        --    end
-        --end
+        if dashattack == 1 then
+            anim = dashup
+            if mapc:cc(x + 16 , y + 4, 32, 32) == false then   
+                if block[1][1].upcollision == 0 then
+                if block[1][2].upcollision == 0 then
+                if block[1][3].upcollision == 0 then
+                if block[1][4].upcollision == 0 then
+                if block[1][5].upcollision == 0 then
+                if block[1][6].upcollision == 0 then
+                if block[1][7].upcollision == 0 then
+                if block[1][8].upcollision == 0 then
+                if block[1][9].upcollision == 0 then
+                if block[1][10].upcollision == 0 then
+                if block[2][1].upcollision == 0 then
+                if block[2][2].upcollision == 0 then
+                if block[2][3].upcollision == 0 then
+                if block[2][4].upcollision == 0 then
+                if block[2][5].upcollision == 0 then
+                if block[2][6].upcollision == 0 then
+                if block[2][7].upcollision == 0 then
+                if block[2][8].upcollision == 0 then
+                if block[2][9].upcollision == 0 then
+                if block[2][10].upcollision == 0 then
+                if block[3][1].upcollision == 0 then
+                if block[3][2].upcollision == 0 then
+                if block[3][3].upcollision == 0 then
+                if block[3][4].upcollision == 0 then
+                if block[3][5].upcollision == 0 then
+                if block[3][6].upcollision == 0 then
+                if block[3][7].upcollision == 0 then
+                if block[3][8].upcollision == 0 then
+                if block[3][9].upcollision == 0 then
+                if block[3][10].upcollision == 0 then
+                if block[4][1].upcollision == 0 then
+                if block[4][2].upcollision == 0 then
+                if block[4][3].upcollision == 0 then
+                if block[4][4].upcollision == 0 then
+                if block[4][5].upcollision == 0 then
+                if block[4][6].upcollision == 0 then
+                if block[4][7].upcollision == 0 then
+                if block[4][8].upcollision == 0 then
+                if block[4][9].upcollision == 0 then
+                if block[4][10].upcollision == 0 then
+                if block[5][1].upcollision == 0 then
+                if block[5][2].upcollision == 0 then
+                if block[5][3].upcollision == 0 then
+                if block[5][4].upcollision == 0 then
+                if block[5][5].upcollision == 0 then
+                if block[5][6].upcollision == 0 then
+                if block[5][7].upcollision == 0 then
+                if block[5][8].upcollision == 0 then
+                if block[5][9].upcollision == 0 then
+                if block[5][10].upcollision == 0 then
+                    y = y - 12
+                    momentum = momentum - 2
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end         
+            end
+        end
         if dashattack == 0 then
             if mapc:cc(x + 16 , y + 10, 32, 32) == false then   
                 for i = 1, 5 do
-                    for t = 1, 10 do 
-                        if block[i][t].destroyed == 0 then
-                            if cc(x + 16, y + 10, 32, 32, block[i][t].x, block[i][t].y, 64, 64) == false then
-                                y = y - 0.12
-                                momentum = momentum + 1
-                            end
-                        end
+                    for t = 1, 10 do
+                        block[i][t]:update(dt)
                     end
+                end 
+                if block[1][1].upcollision == 0 then
+                if block[1][2].upcollision == 0 then
+                if block[1][3].upcollision == 0 then
+                if block[1][4].upcollision == 0 then
+                if block[1][5].upcollision == 0 then
+                if block[1][6].upcollision == 0 then
+                if block[1][7].upcollision == 0 then
+                if block[1][8].upcollision == 0 then
+                if block[1][9].upcollision == 0 then
+                if block[1][10].upcollision == 0 then
+                if block[2][1].upcollision == 0 then
+                if block[2][2].upcollision == 0 then
+                if block[2][3].upcollision == 0 then
+                if block[2][4].upcollision == 0 then
+                if block[2][5].upcollision == 0 then
+                if block[2][6].upcollision == 0 then
+                if block[2][7].upcollision == 0 then
+                if block[2][8].upcollision == 0 then
+                if block[2][9].upcollision == 0 then
+                if block[2][10].upcollision == 0 then
+                if block[3][1].upcollision == 0 then
+                if block[3][2].upcollision == 0 then
+                if block[3][3].upcollision == 0 then
+                if block[3][4].upcollision == 0 then
+                if block[3][5].upcollision == 0 then
+                if block[3][6].upcollision == 0 then
+                if block[3][7].upcollision == 0 then
+                if block[3][8].upcollision == 0 then
+                if block[3][9].upcollision == 0 then
+                if block[3][10].upcollision == 0 then
+                if block[4][1].upcollision == 0 then
+                if block[4][2].upcollision == 0 then
+                if block[4][3].upcollision == 0 then
+                if block[4][4].upcollision == 0 then
+                if block[4][5].upcollision == 0 then
+                if block[4][6].upcollision == 0 then
+                if block[4][7].upcollision == 0 then
+                if block[4][8].upcollision == 0 then
+                if block[4][9].upcollision == 0 then
+                if block[4][10].upcollision == 0 then
+                if block[5][1].upcollision == 0 then
+                if block[5][2].upcollision == 0 then
+                if block[5][3].upcollision == 0 then
+                if block[5][4].upcollision == 0 then
+                if block[5][5].upcollision == 0 then
+                if block[5][6].upcollision == 0 then
+                if block[5][7].upcollision == 0 then
+                if block[5][8].upcollision == 0 then
+                if block[5][9].upcollision == 0 then
+                if block[5][10].upcollision == 0 then
+                    y = y - 6
+                    momentum = momentum + 1
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end
+                end     
+                end
+                end
+                end
+                end
+                end
+                end
+                end
                 end
             end
         end

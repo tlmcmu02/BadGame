@@ -12,7 +12,7 @@ function love.load()
   
 PlayerbreakoutLoad()
 
-ball:new(64, 364)
+ball1 = ball:new(64, 364)
 
 hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/0.png'),
@@ -57,7 +57,7 @@ end
 function love.update(dt)
 
   
-
+  ball1:update(dt)
   enginebreakoutupdate(dt)
   --if lifelost == 1 then
     --lives = lives - 1
@@ -79,7 +79,7 @@ function love.draw()
     cam:draw(function(l, t, w, h)
         
         mapc:draw()
-        ball:draw()
+        ball1:draw()
        
         DrawbreakoutPlayer()
        

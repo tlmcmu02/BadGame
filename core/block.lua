@@ -32,10 +32,35 @@ function Block:constructor(img, bx, by)
   self.w = 64
   self.h = 64
   self.destroyed = 0
+  if dashattack == 0 then
+  if cc(x + 16, y + 10, 32, 32, self.x, self.y, 64, 64) == false then
+  self.upcollision = 0
+  end
+  end
+  if dashattack == 1 then
+  if cc(x + 16, y + 4, 32, 32, self.x, self.y, 64, 64) == false then
+  self.updashcollision = 0
+  end
+  end
 end
 
-function Block:Update()
-
+function Block:update(dt)
+  if dashattack == 0 then
+    if cc(x + 16, y + 10, 32, 32, self.x, self.y, 64, 64) == false then
+    self.upcollision = 0
+    end
+    if cc(x + 16, y + 10, 32, 32, self.x, self.y, 64, 64) == true then
+    self.upcollision = 1
+    end
+  end
+  if dashattack == 1 then
+    if cc(x + 16, y + 4, 32, 32, self.x, self.y, 64, 64) == false then
+    self.updashcollision = 0
+    end
+    if cc(x + 16, y + 4, 32, 32, self.x, self.y, 64, 64) == true then
+    self.updashcollision = 1
+    end
+  end
 end
 
 function Block:draw()
