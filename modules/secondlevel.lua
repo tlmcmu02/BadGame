@@ -90,7 +90,7 @@ end
 
 function love.draw()
     cam:draw(function(l, t, w, h)
-        map:draw()
+        --map:draw()
         mapc:draw()
        
         DrawbreakoutPlayer()
