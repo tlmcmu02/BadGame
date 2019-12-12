@@ -193,38 +193,7 @@ function love.draw()
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end 
-  love.graphics.print("Mother I am sorry to wake you at this ungodly hour",  350, 240)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("But I must report",  350, 260)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("That I have soiled my",  350, 280)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("Undies and I require your",  350, 300)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("Assistance in a change of",  350, 320)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("Trousers and Bedsheets and maybe",  350, 340)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("A glass of Mother's",  350, 360)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
-  love.graphics.print("Milk. Thank you Mother",  350, 380)
-  if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
-   -- What should go here?
-  end
+  
   --player:draw() -- Draw the entity object named player 
 end)
 end
