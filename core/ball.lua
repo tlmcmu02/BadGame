@@ -14,11 +14,11 @@ function ball:constructor(bx, by)
   self.y = by 
   self.w = 32
   self.h = 32
-  self.rotate = 0
+  
 end
 
-function ball:Update()
-
+function ball:update()
+rotate:update(dt)
 end
 
 function ball:draw()

@@ -56,7 +56,7 @@ end
 
 function love.update(dt)
 
-  
+  ball:update()
 
   enginebreakoutupdate(dt)
   --if lifelost == 1 then
@@ -77,7 +77,7 @@ end
 
 function love.draw()
     cam:draw(function(l, t, w, h)
-        --map:draw()
+        
         mapc:draw()
         ball:draw()
        
