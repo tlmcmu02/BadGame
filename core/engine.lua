@@ -4,6 +4,7 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local Block = require 'core/block'
+local Bullet = require 'core/bullet'
 local class = require 'core/middleclass'
 
 function PlayerLoad()

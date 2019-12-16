@@ -106,9 +106,65 @@ function Bullet:constructor(bulletx, bullety, bulletd)
     self.x = bulletx
     self.y = bullety
     self.driection = bulletd
-    if self.direction == 'SSW' then
+    if self.direction == 'SWW' then
         self.y = self.y + 1.5
         self.x = self.x - 4.5
+    end
+    if self.direction == 'SEE' then
+        self.y = self.y + 1.5
+        self.x = self.x + 4.5
+    end
+    if self.direction == 'NWW' then
+        self.y = self.y - 1.5
+        self.x = self.x - 4.5
+    end
+    if self.direction == 'NEE' then
+        self.y = self.y - 1.5
+        self.x = self.x + 4.5
+    end
+    if self.direction == 'SSW' then
+        self.y = self.y + 4.5
+        self.x = self.x - 1.5
+    end
+    if self.direction == 'SSE' then
+        self.y = self.y + 4.5
+        self.x = self.x + 1.5
+    end
+    if self.direction == 'NNW' then
+        self.y = self.y - 4.5
+        self.x = self.x - 1.5
+    end
+    if self.direction == 'NNE' then
+        self.y = self.y - 4.5
+        self.x = self.x + 1.5
+    end
+    if self.direction == 'SW' then
+        self.y = self.y + 3
+        self.x = self.x - 3
+    end
+    if self.direction == 'SE' then
+        self.y = self.y + 3
+        self.x = self.x + 3
+    end
+    if self.direction == 'NW' then
+        self.y = self.y - 3
+        self.x = self.x - 3
+    end
+    if self.direction == 'NE' then
+        self.y = self.y - 3
+        self.x = self.x + 3
+    end
+    if self.direction == 'S' then
+        self.y = self.y + 6
+    end
+    if self.direction == 'W' then
+        self.x = self.x + 6
+    end
+    if self.direction == 'N' then
+        self.y = self.y - 6
+    end
+    if self.direction == 'E' then
+        self.x = self.x - 6
     end
 end
 
