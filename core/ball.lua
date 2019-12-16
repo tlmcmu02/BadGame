@@ -1,7 +1,7 @@
 local Util = require 'core/util'
 local class = require 'core/middleclass'
 local anim8 = require 'core/anim8'
-local Block = require 'core/block'
+
 
 ball = class("ball")
 

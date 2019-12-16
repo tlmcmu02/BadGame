@@ -14,6 +14,8 @@ local class = require 'core/middleclass'
 --end
 local Util = require 'core/util'
 local class = require 'core/middleclass'
+local ball = require 'core/ball'
+
 
 Block = class("Block")
 

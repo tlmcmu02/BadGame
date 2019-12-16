@@ -63,8 +63,8 @@ function PlayerbreakoutLoad()
     dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash)
     dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash)
     anim = walkdown
-    x = 128
-    y = 386
+    x = 640
+    y = 640
 
     hpnum = 10
     timerIFrames = 0
