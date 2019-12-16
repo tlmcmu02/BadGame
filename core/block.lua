@@ -3,7 +3,8 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local class = require 'core/middleclass'
-local Bullet = require 'core/bullet'
+local ball = require 'core/ball'
+
 
 Block = class("Block")
 
