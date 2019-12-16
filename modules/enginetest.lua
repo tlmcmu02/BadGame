@@ -9,7 +9,7 @@ local bullet = require 'core/bullet'
 function love.load()
 
   PlayerLoad()
-  BulletLoad()
+  
   bullettimer = 0
 
   wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
@@ -43,17 +43,6 @@ function love.update(dt)
 
   Music:play()
 
-  if bullettimer == 0 then
-    bullettimer = 12
-  end
-
-  if bullettimer == 1 then
-    Wbullet(dt)
-  end
-
-  if bullettimer > 0 then
-    bullettimer = bullettimer - 1
-  end
 
   if love.keyboard.isDown ('space') then 
     love.exitModule();
@@ -71,7 +60,7 @@ function love.draw()
   love.graphics.print(bullettimer, x, y)
   
   DrawPlayer()
-  DrawBullet()
+
   end)
 
 end
