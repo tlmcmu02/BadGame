@@ -7,10 +7,12 @@ local engine = require 'core/engine'
 local Block = require 'core/block'
 local class = require 'core/middleclass'
 local Ball = require 'core/ball'
+local Bullet = require 'core/bullet'
 
 function love.load()
   
 PlayerbreakoutLoad()
+Bullet1 = bullet:new(500, 525, 'E')
 
 ball1 = ball:new(64, 500)
 
@@ -58,6 +60,8 @@ function love.update(dt)
 
   
   ball1:update(dt)
+  Bullet1:update(dt)
+
   enginebreakoutupdate(dt)
   --if lifelost == 1 then
     --lives = lives - 1
@@ -82,6 +86,7 @@ function love.draw()
         ball1:draw()
        
         DrawbreakoutPlayer()
+        Bullet1:draw()
        
         
 

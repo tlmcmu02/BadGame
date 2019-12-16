@@ -5,7 +5,7 @@ local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local class = require 'core/middleclass'
 
-Bullet = class("Bullet")
+bullet = class("Bullet")
 
 function Nbullet(dt)
     by = by - 6
@@ -99,13 +99,13 @@ function SWWbullet(dt)
     spin:update(dt)
 end
 
-function Bullet:constructor(bulletx, bullety, bulletd) 
+function bullet:constructor(bulletx, bullety, bulletd) 
     self.img = love.graphics.newImage('assets-1/kfc.png')
     grid = anim8.newGrid(16, 16, 256, 256)
     spin = anim8.newAnimation(grid('1-4', 3), 0.07)
     self.x = bulletx
     self.y = bullety
-    self.driection = bulletd
+    self.direction = bulletd
     if self.direction == 'SWW' then
         self.y = self.y + 1.5
         self.x = self.x - 4.5
@@ -166,6 +166,81 @@ function Bullet:constructor(bulletx, bullety, bulletd)
     if self.direction == 'E' then
         self.x = self.x - 6
     end
+end
+
+function bullet:update(dt)
+    spin:update(dt)
+    if self.direction == 'SWW' then
+        self.y = self.y + 1.5
+        self.x = self.x - 4.5
+    end
+    if self.direction == 'SEE' then
+        self.y = self.y + 1.5
+        self.x = self.x + 4.5
+    end
+    if self.direction == 'NWW' then
+        self.y = self.y - 1.5
+        self.x = self.x - 4.5
+    end
+    if self.direction == 'NEE' then
+        self.y = self.y - 1.5
+        self.x = self.x + 4.5
+    end
+    if self.direction == 'SSW' then
+        self.y = self.y + 4.5
+        self.x = self.x - 1.5
+    end
+    if self.direction == 'SSE' then
+        self.y = self.y + 4.5
+        self.x = self.x + 1.5
+    end
+    if self.direction == 'NNW' then
+        self.y = self.y - 4.5
+        self.x = self.x - 1.5
+    end
+    if self.direction == 'NNE' then
+        self.y = self.y - 4.5
+        self.x = self.x + 1.5
+    end
+    if self.direction == 'SW' then
+        self.y = self.y + 3
+        self.x = self.x - 3
+    end
+    if self.direction == 'SE' then
+        self.y = self.y + 3
+        self.x = self.x + 3
+    end
+    if self.direction == 'NW' then
+        self.y = self.y - 3
+        self.x = self.x - 3
+    end
+    if self.direction == 'NE' then
+        self.y = self.y - 3
+        self.x = self.x + 3
+    end
+    if self.direction == 'S' then
+        self.y = self.y + 6
+    end
+    if self.direction == 'W' then
+        self.x = self.x + 6
+    end
+    if self.direction == 'N' then
+        self.y = self.y - 6
+    end
+    if self.direction == 'E' then
+        self.x = self.x - 6
+        if FaceD == true then
+            if animtimer == 24 or animtimer == 23 or animtimer == 22 then
+                if cc(x + 16, y + 56, 2, 2, self.x, self.y, 16, 16) or cc(x + 1, y + 34, 2, 2, self.x, self.y, 16, 16) then
+                    self.direction = 'S'
+                end
+            end
+        end
+    end
+end
+
+function bullet:draw()
+    spin:draw(self.img, self.x, self.y)
 end
 
 return Bullet
