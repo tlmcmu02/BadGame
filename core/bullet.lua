@@ -231,7 +231,7 @@ function bullet:update(dt)
         self.x = self.x - 6
         if FaceD == true then
             if animtimer == 24 or animtimer == 23 or animtimer == 22 then
-                if cc(x + 16, y + 56, 2, 2, self.x, self.y, 16, 16) or cc(x + 1, y + 34, 2, 2, self.x, self.y, 16, 16) then
+                if cc(x, y + 32, 16, 27, self.x, self.y, 16, 16) or cc(x + 16, y + 48, 7, 12, self.x, self.y, 16, 16) then
                     self.direction = 'S'
                 end
             end
