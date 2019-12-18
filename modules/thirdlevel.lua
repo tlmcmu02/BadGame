@@ -205,6 +205,6 @@ end
 
 function love.keypressed(key)
   if key == 'space' then
-    enemyhp = enemyhp - 1
+    --enemyhp = enemyhp - 1
   end
 end
