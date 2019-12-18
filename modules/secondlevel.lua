@@ -12,7 +12,7 @@ local Bullet = require 'core/bullet'
 function love.load()
   
 PlayerbreakoutLoad()
-Bullet1 = bullet:new(500, 525, 'E')
+Bullet1 = bullet:new(140, 140, 'S')
 
 ball1 = ball:new(64, 500)
 
