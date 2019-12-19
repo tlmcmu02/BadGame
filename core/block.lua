@@ -5,7 +5,6 @@ local anim8 = require 'core/anim8'
 local class = require 'core/middleclass'
 local ball = require 'core/ball'
 
-
 Block = class("Block")
 
 color = {
