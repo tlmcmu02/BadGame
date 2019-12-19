@@ -11,9 +11,12 @@ function bullet:constructor(bulletx, bullety, bulletd)
     self.img = love.graphics.newImage('assets-1/kfc.png')
     grid = anim8.newGrid(16, 16, 256, 256)
     spin = anim8.newAnimation(grid('1-4', 3), 0.07)
+    delete = anim8.newAnimation(grid('1-4', 4), 0.05)
     self.x = bulletx
     self.y = bullety
     self.direction = bulletd
+    self.anim = spin
+    self.animdeletetime = 0
     if self.direction == 'SWW' then
         self.y = self.y + 1.5
         self.x = self.x - 4.5
@@ -122,6 +125,10 @@ function bullet:update(dt)
         if mapc:cc(self.x - 3, self.y + 3, 16, 16) == false then  
             self.y = self.y + 3
             self.x = self.x - 3
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
@@ -129,6 +136,10 @@ function bullet:update(dt)
         if mapc:cc(self.x + 3, self.y + 3, 16, 16) == false then  
             self.y = self.y + 3
             self.x = self.x + 3
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
@@ -136,6 +147,10 @@ function bullet:update(dt)
         if mapc:cc(self.x - 3, self.y - 3, 16, 16) == false then  
             self.y = self.y - 3
             self.x = self.x - 3
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
@@ -143,30 +158,50 @@ function bullet:update(dt)
         if mapc:cc(self.x + 3, self.y - 3, 16, 16) == false then  
             self.y = self.y - 3
             self.x = self.x + 3
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
     if self.direction == 'S' then
         if mapc:cc(self.x, self.y + 6, 16, 16) == false then  
             self.y = self.y + 6
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
     if self.direction == 'W' then
         if mapc:cc(self.x - 6, self.y, 16, 16) == false then  
             self.x = self.x - 6
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
     if self.direction == 'N' then
         if mapc:cc(self.x, self.y - 6, 16, 16) == false then  
         self.y = self.y - 6
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
     if self.direction == 'E' then
         if mapc:cc(self.x + 6, self.y, 16, 16) == false then  
             self.x = self.x + 6
+        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+        else
+            Delete()
         end
         CR()
     end
@@ -344,12 +379,45 @@ function bullet:update(dt)
             end
         end
 
+        function Delete()
+            self.anim = delete
+            delete:update(dt)
+            self.animdeletetime = 16
+            if self.animdeletetime >= 0 then
+                self.animdeletetime = self.animdeletetime - 1
+            end
+            if self.animdeletetime == -1 then
+                self.x = nil
+                self.y = nil
+                self.direction = nil 
+            end
+        end
+
     end
 
 end
 
 function bullet:draw()
-    spin:draw(self.img, self.x, self.y)
+    if self.anim == spin then
+        spin:draw(self.img, self.x, self.y)
+    end
+    if self.anim == delete then
+        delete:draw(self.img, self.x, self.y)
+    end
+end
+
+function Delete()
+    self.anim = delete
+    delete:update(dt)
+    self.animdeletetime = 16
+    if self.animdeletetime >= 0 then
+        self.animdeletetime = self.animdeletetime - 1
+    end
+    if self.animdeletetime == -1 then
+        self.x = nil
+        self.y = nil
+        self.direction = nil 
+    end
 end
 
 function CR()
