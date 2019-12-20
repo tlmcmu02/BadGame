@@ -16,7 +16,7 @@ function bullet:constructor(bulletx, bullety, bulletd)
     self.y = bullety
     self.direction = bulletd
     self.anim = spin
-    self.animdeletetime = 0
+    self.animdeletetime = 16
     if self.direction == 'SWW' then
         self.y = self.y + 1.5
         self.x = self.x - 4.5
