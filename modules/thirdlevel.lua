@@ -16,10 +16,23 @@ switch = love.graphics.newImage('assets-1/Switch/pressure_plate.png')
 currentDoor = closedDoor
 
 PlayerLoad()
-
-state = 'rest'
+hpBar = {
+  love.graphics.newImage('assets-1/player/hp_bar/0.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/1.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/2.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/3.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/4.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/5.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/6.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/7.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/8.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/9.png'),
+  love.graphics.newImage('assets-1/player/hp_bar/10.png'),
+}
+state  = 'rest'
 x = 128
 y = 128
+hp = 11
 if x > 100 then
 if y > 200 then
   state = 'move'
@@ -121,17 +134,17 @@ function love.update(dt)
   -- Enemy movement stuff
   -- ex = ex + 1
   -- Enemy movement stuff (new)
-  if ex < x then
-    ex = ex + 1
+  if (ex + 16) < x then
+    ex = ex + 4
   end
-  if x < ex then
-    ex = ex - 1
+  if x < (ex + 16)  then
+    ex = ex - 4
   end
-  if ey < y then
-    ey = ey + 1
+  if (ey + 16)  < y then
+    ey = ey + 4
   end
-  if y < ey then
-    ey = ey - 1
+  if y < (ey + 16) then
+    ey = ey - 4
   end
 
 
@@ -168,6 +181,7 @@ function love.draw()
     DrawPlayer()
     --Draw the player
     
+      
     cam:draw(function(x, y)
       map:draw()
       mapc:draw()
@@ -193,11 +207,10 @@ function love.draw()
   if cc( x, y, 64, 64,   100, 100, 40, 40) == true then
    -- What should go here?
   end 
-  
+  love.graphics.draw(hpBar[hp], 16, 64, 6, 3)
   --player:draw() -- Draw the entity object named player 
 end)
 end
-
 
 function endofdash()
   dashattack = 0
