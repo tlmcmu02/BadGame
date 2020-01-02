@@ -309,22 +309,27 @@ function engineupdate(dt)
     end
 end
 
-function Iframes()
-    
-      if Iframes == 1 then
+function IFrames()
+    if Iframes == 0 then
+            hpnum = hpnum - 1
+        if Iframes == 0 then
+            Iframes = 1
+        end
+    end
+    if Iframes == 1 then
         timerIFrames = 60
-      end
-      if timerIFrames > 0 then
-       timerIFrames = timerIFrames - 1
-       Iframes = 2
-      end
-      if timerIFrames < 1 then
+    end
+    if timerIFrames > 0 then
+        timerIFrames = timerIFrames - 1
+        Iframes = 2
+    end
+    if timerIFrames < 1 then
         timerIFrames = 0
         Iframes = 0
-      end
-      if hpnum == 0 then
+    end
+    if hpnum == 0 then
         lifelost = 1
-      end
+    end
 
 end
 
@@ -822,6 +827,7 @@ end
 
 
 function DrawPlayer()
+    if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
     if anim == walkx then
         if FaceR == true then
             walkx:draw(spritesheet, x, y)
@@ -872,8 +878,10 @@ function DrawPlayer()
         end
     end
 end
+end
 
 function DrawbreakoutPlayer()
+    if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
     if anim == walkx then
         if FaceR == true then
             walkx:draw(spritesheet, x, y)
@@ -922,6 +930,7 @@ function DrawbreakoutPlayer()
             dashx:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
         end
     end
+end
     for i = 1, 5 do
         for t = 1, 10 do
         block[i][t]:draw()

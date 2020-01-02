@@ -127,6 +127,7 @@ function bullet:update(dt)
             self.x = self.x - 3
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -138,6 +139,7 @@ function bullet:update(dt)
             self.x = self.x + 3
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -149,6 +151,7 @@ function bullet:update(dt)
             self.x = self.x - 3
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -160,6 +163,7 @@ function bullet:update(dt)
             self.x = self.x + 3
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -170,6 +174,7 @@ function bullet:update(dt)
             self.y = self.y + 6
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -180,6 +185,7 @@ function bullet:update(dt)
             self.x = self.x - 6
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -190,6 +196,7 @@ function bullet:update(dt)
         self.y = self.y - 6
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -200,6 +207,7 @@ function bullet:update(dt)
             self.x = self.x + 6
         elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
             Delete()
+            IFrames()
         else
             Delete()
         end
@@ -379,19 +387,19 @@ function bullet:update(dt)
             end
         end
 
-        --function Delete()
-        --    self.anim = delete
-        --    delete:update(dt)
-        --    self.animdeletetime = 16
-        --    if self.animdeletetime >= 0 then
-        --        self.animdeletetime = self.animdeletetime - 1
-        --    end
-        --    if self.animdeletetime == -1 then
-        --        self.x = nil
-        --        self.y = nil
-        --        self.direction = nil 
-        --    end
-        --end
+        function Delete()
+            self.anim = delete
+            delete:update(dt)
+            self.animdeletetime = 16
+            if self.animdeletetime >= 0 then
+                self.animdeletetime = self.animdeletetime - 1
+            end
+            --if self.animdeletetime == -1 then
+            --    self.x = nil
+            --    self.y = nil
+            --    self.direction = nil 
+            --end
+        end
 
     end
 
@@ -406,19 +414,43 @@ function bullet:draw()
     end
 end
 
---function Delete()
---    self.anim = delete
---    delete:update(dt)
---    self.animdeletetime = 16
---    if self.animdeletetime >= 0 then
---        self.animdeletetime = self.animdeletetime - 1
---    end
---    if self.animdeletetime == -1 then
---        self.x = nil
---        self.y = nil
---        self.direction = nil 
---    end
---end
+function Delete()
+    self.anim = delete
+    delete:update(dt)
+    self.animdeletetime = 16
+    if self.animdeletetime >= 0 then
+        self.animdeletetime = self.animdeletetime - 1
+    end
+    --if self.animdeletetime == -1 then
+    --    self.x = nil
+    --    self.y = nil
+    --    self.direction = nil 
+    --end
+end
+
+function IFrames()
+    if Iframes == 0 then
+            hpnum = hpnum - 1
+        if Iframes == 0 then
+            Iframes = 1
+        end
+    end
+    if Iframes == 1 then
+        timerIFrames = 60
+    end
+    if timerIFrames > 0 then
+        timerIFrames = timerIFrames - 1
+        Iframes = 2
+    end
+    if timerIFrames < 1 then
+        timerIFrames = 0
+        Iframes = 0
+    end
+    if hpnum == 0 then
+        lifelost = 1
+    end
+
+end
 
 function CR()
     if FaceD == true then
