@@ -379,19 +379,19 @@ function bullet:update(dt)
             end
         end
 
-        function Delete()
-            self.anim = delete
-            delete:update(dt)
-            self.animdeletetime = 16
-            if self.animdeletetime >= 0 then
-                self.animdeletetime = self.animdeletetime - 1
-            end
-            if self.animdeletetime == -1 then
-                self.x = nil
-                self.y = nil
-                self.direction = nil 
-            end
-        end
+        --function Delete()
+        --    self.anim = delete
+        --    delete:update(dt)
+        --    self.animdeletetime = 16
+        --    if self.animdeletetime >= 0 then
+        --        self.animdeletetime = self.animdeletetime - 1
+        --    end
+        --    if self.animdeletetime == -1 then
+        --        self.x = nil
+        --        self.y = nil
+        --        self.direction = nil 
+        --    end
+        --end
 
     end
 
@@ -406,19 +406,19 @@ function bullet:draw()
     end
 end
 
-function Delete()
-    self.anim = delete
-    delete:update(dt)
-    self.animdeletetime = 16
-    if self.animdeletetime >= 0 then
-        self.animdeletetime = self.animdeletetime - 1
-    end
-    if self.animdeletetime == -1 then
-        self.x = nil
-        self.y = nil
-        self.direction = nil 
-    end
-end
+--function Delete()
+--    self.anim = delete
+--    delete:update(dt)
+--    self.animdeletetime = 16
+--    if self.animdeletetime >= 0 then
+--        self.animdeletetime = self.animdeletetime - 1
+--    end
+--    if self.animdeletetime == -1 then
+--        self.x = nil
+--        self.y = nil
+--        self.direction = nil 
+--    end
+--end
 
 function CR()
     if FaceD == true then
