@@ -125,11 +125,12 @@ function bullet:update(dt)
         if mapc:cc(self.x - 3, self.y + 3, 16, 16) == false then  
             self.y = self.y + 3
             self.x = self.x - 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -137,11 +138,12 @@ function bullet:update(dt)
         if mapc:cc(self.x + 3, self.y + 3, 16, 16) == false then  
             self.y = self.y + 3
             self.x = self.x + 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -149,11 +151,12 @@ function bullet:update(dt)
         if mapc:cc(self.x - 3, self.y - 3, 16, 16) == false then  
             self.y = self.y - 3
             self.x = self.x - 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -161,55 +164,60 @@ function bullet:update(dt)
         if mapc:cc(self.x + 3, self.y - 3, 16, 16) == false then  
             self.y = self.y - 3
             self.x = self.x + 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'S' then
         if mapc:cc(self.x, self.y + 6, 16, 16) == false then  
             self.y = self.y + 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'W' then
         if mapc:cc(self.x - 6, self.y, 16, 16) == false then  
             self.x = self.x - 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'N' then
         if mapc:cc(self.x, self.y - 6, 16, 16) == false then  
         self.y = self.y - 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'E' then
         if mapc:cc(self.x + 6, self.y, 16, 16) == false then  
             self.x = self.x + 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
-            IFrames()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -426,30 +434,6 @@ function Delete()
     --    self.y = nil
     --    self.direction = nil 
     --end
-end
-
-function IFrames()
-    if Iframes == 0 then
-            hpnum = hpnum - 1
-        if Iframes == 0 then
-            Iframes = 1
-        end
-    end
-    if Iframes == 1 then
-        timerIFrames = 60
-    end
-    if timerIFrames > 0 then
-        timerIFrames = timerIFrames - 1
-        Iframes = 2
-    end
-    if timerIFrames < 1 then
-        timerIFrames = 0
-        Iframes = 0
-    end
-    if hpnum == 0 then
-        lifelost = 1
-    end
-
 end
 
 function CR()

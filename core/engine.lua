@@ -30,7 +30,7 @@ function PlayerLoad()
         x = 128
         y = 386
 
-        hpnum = 10
+        hpnum = 3
         timerIFrames = 0
         Iframes = 0
         lifelost = 0
@@ -67,7 +67,7 @@ function PlayerbreakoutLoad()
     x = 128
     y = 500
 
-    hpnum = 10
+    hpnum = 3
     timerIFrames = 0
     Iframes = 0
     lifelost = 0
@@ -318,14 +318,6 @@ function IFrames()
     end
     if Iframes == 1 then
         timerIFrames = 60
-    end
-    if timerIFrames > 0 then
-        timerIFrames = timerIFrames - 1
-        Iframes = 2
-    end
-    if timerIFrames < 1 then
-        timerIFrames = 0
-        Iframes = 0
     end
     if hpnum == 0 then
         lifelost = 1
@@ -785,39 +777,6 @@ function enginebreakoutupdate(dt)
       cooldown2 = cooldown2 - 1
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---      if lifelost == 1 then
---        lives = lives - 1
---        x = 64
---        y = 320
---        hpnum = 10
---        timerIFrames = 0
---        Iframes = 0
---        lifelost = 0
---      end
-
-
-
-
-
 
 
 
