@@ -95,7 +95,7 @@ function love.draw()
         
         
       end)
-love.graphics.draw(hpBar[11], 16, 64, 6, 3)
+love.graphics.draw(hpBar[hpnum+1], 16, 64, 6, 3)
       
 end
 
