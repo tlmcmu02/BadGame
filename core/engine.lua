@@ -91,44 +91,12 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function engineupdate(dt)
+function engineupdate(dt) 
     if love.keyboard.isDown('x') then
-        swordswipe = true
+        swordswipe = true       --trigger swordswipe
     end 
     if love.keyboard.isDown('z') then
-        if momentum > 45 then
+        if momentum > 45 then  --if you have enough momentum
             dashattack = 1
             hitbox2 = 1
         end

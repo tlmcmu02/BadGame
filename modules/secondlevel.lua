@@ -9,10 +9,12 @@ local class = require 'core/middleclass'
 local Ball = require 'core/ball'
 local Bullet = require 'core/bullet'
 
+local bullets = {}
+table.insert(bullets, Bullet:new(140, 140, 'S'))
 function love.load()
   
-PlayerbreakoutLoad()
-Bullet1 = bullet:new(140, 140, 'S')
+PlayerbreakoutLoad() -- make this a class
+ 
 
 ball1 = ball:new(64, 500)
 
@@ -53,7 +55,17 @@ function love.update(dt)
 
   
   ball1:update(dt)
-  Bullet1:update(dt)
+  for i = 1, #bullets do
+    bullets[i]:update(dt)
+    if cc(x + 16, y + 16, 32, 32, bullets[i].x, bullets[i].y, 16, 16) then
+      bullets[i]:setDelete()-- then delete the bullet
+      IFrames() -- decrease player hp
+    end
+  end
+
+
+  -- if the bullet collides with the player,
+  
 
   if timerIFrames > 0 then
     timerIFrames = timerIFrames - 1
@@ -88,7 +100,9 @@ function love.draw()
         ball1:draw()
        
         DrawbreakoutPlayer()
-        Bullet1:draw()
+        for i = 1, #bullets do
+          bullets[i]:draw()
+        end
        
         
 
@@ -112,6 +126,12 @@ end
 
 function endofdash()
   dashattack = 0
+end
+
+function love.keypressed(key)
+  if key == 'space' then
+    table.insert(bullets, Bullet:new(140, 140, 'S'))
+  end
 end
 
 
