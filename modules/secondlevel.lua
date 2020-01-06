@@ -99,13 +99,13 @@ function love.draw()
       end)
       
 if hpnum == 3 then
-  love.graphics.draw(hpBar[4], 16, 64, 6, 3)
+  love.graphics.draw(hpBar[4], 16, 32, 6, 3)
 end
 if hpnum == 2 then
-  love.graphics.draw(hpBar[3], 16, 64, 6, 3)
+  love.graphics.draw(hpBar[3], 16, 32, 6, 3)
 end
 if hpnum == 1 then
-  love.graphics.draw(hpBar[2], 16, 64, 6, 3)
+  love.graphics.draw(hpBar[2], 16, 32, 6, 3)
 end
 
 end
