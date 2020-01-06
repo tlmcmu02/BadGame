@@ -97,6 +97,7 @@ function love.draw()
         
         
       end)
+love.graphics.draw(hpBar[hpnum+1], 16, 64, 6, 3)
       
 if hpnum == 3 then
   love.graphics.draw(hpBar[4], 16, 32, 6, 3)
