@@ -5,7 +5,7 @@ local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local engine = require 'core/engine'
 
-function love.load()
+function love.load() -- The door opens when you get near the switch, the enemy will try to attack you, and there tons of coding in this level.
 
 --player = Entity:new() -- Create the Entity object named player
 
@@ -130,7 +130,7 @@ end
 
 
 
-function love.update(dt)
+function love.update(dt) -- Moves the player, the enemy, and the camera.
   -- Enemy movement stuff
   -- ex = ex + 1
   -- Enemy movement stuff (new)
@@ -168,7 +168,7 @@ function love.update(dt)
     cam:setPosition(x, y)
 end
 
-function love.draw()
+function love.draw() -- It prints out sentences for the enemy, where the HP bar will be placed, and prints out the enemy, the map, the switch, and the doors. 
     map:draw()
     mapc:draw()
     --Draw The Map
@@ -216,7 +216,7 @@ function endofdash()
   dashattack = 0
 end
 
-function love.keypressed(key)
+function love.keypressed(key) -- This code does nothing because the enemy doesn't have an HP code. 
   if key == 'space' then
     --enemyhp = enemyhp - 1
   end
