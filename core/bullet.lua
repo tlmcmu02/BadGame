@@ -16,7 +16,7 @@ function bullet:constructor(bulletx, bullety, bulletd)
     self.y = bullety
     self.direction = bulletd
     self.anim = spin
-    self.animdeletetime = 0
+    self.animdeletetime = 16
     if self.direction == 'SWW' then
         self.y = self.y + 1.5
         self.x = self.x - 4.5
@@ -125,10 +125,12 @@ function bullet:update(dt)
         if mapc:cc(self.x - 3, self.y + 3, 16, 16) == false then  
             self.y = self.y + 3
             self.x = self.x - 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -136,10 +138,12 @@ function bullet:update(dt)
         if mapc:cc(self.x + 3, self.y + 3, 16, 16) == false then  
             self.y = self.y + 3
             self.x = self.x + 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -147,10 +151,12 @@ function bullet:update(dt)
         if mapc:cc(self.x - 3, self.y - 3, 16, 16) == false then  
             self.y = self.y - 3
             self.x = self.x - 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -158,50 +164,60 @@ function bullet:update(dt)
         if mapc:cc(self.x + 3, self.y - 3, 16, 16) == false then  
             self.y = self.y - 3
             self.x = self.x + 3
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'S' then
         if mapc:cc(self.x, self.y + 6, 16, 16) == false then  
             self.y = self.y + 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'W' then
         if mapc:cc(self.x - 6, self.y, 16, 16) == false then  
             self.x = self.x - 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'N' then
         if mapc:cc(self.x, self.y - 6, 16, 16) == false then  
         self.y = self.y - 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
     if self.direction == 'E' then
         if mapc:cc(self.x + 6, self.y, 16, 16) == false then  
             self.x = self.x + 6
-        elseif cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
-            Delete()
         else
             Delete()
+        end
+        if cc(x + 16, y + 16, 32, 32, self.x, self.y, 16, 16) then
+            Delete()
+            IFrames()
         end
         CR()
     end
@@ -386,11 +402,11 @@ function bullet:update(dt)
             if self.animdeletetime >= 0 then
                 self.animdeletetime = self.animdeletetime - 1
             end
-            if self.animdeletetime == -1 then
-                self.x = nil
-                self.y = nil
-                self.direction = nil 
-            end
+            --if self.animdeletetime == -1 then
+            --    self.x = nil
+            --    self.y = nil
+            --    self.direction = nil 
+            --end
         end
 
     end
@@ -413,11 +429,11 @@ function Delete()
     if self.animdeletetime >= 0 then
         self.animdeletetime = self.animdeletetime - 1
     end
-    if self.animdeletetime == -1 then
-        self.x = nil
-        self.y = nil
-        self.direction = nil 
-    end
+    --if self.animdeletetime == -1 then
+    --    self.x = nil
+    --    self.y = nil
+    --    self.direction = nil 
+    --end
 end
 
 function CR()
