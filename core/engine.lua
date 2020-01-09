@@ -5,7 +5,8 @@ local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local Block = require 'core/block'
 local Bullet = require 'core/bullet'
-local class = require 'core/middleclass'
+local class 
+ require 'core/middleclass'
 
 function PlayerLoad()
 
@@ -64,8 +65,8 @@ function PlayerbreakoutLoad()
     dashdown = anim8.newAnimation(grid('1-8', 7), 0.05125, endofdash)
     dashx = anim8.newAnimation(grid('1-8', 5), 0.05125, endofdash)
     anim = walkdown
-    x = 128
-    y = 500
+    x = 640
+    y = 640
 
     hpnum = 10
     timerIFrames = 0
