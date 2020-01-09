@@ -4,13 +4,18 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local engine = require 'core/engine'
-local bullet = require 'core/bullet'
+local Block = require 'core/block'
+local class = require 'core/middleclass'
+local Ball = require 'core/ball'
+local Bullet = require 'core/bullet'
 
 function love.load()
 
   PlayerLoad()
   
-  bullettimer = 0
+  Bullet1 = bullet:new(140, 140, 'S')
+  
+
 
   wall = love.graphics.newImage('assets-1/Wall/catacombs_0.png')
 
@@ -40,6 +45,7 @@ end
 function love.update(dt)
 
   engineupdate(dt)
+  Bullet1:update(dt)
 
   Music:play()
 
@@ -54,10 +60,11 @@ end
 
 function love.draw()
   cam:draw(function(l, t, w, h)
+    Bullet1:draw()
 
   mapc:draw()
 
-  love.graphics.print(bullettimer, x, y)
+
   
   DrawPlayer()
 
