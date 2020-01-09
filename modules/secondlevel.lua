@@ -10,7 +10,7 @@ local Ball = require 'core/ball'
 local Bullet = require 'core/bullet'
 
 local bullets = {}
-table.insert(bullets, Bullet:new(400, 500, 'S'))
+table.insert(bullets, Bullet:new(415, 500, 'S'))
 block = {}
 for i = 1, 5 do
     block[i] = {}
@@ -57,6 +57,8 @@ hpBar = {
 end
 
 function love.update(dt)
+
+
   for i = 1, 5 do
   for t = 1, 10 do
   for y = 1, #bullets do
@@ -161,6 +163,9 @@ function love.update(dt)
       else
       block[i][t].NEEc = 1
       end
+      if bullets[y].animdeletetime >= 0 then
+        bullets[y].animdeletetime = bullets[y].animdeletetime - 1
+      end
   end
   end
   end
@@ -219,7 +224,7 @@ function love.draw()
         end
         for i = 1, 5 do
           for t = 1, 10 do
-          block[i][t]:draw()
+          --block[i][t]:draw()
           end
         end 
         
@@ -889,10 +894,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NW' then
-    if mapc:cc(bullets[p].x - 3, bullets[p].y, 16, 16) == true then  
+    if cc(bullets[p].x - 3, bullets[p].y, 16, 16, 64, 0, 640, 64) == true then  
       bullets[p].direction = 'NE'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y - 3, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y - 3, 16, 16, 64, 0, 640, 64) == true then   
       bullets[p].direction = 'SW'
     end  
     if cc(bullets[p].x - 3, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 

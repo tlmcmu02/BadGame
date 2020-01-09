@@ -5,8 +5,7 @@ local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local Block = require 'core/block'
 local Bullet = require 'core/bullet'
-local class 
- require 'core/middleclass'
+local class = require 'core/middleclass'
 
 Player = class("Player")
 
@@ -327,16 +326,16 @@ function Player:breakoutupdate(dt)
         self.anim:update(dt)
         if self.dashattack == 1 then
             self.anim = self.dashup
-            if updashcc() == true then
+            --if updashcc() == true then
                 self.y = self.y - 12
                 self.momentum = self.momentum - 2
-            end
+            --end
         end
         if self.dashattack == 0 then
-            if upcc() == true then
+            --if upcc() == true then
                 self.y = self.y - 6
                 self.momentum = self.momentum + 1
-            end
+            --end
         end
     end
     if love.keyboard.isDown('down') then
@@ -354,10 +353,10 @@ function Player:breakoutupdate(dt)
             end
         end
         if self.dashattack == 0 then
-            if downcc() == true then
+            --if downcc() == true then
                 self.y = self.y + 6
                 self.momentum = self.momentum + 1
-            end
+            --end
         end       
     end
     if love.keyboard.isDown('left') then
