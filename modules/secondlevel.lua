@@ -59,6 +59,8 @@ end
 function love.update(dt)
   for i = 1, 5 do
   for t = 1, 10 do
+  for y = 1, #bullets do
+
       if cc(Player1.x + 16, Player1.y + 10, 32, 32, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].upcollision = 0
       else
@@ -99,66 +101,67 @@ function love.update(dt)
       else
       block[i][t].rightdashcollision = 1
       end
-      if cc(self.x + 6, self.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x + 6, bullets[y].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].Ec = 0
       else
       block[i][t].Ec = 1
       end
-      if cc(self.x, self.y + 6, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x, bullets[y].y + 6, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].Sc = 0
       else
       block[i][t].Sc = 1
       end
-      if cc(self.x, self.y - 6, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x, bullets[y].y - 6, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].Nc = 0
       else
       block[i][t].Nc = 1
       end
-      if cc(self.x - 6, self.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x - 6, bullets[y].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].Wc = 0
       else
       block[i][t].Wc = 1
       end
-      if cc(self.x - 3, self.y - 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x - 3, bullets[y].y - 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].NWc = 0
       else
       block[i][t].NWc = 1
       end
-      if cc(self.x + 3, self.y - 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x + 3, bullets[y].y - 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].NEc = 0
       else
       block[i][t].NEc = 1
       end
-      if cc(self.x + 3, self.y + 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x + 3, bullets[y].y + 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].SEc = 0
       else
       block[i][t].SEc = 1
       end
-      if cc(self.x - 3, self.y + 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x - 3, bullets[y].y + 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].SWc = 0
       else
       block[i][t].SWc = 1
       end
-      if cc(self.x - 4.5, self.y + 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x - 4.5, bullets[y].y + 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].SWWc = 0
       else
       block[i][t].SWWc = 1
       end
-      if cc(self.x + 4.5, self.y + 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x + 4.5, bullets[y].y + 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].SEEc = 0
       else
       block[i][t].SEEc = 1
       end
-      if cc(self.x - 4.5, self.y - 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x - 4.5, bullets[y].y - 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].NWWc = 0
       else
       block[i][t].NWWc = 1
       end
-      if cc(self.x + 4.5, self.y - 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
+      if cc(bullets[y].x + 4.5, bullets[y].y - 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == false then
       block[i][t].NEEc = 0
       else
       block[i][t].NEEc = 1
       end
+  end
   end
   end
   CR()
@@ -2661,7 +2664,7 @@ function love.keypressed(key)
   end
 end
 
-function Ncc()
+function Nc()
   if block[1][1].Nc == 0 then
   if block[1][2].Nc == 0 then
   if block[1][3].Nc == 0 then
@@ -2863,7 +2866,7 @@ function Ncc()
 end 
 end    
 
-function Scc()
+function Sc()
   if block[1][1].Sc == 0 then
   if block[1][2].Sc == 0 then
   if block[1][3].Sc == 0 then
@@ -3065,7 +3068,7 @@ function Scc()
 end 
 end    
 
-function Ecc()
+function Ec()
   if block[1][1].Ec == 0 then
   if block[1][2].Ec == 0 then
   if block[1][3].Ec == 0 then
@@ -3267,7 +3270,7 @@ function Ecc()
 end 
 end  
 
-function Wcc()
+function Wc()
   if block[1][1].Wc == 0 then
   if block[1][2].Wc == 0 then
   if block[1][3].Wc == 0 then
@@ -3469,7 +3472,7 @@ function Wcc()
 end 
 end  
 
-function NEcc()
+function NEc()
   if block[1][1].NEc == 0 then
   if block[1][2].NEc == 0 then
   if block[1][3].NEc == 0 then
@@ -3671,7 +3674,7 @@ function NEcc()
 end 
 end  
 
-function NWcc()
+function NWc()
   if block[1][1].NWc == 0 then
   if block[1][2].NWc == 0 then
   if block[1][3].NWc == 0 then
@@ -3873,7 +3876,7 @@ function NWcc()
 end 
 end  
 
-function SWcc()
+function SWc()
   if block[1][1].SWc == 0 then
   if block[1][2].SWc == 0 then
   if block[1][3].SWc == 0 then
@@ -4075,7 +4078,7 @@ function SWcc()
 end 
 end  
 
-function SEcc()
+function SEc()
   if block[1][1].SEc == 0 then
   if block[1][2].SEc == 0 then
   if block[1][3].SEc == 0 then
@@ -4277,7 +4280,7 @@ function SEcc()
 end 
 end  
 
-function SWWcc()
+function SWWc()
   if block[1][1].SWWc == 0 then
   if block[1][2].SWWc == 0 then
   if block[1][3].SWWc == 0 then
@@ -4479,7 +4482,7 @@ function SWWcc()
 end 
 end  
 
-function SEEcc()
+function SEEc()
   if block[1][1].SEEc == 0 then
   if block[1][2].SEEc == 0 then
   if block[1][3].SEEc == 0 then
@@ -4681,7 +4684,7 @@ function SEEcc()
 end 
 end  
 
-function NEEcc()
+function NEEc()
   if block[1][1].NEEc == 0 then
   if block[1][2].NEEc == 0 then
   if block[1][3].NEEc == 0 then
@@ -4883,7 +4886,7 @@ function NEEcc()
 end 
 end  
 
-function NWWcc()
+function NWWc()
   if block[1][1].NWWc == 0 then
   if block[1][2].NWWc == 0 then
   if block[1][3].NWWc == 0 then
@@ -5085,7 +5088,7 @@ function NWWcc()
 end 
 end  
 
-function NNEcc()
+function NNEc()
   if block[1][1].NNEc == 0 then
   if block[1][2].NNEc == 0 then
   if block[1][3].NNEc == 0 then
@@ -5287,7 +5290,7 @@ function NNEcc()
 end 
 end  
 
-function NNWcc()
+function NNWc()
   if block[1][1].NNWc == 0 then
   if block[1][2].NNWc == 0 then
   if block[1][3].NNWc == 0 then
@@ -5489,7 +5492,7 @@ function NNWcc()
 end 
 end  
 
-function SSWcc()
+function SSWc()
   if block[1][1].SSWc == 0 then
   if block[1][2].SSWc == 0 then
   if block[1][3].SSWc == 0 then
@@ -5691,7 +5694,7 @@ function SSWcc()
 end 
 end  
 
-function SSEcc()
+function SSEc()
   if block[1][1].SSEc == 0 then
   if block[1][2].SSEc == 0 then
   if block[1][3].SSEc == 0 then
