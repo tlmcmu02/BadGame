@@ -5,8 +5,7 @@ local Util = require 'core/util'
 local anim8 = require 'core/anim8'
 local Block = require 'core/block'
 local Bullet = require 'core/bullet'
-local class 
- require 'core/middleclass'
+local class = require 'core/middleclass'
 
 Player = class("Player")
 
