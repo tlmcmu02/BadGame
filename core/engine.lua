@@ -43,16 +43,6 @@ function Player:constructor(x, y, level)
         self.animtimer2 = 0
         self.cooldown2 = 0
 
-        if level == 'Breakout' then
-            block = {}
-            for i = 1, 5 do
-                block[i] = {}
-                for t = 1, 10 do
-                block[i][t] = Block:new(color[i], t, i + 1)
-                end
-            end
-        end
-
     
 end
 
@@ -336,29 +326,15 @@ function Player:breakoutupdate(dt)
         self.anim:update(dt)
         if self.dashattack == 1 then
             self.anim = self.dashup
-            if mapc:cc(self.x + 16 , self.y + 4, 32, 32) == false then   
-                for i = 1, 5 do
-                    for t = 1, 10 do
-                        block[i][t]:update(dt)
-                    end
-                end 
-                if updashblockcc() == true then
-                    self.y = self.y - 12
-                    self.momentum = self.momentum - 2
-                end
+            if updashcc() == true then
+                self.y = self.y - 12
+                self.momentum = self.momentum - 2
             end
         end
         if self.dashattack == 0 then
-            if mapc:cc(self.x + 16 , self.y + 10, 32, 32) == false then   
-                for i = 1, 5 do
-                for t = 1, 10 do
-                    block[i][t]:update(dt)
-                end
-                end 
-                if upblockcc() == true then
-                    self.y = self.y - 6
-                    self.momentum = self.momentum + 1
-                end
+            if upcc() == true then
+                self.y = self.y - 6
+                self.momentum = self.momentum + 1
             end
         end
     end
@@ -371,13 +347,13 @@ function Player:breakoutupdate(dt)
         self.walkdown:update(dt)
         if self.dashattack == 1 then
             self.anim = self.dashdown 
-            if mapc:cc(self.x + 16 , self.y + 28, 32, 32) == false then
+            if downdashcc() == true then
                 self.y = self.y + 12
                 self.momentum = self.momentum - 2
             end
         end
         if self.dashattack == 0 then
-            if mapc:cc(self.x + 16 , self.y + 22, 32, 32) == false then
+            if downcc() == true then
                 self.y = self.y + 6
                 self.momentum = self.momentum + 1
             end
@@ -392,13 +368,13 @@ function Player:breakoutupdate(dt)
         self.walkx:update(dt)
         if self.dashattack == 1 then
             self.anim = self.dashx
-            if mapc:cc(self.x + 4, self.y + 16, 32, 32) == false then
+            if leftdashcc() == true then
                 self.x = self.x - 12
                 self.momentum = self.momentum - 2
             end
         end
         if self.dashattack == 0 then
-            if mapc:cc(self.x + 10, self.y + 16, 32, 32) == false then
+            if leftcc() == true then
                 self.x = self.x - 6
                 self.momentum = self.momentum + 1
             end
@@ -413,13 +389,13 @@ function Player:breakoutupdate(dt)
         self.walkx:update(dt)
         if self.dashattack == 1 then
             self.anim = self.dashx
-            if mapc:cc(self.x + 28, self.y + 16, 32, 32) == false  then
+            if rightdashcc() == true then
                 self.x = self.x + 12
                 self.momentum = self.momentum - 2
             end
         end
         if self.dashattack == 0 then
-            if mapc:cc(self.x + 22, self.y + 16, 32, 32) == false then
+            if rightcc() == true then
                 self.x = self.x + 6
                 self.momentum = self.momentum + 1
             end

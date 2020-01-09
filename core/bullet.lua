@@ -25,11 +25,11 @@ end
 
 
 function Bullet:update(dt)
-    self.anim:update(dt) -- run animation
-
-    -- check direction to see where to move it (FIX THIS)
-    if self.direction == 'S' then
-        self.y = self.y + 6
+    self.anim:update(dt)  --run animation
+    --check direction to see where to move it (FIX THIS)
+    if self.direction == 'SWW' then
+        self.y = self.y + 1.5
+        self.x = self.x - 4.5
     end
     if self.direction == 'SEE' then
         self.y = self.y + 1.5
@@ -58,6 +58,52 @@ function Bullet:update(dt)
     if self.direction == 'NNE' then
         self.y = self.y - 4.5
         self.x = self.x + 1.5
+    end
+    if self.direction == 'SW' then
+        if mapc:cc(self.x - 3, self.y + 3, 16, 16) == false then  
+            self.y = self.y + 3
+            self.x = self.x - 3
+        end
+    end
+    if self.direction == 'SE' then
+        if mapc:cc(self.x + 3, self.y + 3, 16, 16) == false then  
+            self.y = self.y + 3
+            self.x = self.x + 3
+        end
+    end
+    if self.direction == 'NW' then
+        if mapc:cc(self.x - 3, self.y - 3, 16, 16) == false then  
+            self.y = self.y - 3
+            self.x = self.x - 3
+        end
+    end
+    if self.direction == 'NE' then
+        if mapc:cc(self.x + 3, self.y - 3, 16, 16) == false then  
+            self.y = self.y - 3
+            self.x = self.x + 3
+        else
+            reflect()
+        end  
+    end
+    if self.direction == 'S' then
+        if mapc:cc(self.x, self.y + 6, 16, 16) == false then  
+            self.y = self.y + 6
+        end   
+    end
+    if self.direction == 'W' then
+        if mapc:cc(self.x - 6, self.y, 16, 16) == false then  
+            self.x = self.x - 6
+        end    
+    end
+    if self.direction == 'N' then
+        if mapc:cc(self.x, self.y - 6, 16, 16) == false then  
+        self.y = self.y - 6
+        end  
+    end
+    if self.direction == 'E' then
+        if mapc:cc(self.x + 6, self.y, 16, 16) == false then  
+            self.x = self.x + 6
+        end
     end
 end
 

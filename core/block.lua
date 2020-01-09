@@ -22,35 +22,19 @@ function Block:constructor(img, bx, by)
   self.w = 64
   self.h = 64
   self.destroyed = 0
-  if dashattack == 0 then
-  if cc(x + 16, y + 10, 32, 32, self.x, self.y, 64, 64) == false then
   self.upcollision = 0
-  end
-  end
-  if dashattack == 1 then
-  if cc(x + 16, y + 4, 32, 32, self.x, self.y, 64, 64) == false then
   self.updashcollision = 0
-  end
-  end
+  self.leftcollision = 0
+  self.leftdashcollision = 0
+  self.downcollision = 0
+  self.downdashcollision = 0
+  self.rightcollision = 0
+  self.rightdashcollision = 0
+  destroyed = love.audio.newSource('Project 1.mp3', 'static')
 end
 
-function Block:update(dt)
-  if dashattack == 0 then
-    if cc(x + 16, y + 10, 32, 32, self.x, self.y, 64, 64) == false then
-    self.upcollision = 0
-    end
-    if cc(x + 16, y + 10, 32, 32, self.x, self.y, 64, 64) == true then
-    self.upcollision = 1
-    end
-  end
-  if dashattack == 1 then
-    if cc(x + 16, y + 4, 32, 32, self.x, self.y, 64, 64) == false then
-    self.updashcollision = 0
-    end
-    if cc(x + 16, y + 4, 32, 32, self.x, self.y, 64, 64) == true then
-    self.updashcollision = 1
-    end
-  end
+function Block:destroy(dt)
+  destroyed:Play()
 end
 
 function Block:draw()
