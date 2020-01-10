@@ -226,7 +226,7 @@ function love.draw()
         end
         for i = 1, 5 do
           for t = 1, 10 do
-          --block[i][t]:draw()
+          block[i][t]:draw()
           end
         end 
         
@@ -438,47 +438,47 @@ for i = 1, 5 do
 for t = 1, 10 do
 
 if ball1.direction == 'SWW' then
-  if mapc:cc(ball1.x - 4.5, ball1.y, 16, 16) == true then
-    ball1.direction = 'NNE'
+  if mapc:cc(ball1.x - 1.5, ball1.y, 16, 16) == true then
+    ball1.direction = 'SEE'
   end 
-  if mapc:cc(ball1.x, ball1.y + 1.5, 16, 16) == true then   
-    ball1.direction = 'SSW'
+  if mapc:cc(ball1.x, ball1.y + 4.5, 16, 16) == true then   
+    ball1.direction = 'NWW'
   end  
-  if cc(ball1.x - 4.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'NNE'
+  if cc(ball1.x - 1.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+    ball1.direction = 'SEE'
     block[i][t].destroy()
   end
-  if cc(ball1.x, ball1.y + 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'SSW'
+  if cc(ball1.x, ball1.y + 4.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+    ball1.direction = 'NWW'
     block[i][t].destroy()
   end
 end
 
 if ball1.direction == 'SEE' then
   if mapc:cc(ball1.x + 4.5, ball1.y, 16, 16) == true then
-    ball1.direction = 'NNW'
+    ball1.direction = 'SSW'
   end 
-  if mapc:cc(ball1.x, ball1.y + 1.5, 16, 16) == true then   
-    ball1.direction = 'SSE'
+  if mapc:cc(ball1.x, ball1.y + 4.5, 16, 16) == true then   
+    ball1.direction = 'NNE'
   end  
   if cc(ball1.x + 4.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'NNW'
+    ball1.direction = 'SSW'
     block[i][t].destroy()
   end
-  if cc(ball1.x, ball1.y + 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'SSE'
+  if cc(ball1.x, ball1.y + 4.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+    ball1.direction = 'NNE'
     block[i][t].destroy()
   end
 end
 
 if ball1.direction == 'NWW' then
-  if mapc:cc(ball1.x - 4.5, ball1.y, 16, 16) == true then
+  if mapc:cc(ball1.x - 1.5, ball1.y, 16, 16) == true then
     ball1.direction = 'NNE'
   end 
   if mapc:cc(ball1.x, ball1.y - 1.5, 16, 16) == true then   
     ball1.direction = 'SSW'
   end  
-  if cc(ball1.x - 4.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  if cc(ball1.x - 1.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'NNE'
     block[i][t].destroy()
   end
@@ -507,68 +507,68 @@ end
 
 if ball1.direction == 'SSW' then
   if mapc:cc(ball1.x - 1.5, ball1.y, 16, 16) == true then
-    ball1.direction = 'NWW'
+    ball1.direction = 'SEE'
   end 
   if mapc:cc(ball1.x, ball1.y + 4.5, 16, 16) == true then   
-    ball1.direction = 'SEE'
+    ball1.direction = 'NWW'
   end  
   if cc(ball1.x - 1.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'NWW'
+    ball1.direction = 'SEE'
     block[i][t].destroy()
   end
   if cc(ball1.x, ball1.y + 4.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'SEE'
+    ball1.direction = 'NWW'
     block[i][t].destroy()
   end
 end
 
 if ball1.direction == 'SSE' then
-  if mapc:cc(ball1.x + 1.5, ball1.y, 16, 16) == true then
-    ball1.direction = 'NEE'
+  if mapc:cc(ball1.x + 4.5, ball1.y, 16, 16) == true then
+    ball1.direction = 'SWW'
   end 
   if mapc:cc(ball1.x, ball1.y + 4.5, 16, 16) == true then   
-    ball1.direction = 'SWW'
-  end  
-  if cc(ball1.x + 1.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'NEE'
+  end  
+  if cc(ball1.x + 4.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+    ball1.direction = 'SWW'
     block[i][t].destroy()
   end
   if cc(ball1.x, ball1.y + 4.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'SWW'
+    ball1.direction = 'NEE'
     block[i][t].destroy()
   end
 end
 
 if ball1.direction == 'NNW' then
   if mapc:cc(ball1.x - 1.5, ball1.y, 16, 16) == true then
-    ball1.direction = 'SWW'
-  end 
-  if mapc:cc(ball1.x, ball1.y - 4.5, 16, 16) == true then   
     ball1.direction = 'NEE'
+  end 
+  if mapc:cc(ball1.x, ball1.y - 1.5, 16, 16) == true then   
+    ball1.direction = 'SWW'
   end  
   if cc(ball1.x - 1.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'SWW'
+    ball1.direction = 'NEE'
     block[i][t].destroy()
   end
-  if cc(ball1.x, ball1.y - 4.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-    ball1.direction = 'NEE'
+  if cc(ball1.x, ball1.y - 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+    ball1.direction = 'SWW'
     block[i][t].destroy()
   end
 end
 
 if ball1.direction == 'NNE' then
-if mapc:cc(ball1.x + 1.5, ball1.y, 16, 16) == true then
-  ball1.direction = 'SEE'
-end 
-if mapc:cc(ball1.x, ball1.y - 4.5, 16, 16) == true then   
+if mapc:cc(ball1.x + 4.5, ball1.y, 16, 16) == true then
   ball1.direction = 'NWW'
-end  
-if cc(ball1.x + 1.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+end 
+if mapc:cc(ball1.x, ball1.y - 1.5, 16, 16) == true then   
   ball1.direction = 'SEE'
+end  
+if cc(ball1.x + 4.5, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  ball1.direction = 'NWW'
   block[i][t].destroy()
 end
-if cc(ball1.x, ball1.y - 4.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
-  ball1.direction = 'NWW'
+if cc(ball1.x, ball1.y - 1.5, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  ball1.direction = 'SEE'
   block[i][t].destroy()
 end
 end
@@ -577,31 +577,31 @@ if ball1.direction == 'SW' then
   if mapc:cc(ball1.x - 3, ball1.y, 16, 16) == true then  
     ball1.direction = 'SE'
   end 
-  if mapc:cc(ball1.x, ball1.y + 3, 16, 16) == true then   
+  if mapc:cc(ball1.x, ball1.y + 6, 16, 16) == true then   
     ball1.direction = 'NW'
   end  
   if cc(ball1.x - 3, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'SE'
     block[i][t].destroy()
   end
-  if cc(ball1.x, ball1.y + 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  if cc(ball1.x, ball1.y + 6, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'NW'
     block[i][t].destroy()
   end
 end
 
 if ball1.direction == 'SE' then
-  if mapc:cc(ball1.x + 3, ball1.y, 16, 16) == true then  
+  if mapc:cc(ball1.x + 6, ball1.y, 16, 16) == true then  
     ball1.direction = 'SW'
   end 
-  if mapc:cc(ball1.x, ball1.y + 3, 16, 16) == true then   
+  if mapc:cc(ball1.x, ball1.y + 6, 16, 16) == true then   
     ball1.direction = 'NE'
   end  
-  if cc(ball1.x + 3, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  if cc(ball1.x + 6, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'SW'
     block[i][t].destroy()
   end
-  if cc(ball1.x, ball1.y + 3, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  if cc(ball1.x, ball1.y + 6, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'NE'
     block[i][t].destroy()
   end
@@ -625,13 +625,13 @@ if ball1.direction == 'NW' then
 end
 
 if ball1.direction == 'NE' then
-  if mapc:cc(ball1.x + 3, ball1.y, 16, 16) == true then   
+  if mapc:cc(ball1.x + 6, ball1.y, 16, 16) == true then   
     ball1.direction = 'NW'
   end 
   if mapc:cc(ball1.x, ball1.y - 3, 16, 16) == true then   
     ball1.direction = 'SE'
   end  
-  if cc(ball1.x + 3, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
+  if cc(ball1.x + 6, ball1.y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
     ball1.direction = 'NW'
     block[i][t].destroy()
   end
