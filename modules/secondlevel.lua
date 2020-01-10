@@ -11,6 +11,8 @@ local Bullet = require 'core/bullet'
 
 local bullets = {}
 table.insert(bullets, Bullet:new(415, 500, 'S'))
+table.insert(bullets, Bullet:new(415, 500, 'S'))
+table.insert(bullets, Bullet:new(415, 500, 'S'))
 block = {}
 for i = 1, 5 do
     block[i] = {}
@@ -744,10 +746,10 @@ function bulletreflect()
   for t = 1, 10 do
   
   if bullets[p].direction == 'SWW' then
-    if mapc:cc(bullets[p].x - 4.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x - 4.5, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then
       bullets[p].direction = 'NNE'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y + 1.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y + 1.5, 16, 16, 64, 704, 640, 64) == true then   
       bullets[p].direction = 'SSW'
     end  
     if cc(bullets[p].x - 4.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -759,10 +761,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'SEE' then
-    if mapc:cc(bullets[p].x + 4.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x + 4.5, bullets[p].y, 16, 16, 704, 64, 64, 640) == true then
       bullets[p].direction = 'NNW'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y + 1.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y + 1.5, 16, 16, 64, 704, 640, 64) == true then   
       bullets[p].direction = 'SSE'
     end  
     if cc(bullets[p].x + 4.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -774,10 +776,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NWW' then
-    if mapc:cc(bullets[p].x - 4.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x - 4.5, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then
       bullets[p].direction = 'NNE'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y - 1.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y - 1.5, 16, 16, 64, 0, 640, 64) == true then   
       bullets[p].direction = 'SSW'
     end  
     if cc(bullets[p].x - 4.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -789,10 +791,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NEE' then
-    if mapc:cc(bullets[p].x + 4.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x + 4.5, bullets[p].y, 16, 16, 704, 64, 64, 640) == true then
       bullets[p].direction = 'NNW'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y - 1.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y - 1.5, 16, 16, 64, 0, 640, 64) == true then   
       bullets[p].direction = 'SSE'
     end  
     if cc(bullets[p].x + 4.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -804,10 +806,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'SSW' then
-    if mapc:cc(bullets[p].x - 1.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x - 1.5, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then
       bullets[p].direction = 'NWW'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y + 4.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y + 4.5, 16, 16, 64, 704, 640, 64) == true then   
       bullets[p].direction = 'SEE'
     end  
     if cc(bullets[p].x - 1.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -819,10 +821,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'SSE' then
-    if mapc:cc(bullets[p].x + 1.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x + 1.5, bullets[p].y, 16, 16, 704, 64, 64, 640) == true then
       bullets[p].direction = 'NEE'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y + 4.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y + 4.5, 16, 16, 64, 704, 640, 64) == true then   
       bullets[p].direction = 'SWW'
     end  
     if cc(bullets[p].x + 1.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -834,10 +836,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NNW' then
-    if mapc:cc(bullets[p].x - 1.5, bullets[p].y, 16, 16) == true then
+    if cc(bullets[p].x - 1.5, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then
       bullets[p].direction = 'SWW'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y - 4.5, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y - 4.5, 16, 16, 64, 0, 640, 64) == true then   
       bullets[p].direction = 'NEE'
     end  
     if cc(bullets[p].x - 1.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -849,10 +851,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NNE' then
-  if mapc:cc(bullets[p].x + 1.5, bullets[p].y, 16, 16) == true then
+  if cc(bullets[p].x + 1.5, bullets[p].y, 16, 16, 704, 64, 64, 640) == true then
     bullets[p].direction = 'SEE'
   end 
-  if mapc:cc(bullets[p].x, bullets[p].y - 4.5, 16, 16) == true then   
+  if cc(bullets[p].x, bullets[p].y - 4.5, 16, 16, 64, 0, 640, 64) == true then   
     bullets[p].direction = 'NWW'
   end  
   if cc(bullets[p].x + 1.5, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -864,10 +866,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'SW' then
-    if mapc:cc(bullets[p].x - 3, bullets[p].y, 16, 16) == true then  
+    if cc(bullets[p].x - 3, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then  
       bullets[p].direction = 'SE'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y + 3, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y + 3, 16, 16, 64, 704, 640, 64) == true then   
       bullets[p].direction = 'NW'
     end  
     if cc(bullets[p].x - 3, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -879,10 +881,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'SE' then
-    if mapc:cc(bullets[p].x + 3, bullets[p].y, 16, 16) == true then  
+    if cc(bullets[p].x + 3, bullets[p].y, 16, 16, 704, 64, 64, 640) == true then  
       bullets[p].direction = 'SW'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y + 3, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y + 3, 16, 16, 64, 704, 640, 64) == true then   
       bullets[p].direction = 'NE'
     end  
     if cc(bullets[p].x + 3, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -894,7 +896,7 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NW' then
-    if cc(bullets[p].x - 3, bullets[p].y, 16, 16, 64, 0, 640, 64) == true then  
+    if cc(bullets[p].x - 3, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then  
       bullets[p].direction = 'NE'
     end 
     if cc(bullets[p].x, bullets[p].y - 3, 16, 16, 64, 0, 640, 64) == true then   
@@ -909,10 +911,10 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'NE' then
-    if mapc:cc(bullets[p].x + 3, bullets[p].y, 16, 16) == true then   
+    if cc(bullets[p].x + 3, bullets[p].y, 16, 16, 704, 64, 64, 640) == true then   
       bullets[p].direction = 'NW'
     end 
-    if mapc:cc(bullets[p].x, bullets[p].y - 3, 16, 16) == true then   
+    if cc(bullets[p].x, bullets[p].y - 3, 16, 16, 64, 0, 640, 64) == true then   
       bullets[p].direction = 'SE'
     end  
     if cc(bullets[p].x + 3, bullets[p].y, 16, 16, block[i][t].x, block[i][t].y, 64, 64) == true then 
@@ -924,7 +926,7 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'S' then
-    if mapc:cc(bullets[p].x, bullets[p].y + 6, 16, 16) == true then  
+    if cc(bullets[p].x, bullets[p].y + 6, 16, 16, 64, 704, 640, 64) == true then  
       local n = love.math.random(1, 2)
       if n == 1 then
         bullets[p].direction = 'NNW'
@@ -945,7 +947,7 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'W' then
-    if mapc:cc(bullets[p].x - 6, bullets[p].y, 16, 16) == true then  
+    if cc(bullets[p].x - 6, bullets[p].y, 16, 16, 0, 64, 64, 640) == true then  
       local n = love.math.random(1, 2)
       if n == 1 then
         bullets[p].direction = 'NEE'
@@ -966,7 +968,7 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'N' then
-    if mapc:cc(bullets[p].x, bullets[p].y - 6, 16, 16) == true then 
+    if cc(bullets[p].x, bullets[p].y - 6, 16, 16, 64, 0, 640, 64) == true then 
       local n = love.math.random(1, 2)
       if n == 1 then
         bullets[p].direction = 'SSW'
@@ -987,7 +989,7 @@ function bulletreflect()
   end
   
   if bullets[p].direction == 'E' then
-    if mapc:cc(bullets[p].x + 6, bullets[p].y, 16, 16) == false then  
+    if cc(bullets[p].x + 6, bullets[p].y, 16, 16, 704, 64, 64, 640) == false then  
       local n = love.math.random(1, 2)
       if n == 1 then
         bullets[p].direction = 'NWW'
@@ -2662,12 +2664,6 @@ function rightcc()
   end      
 end 
 end 
-
-function love.keypressed(key)
-  if key == 'space' then
-    table.insert(bullets, Bullet:new(140, 140, 'S'))
-  end
-end
 
 function Nc()
   if block[1][1].Nc == 0 then
