@@ -21,18 +21,11 @@ hpBar = {
   love.graphics.newImage('assets-1/player/hp_bar/1.png'),
   love.graphics.newImage('assets-1/player/hp_bar/2.png'),
   love.graphics.newImage('assets-1/player/hp_bar/3.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/4.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/5.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/6.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/7.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/8.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/9.png'),
-  love.graphics.newImage('assets-1/player/hp_bar/10.png'),
 }
 state  = 'rest'
 x = 128
 y = 128
-hp = 11
+hp = 3
 if x > 100 then
 if y > 200 then
   state = 'move'
