@@ -43,6 +43,8 @@ function Player:constructor(x, y, level)
         self.animtimer2 = 0
         self.cooldown2 = 0
 
+        self.IFTrigger = false
+
     
 end
 
@@ -236,6 +238,7 @@ function Player:update(dt)
 end
 
 function Player:IFrames()
+    self.IFTrigger = true
     if self.Iframes == 0 then
         self.hpnum = self.hpnum - 1
         if self.Iframes == 0 then
@@ -248,7 +251,6 @@ function Player:IFrames()
     if self.hpnum == 0 then
         self.lifelost = 1
     end
-
 end
 
 
@@ -406,6 +408,7 @@ function Player:breakoutupdate(dt)
             self.sword:update(dt)
             if self.hitbox == 0 then
                 self.hitbox = 1
+                self.timerIFrames = 25
           end
         end
     end
@@ -501,7 +504,9 @@ end
 
 
 function Player:Draw()
-    if self.timerIFrames == 1 or self.timerIFrames == 2 or self.timerIFrames == 3 or self.timerIFrames == 4 or self.timerIFrames == 5 or self.timerIFrames == 6 or self.timerIFrames == 7 or self.timerIFrames == 8 or self.timerIFrames == 9 or self.timerIFrames == 10 or self.timerIFrames == 11 or self.timerIFrames == 12 or self.timerIFrames == 13 or self.timerIFrames == 14 or self.timerIFrames == 15 or self.timerIFrames == 16 or self.timerIFrames == 17 or self.timerIFrames == 21 or self.timerIFrames == 22 or self.timerIFrames == 23 or self.timerIFrames == 24 or self.timerIFrames == 25 or self.timerIFrames == 26 or self.timerIFrames == 27 or self.timerIFrames == 28 or self.timerIFrames == 29 or self.timerIFrames == 30 or self.timerIFrames == 31 or self.timerIFrames == 32 or self.timerIFrames == 33 or self.timerIFrames == 34 or self.timerIFrames == 35 or self.timerIFrames == 36 or self.timerIFrames == 37 or self.timerIFrames == 40 or self.timerIFrames == 41 or self.timerIFrames == 42 or self.timerIFrames == 43 or self.timerIFrames == 44 or self.timerIFrames == 45 or self.timerIFrames == 46 or self.timerIFrames == 47 or self.timerIFrames == 48 or self.timerIFrames == 49 or self.timerIFrames == 50 or self.timerIFrames == 51 or self.timerIFrames == 52 or self.timerIFrames == 53 or self.timerIFrames == 54 or self.timerIFrames == 55 or self.timerIFrames == 56 or self.timerIFrames == 57 or self.timerIFrames == 0 then
+    if self.IFTrigger == false then
+        if self.timerIFrames == 1 or self.timerIFrames == 2 or self.timerIFrames == 3 or self.timerIFrames == 4 or self.timerIFrames == 5 or self.timerIFrames == 6 or self.timerIFrames == 7 or self.timerIFrames == 8 or self.timerIFrames == 9 or self.timerIFrames == 10 or self.timerIFrames == 11 or self.timerIFrames == 12 or self.timerIFrames == 13 or self.timerIFrames == 14 or self.timerIFrames == 15 or self.timerIFrames == 16 or self.timerIFrames == 17 or self.timerIFrames == 21 or self.timerIFrames == 22 or self.timerIFrames == 23 or self.timerIFrames == 24 or self.timerIFrames == 25 or self.timerIFrames == 26 or self.timerIFrames == 27 or self.timerIFrames == 28 or self.timerIFrames == 29 or self.timerIFrames == 30 or self.timerIFrames == 31 or self.timerIFrames == 32 or self.timerIFrames == 33 or self.timerIFrames == 34 or self.timerIFrames == 35 or self.timerIFrames == 36 or self.timerIFrames == 37 or self.timerIFrames == 40 or self.timerIFrames == 41 or self.timerIFrames == 42 or self.timerIFrames == 43 or self.timerIFrames == 44 or self.timerIFrames == 45 or self.timerIFrames == 46 or self.timerIFrames == 47 or self.timerIFrames == 48 or self.timerIFrames == 49 or self.timerIFrames == 50 or self.timerIFrames == 51 or self.timerIFrames == 52 or self.timerIFrames == 53 or self.timerIFrames == 54 or self.timerIFrames == 55 or self.timerIFrames == 56 or self.timerIFrames == 57 or self.timerIFrames == 0 then
+    end
     if self.anim == self.walkx then
         if self.FaceR == true then
             self.walkx:draw(self.spritesheet, self.x, self.y)
@@ -547,8 +552,9 @@ function Player:Draw()
             self.dashx:draw(self.spritesheet, self.x, self.y, rotation, -1, 1, 64, 0)
         end
     end
-
-end
+    if self.IFTrigger == false then
+        end
+    end
 end
 
 function DrawbreakoutPlayer()
