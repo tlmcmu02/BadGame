@@ -15,28 +15,44 @@ function ball:constructor(bx, by)
   self.y = by 
   self.w = 32
   self.h = 32
-  self.facing = 'UR'
+  self.direction = 'NE'
   
 end
 
 function ball:update(dt)
   rotate:update(dt)
-  if self.facing == 'UR' then
-    self.y = self.y - 3 
-    self.x = self.x + 3
-  end
-  if self.facing == 'UL' then
-    self.y = self.y - 3 
+if self.direction == 'SW' then
+    if mapc:cc(self.x - 3, self.y + 3, 16, 16) == false then   
+    self.y = self.y + 3
+    self.x = self.x - 3 
+    else
+        ballreflect()
+    end  
+end
+if self.direction == 'SE' then
+    if mapc:cc(self.x + 3, self.y + 3, 16, 16) == false then  
+    self.y = self.y + 3
+    self.x = self.x + 3 
+    else
+        ballreflect()
+    end  
+end
+if self.direction == 'NW' then
+    if mapc:cc(self.x - 3, self.y - 3, 16, 16) == false then  
+    self.y = self.y - 3
     self.x = self.x - 3
-  end
-  if self.facing == 'DR' then
-    self.y = self.y + 3 
-    self.x = self.x + 3
-  end
-  if self.facing == 'DL' then
-    self.y = self.y + 3 
-    self.x = self.x - 3
-  end
+    else
+        ballreflect()
+    end  
+end
+if self.direction == 'NE' then
+    if mapc:cc(self.x + 3, self.y - 3, 16, 16) == false then  
+    self.y = self.y - 3
+    self.x = self.x + 3  
+    else
+        ballreflect()
+    end  
+end
   
 end
 

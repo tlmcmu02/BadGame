@@ -31,30 +31,31 @@ function Block:constructor(img, bx, by)
   self.rightcollision = 0
   self.rightdashcollision = 0
 
-  self.Nc = 0
-  self.Ec = 0
-  self.Sc = 0
-  self.Wc = 0
+  --self.Nc = 0
+  --self.Ec = 0
+  --self.Sc = 0
+  --self.Wc = 0
   self.NEc = 0
   self.SEc = 0
   self.SWc = 0
   self.NWc = 0
-  self.NWWc = 0
-  self.NEEc = 0
-  self.NNEc = 0
-  self.NNWc = 0
-  self.SEEc = 0
-  self.SWWc = 0
-  self.SSEc = 0
-  self.SSWc = 0
+  --self.NWWc = 0
+  --self.NEEc = 0
+  --self.NNEc = 0
+  --self.NNWc = 0
+  --self.SEEc = 0
+  --self.SWWc = 0
+  --self.SSEc = 0
+  --self.SSWc = 0
 
-  destroyed = love.audio.newSource('Project 1.mp3', 'static')
+  --destroyed = love.audio.newSource('Project 1.mp3', 'static')
 end
 
-function Block:destroy(dt)
+function Block:destroy()
   -- play the sound effect
-  destroyed:Play()
+  --destroyed:Play()
   -- move block offscreen
+  self.destroyed = 1
   self.x = -1000000
   self.y = 1000000
 end
