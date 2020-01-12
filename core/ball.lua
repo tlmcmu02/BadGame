@@ -22,33 +22,49 @@ end
 function ball:update(dt)
   rotate:update(dt)
 if self.direction == 'SW' then
-    if mapc:cc(self.x - 3, self.y + 3, 16, 16) == false then   
-    self.y = self.y + 3
-    self.x = self.x - 3 
+    if mapc:cc(self.x - 3, self.y + 3, 32, 32) == false then   
+        if SWcc() == true then
+            self.y = self.y + 3
+            self.x = self.x - 3 
+        else
+            ballreflect()
+        end  
     else
         ballreflect()
     end  
 end
 if self.direction == 'SE' then
-    if mapc:cc(self.x + 3, self.y + 3, 16, 16) == false then  
-    self.y = self.y + 3
-    self.x = self.x + 3 
+    if mapc:cc(self.x + 3, self.y + 3, 32, 32) == false then  
+        if SEcc() == true then
+            self.y = self.y + 3
+            self.x = self.x + 3 
+        else
+            ballreflect()
+        end   
     else
         ballreflect()
     end  
 end
 if self.direction == 'NW' then
-    if mapc:cc(self.x - 3, self.y - 3, 16, 16) == false then  
-    self.y = self.y - 3
-    self.x = self.x - 3
+    if mapc:cc(self.x - 3, self.y - 3, 32, 32) == false then  
+        if NWcc() == true then
+            self.y = self.y - 3
+            self.x = self.x - 3
+        else
+            ballreflect()
+        end   
     else
         ballreflect()
     end  
 end
 if self.direction == 'NE' then
-    if mapc:cc(self.x + 3, self.y - 3, 16, 16) == false then  
-    self.y = self.y - 3
-    self.x = self.x + 3  
+    if mapc:cc(self.x + 3, self.y - 3, 32, 32) == false then
+        if NEcc() == true then
+            self.y = self.y - 3
+            self.x = self.x + 3 
+        else
+            ballreflect()
+        end   
     else
         ballreflect()
     end  

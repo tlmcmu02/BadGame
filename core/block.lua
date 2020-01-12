@@ -22,6 +22,7 @@ function Block:constructor(img, bx, by)
   self.w = 64
   self.h = 64
   self.destroyed = 0
+  self.variable = 0
   self.upcollision = 0
   self.updashcollision = 0
   self.leftcollision = 0
@@ -35,10 +36,10 @@ function Block:constructor(img, bx, by)
   --self.Ec = 0
   --self.Sc = 0
   --self.Wc = 0
-  self.NEc = 0
-  self.SEc = 0
-  self.SWc = 0
-  self.NWc = 0
+  self.NEcollision = 0
+  self.SEcollision = 0
+  self.SWcollision = 0
+  self.NWcollision = 0
   --self.NWWc = 0
   --self.NEEc = 0
   --self.NNEc = 0
@@ -55,6 +56,9 @@ function Block:destroy()
   -- play the sound effect
   --destroyed:Play()
   -- move block offscreen
+  table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'S'))
+  table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'SW'))
+  table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'SE'))
   self.destroyed = 1
   self.x = -1000000
   self.y = 1000000
