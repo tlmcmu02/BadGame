@@ -129,7 +129,7 @@ function Player:update(dt)
     if love.keyboard.isDown('right') then
         self.FaceU = false
         self.FaceD = false
-        self.FaceL = false
+        self.FaceL = false--word
         self.FaceR = true
         self.anim = self.walkx
         self.anim:update(dt)
