@@ -20,7 +20,7 @@ function Bullet:constructor(bulletx, bullety, bulletd)
     self.direction = bulletd
     self.anim = spin
     self.animdeletetime = 16
-    self.bounce = 0
+    self.bounces = 0
     self.cool = 0
 end
 
@@ -152,6 +152,9 @@ function Bullet:update(dt)
             bulletreflect()
         end 
     end
+    if self.bounces == 7 then
+        self:setDelete()
+    end
 
 end
 
@@ -171,6 +174,10 @@ function Bullet:setDelete()
         self.y = 1000000
         self.direction = 'S'
     end
+end
+
+function Bullet:bounce()
+    self.bounces = self.bounces + 1
 end
 
 function Bullet:draw()
