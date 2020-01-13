@@ -11,32 +11,34 @@ local Bullet = require 'core/bullet'
 local Functiondef = require 'core/functiondef'
 
 bullet = {}
-table.insert(bullet, Bullet:new(415, 500, 'S'))
+table.insert(bullet, Bullet:new(415, 5000, 'S'))
 block = {}
 for i = 1, 5 do
     block[i] = {}
     for t = 1, 10 do
-    block[i][t] = Block:new(color[i], t, i + 1)
+    block[i][t] = Block:new(color[i], t, i + 1)  -- create the blocks
     end
 end
 function love.load()
   
-Player1 = Player:new(200, 500, 'Breakout')
-ball1 = ball:new(64, 650)
+Player1 = Player:new(500, 500, 'Breakout') -- create the player
+ball1 = ball:new(64, 650) -- create the ball
+
+ --beep = love.graphics.newImage('the definition of game design.png')
 
 hpBar = {
     love.graphics.newImage('assets-1/player/hp_bar/0.png'),
     love.graphics.newImage('assets-1/player/hp_bar/1.png'),
     love.graphics.newImage('assets-1/player/hp_bar/2.png'),
     love.graphics.newImage('assets-1/player/hp_bar/3.png'),
-  }
+}
   Livestable = {
     love.graphics.newImage('assets-1/player/lives1.png'),
     love.graphics.newImage('assets-1/player/lives2.png'),
     love.graphics.newImage('assets-1/player/lives3.png'),
     love.graphics.newImage('assets-1/player/lives4.png'),
     love.graphics.newImage('assets-1/player/lives5.png'),
-  }
+}
 
 
   lose = love.graphics.newImage('assets-1/Player/lose.png')
@@ -299,7 +301,7 @@ end
 
 
 
-  cam:setPosition(Player1.x, Player1.y)
+  cam:setPosition(Player1.x, Player1.y) -- set the cameras position
 
 end
 
@@ -307,18 +309,19 @@ end
 
 function love.draw()
     cam:draw(function(l, t, w, h)
-        
-        mapc:draw()
-        ball1:draw()
+        --love.graphics.draw(beep, 0, 0) this was for comedy
+
+        mapc:draw() -- draw the map
+        ball1:draw() -- draw the ball
        
-        Player1:Draw()
+        Player1:Draw() -- draw the Player
         for i = 1, 5 do
           for t = 1, 10 do
-          block[i][t]:draw()
+          block[i][t]:draw() --draw the blocks
           end
         end 
         for i = 1, #bullet do
-          bullet[i]:draw()       
+          bullet[i]:draw()   -- draw the bullets    
         end
 
         
@@ -330,8 +333,8 @@ function love.draw()
       love.graphics.draw(hpBar[4], 16, 32, 6, 3)
     end
     if Player1.hpnum == 2 then
-      love.graphics.draw(hpBar[3], 16, 32, 6, 3)
-    end 
+      love.graphics.draw(hpBar[3], 16, 32, 6, 3)-- draw the HPbar
+    end
     if Player1.hpnum == 1 then
       love.graphics.draw(hpBar[2], 16, 32, 6, 3)
     end
@@ -344,7 +347,7 @@ if Player1.lives == 2 then
   love.graphics.draw(Livestable[2], 700, 0)
 end
 if Player1.lives == 3 then
-  love.graphics.draw(Livestable[3], 700, 0)
+  love.graphics.draw(Livestable[3], 700, 0)-- draw the lives
 end
 if Player1.lives == 4 then
   love.graphics.draw(Livestable[4], 700, 0)
@@ -355,9 +358,9 @@ end
 
 if levelend == true then
 if Player1.lives < 1 then
-  love.graphics.draw(lose, 0, 0)
+  love.graphics.draw(lose, 0, 0)-- draw the game ver
 else
-  love.graphics.draw(win, 0, 0)
+  love.graphics.draw(win, 0, 0)-- draw the you win
 end
 end
 

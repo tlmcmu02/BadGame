@@ -49,24 +49,23 @@ function Block:constructor(img, bx, by)
   --self.SSEc = 0
   --self.SSWc = 0
 
-  --destroyed = love.audio.newSource('Project 1.mp3', 'static')
+  destroyed = love.audio.newSource('Project 1.mp3', 'static')
 end
 
 function Block:destroy()
   -- play the sound effect
-  --destroyed:Play()
-  -- move block offscreen
+  destroyed:play()
   table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'S'))
   table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'SW'))
-  table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'SE'))
+  table.insert(bullet, Bullet:new(self.x + 24, self.y + 64, 'SE')) -- create bullets
   self.destroyed = 1
-  self.x = -1000000
+  self.x = -1000000 --move offscreen
   self.y = 1000000
 end
 
 function Block:draw()
   if self.destroyed == 0 then
-    love.graphics.draw(self.img, self.x, self.y)
+    love.graphics.draw(self.img, self.x, self.y) -- draw the block
   end
 end
 
