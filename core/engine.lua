@@ -129,10 +129,10 @@ function Player:update(dt)
     if love.keyboard.isDown('right') then
         self.FaceU = false
         self.FaceD = false
-        self.FaceL = false--word
+        self.FaceL = false  --set the direction
         self.FaceR = true
-        self.anim = self.walkx
-        self.anim:update(dt)
+        self.anim = self.walkx -- set the animation
+        self.anim:update(dt) -- update the frame
         if self.dashattack == 1 then
             self.anim = self.dashx
             if mapc:cc(self.x + 28, self.y + 16, 32, 32) == false  then
