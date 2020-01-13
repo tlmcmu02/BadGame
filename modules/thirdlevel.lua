@@ -161,7 +161,7 @@ function love.update(dt) -- Moves the player, the enemy, and the camera.
     cam:setPosition(x, y)
 end
 
-function love.draw() -- It prints out sentences for the enemy, where the HP bar will be placed, and prints out the enemy, the map, the switch, and the doors. 
+function love.draw() -- It prints out sentences for the enemy, where the HP bar will be placed, and prints out the player, the enemy, the map, the switch, and the doors. 
     map:draw()
     mapc:draw()
     --Draw The Map
