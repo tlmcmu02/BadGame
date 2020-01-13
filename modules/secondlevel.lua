@@ -331,7 +331,7 @@ function love.draw()
     end
     if Player1.hpnum == 2 then
       love.graphics.draw(hpBar[3], 16, 32, 6, 3)
-    end
+    end 
     if Player1.hpnum == 1 then
       love.graphics.draw(hpBar[2], 16, 32, 6, 3)
     end
