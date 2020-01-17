@@ -48,7 +48,8 @@ hpBar = {
   w1 ='assets-1/wall/transparent_wall.png'
   f = 'assets-1/wall/frozen_0.png'
 
-  
+  love.window.setTitle('Breakout')
+
   layer1 = {
     {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, },
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil",  w1},
